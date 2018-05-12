@@ -18,6 +18,19 @@
  */
 package net.driftingsouls.ds2.server.modules;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
+import net.driftingsouls.ds2.interfaces.annotations.controllers.UrlParam;
+import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
 import net.driftingsouls.ds2.server.Location;
 import net.driftingsouls.ds2.server.WellKnownConfigValue;
 import net.driftingsouls.ds2.server.battles.Battle;
@@ -36,28 +49,59 @@ import net.driftingsouls.ds2.server.entities.UserFlag;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.server.framework.ConfigService;
 import net.driftingsouls.ds2.server.framework.bbcode.BBCodeParser;
-import net.driftingsouls.ds2.server.framework.pipeline.Module;
-import net.driftingsouls.ds2.server.framework.pipeline.controllers.Action;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
-import net.driftingsouls.ds2.server.framework.pipeline.controllers.UrlParam;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
 import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
-import net.driftingsouls.ds2.server.modules.ks.*;
+import net.driftingsouls.ds2.server.modules.ks.BasicKSAction;
+import net.driftingsouls.ds2.server.modules.ks.BasicKSMenuAction;
+import net.driftingsouls.ds2.server.modules.ks.KSActivateAR;
+import net.driftingsouls.ds2.server.modules.ks.KSAttackAction;
+import net.driftingsouls.ds2.server.modules.ks.KSCheatRegenerateEnemyAction;
+import net.driftingsouls.ds2.server.modules.ks.KSCheatRegenerateOwnAction;
+import net.driftingsouls.ds2.server.modules.ks.KSDeactivateAR;
+import net.driftingsouls.ds2.server.modules.ks.KSDischargeBatteriesAllAction;
+import net.driftingsouls.ds2.server.modules.ks.KSDischargeBatteriesClassAction;
+import net.driftingsouls.ds2.server.modules.ks.KSDischargeBatteriesSingleAction;
+import net.driftingsouls.ds2.server.modules.ks.KSEndBattleCivilAction;
+import net.driftingsouls.ds2.server.modules.ks.KSEndBattleEqualAction;
+import net.driftingsouls.ds2.server.modules.ks.KSEndTurnAction;
+import net.driftingsouls.ds2.server.modules.ks.KSFluchtAllAction;
+import net.driftingsouls.ds2.server.modules.ks.KSFluchtClassAction;
+import net.driftingsouls.ds2.server.modules.ks.KSFluchtSingleAction;
+import net.driftingsouls.ds2.server.modules.ks.KSGroupAttackAction;
+import net.driftingsouls.ds2.server.modules.ks.KSKapernAction;
+import net.driftingsouls.ds2.server.modules.ks.KSLeaveSecondRowAction;
+import net.driftingsouls.ds2.server.modules.ks.KSMenuAttackAction;
+import net.driftingsouls.ds2.server.modules.ks.KSMenuAttackMuniSelectAction;
+import net.driftingsouls.ds2.server.modules.ks.KSMenuBatteriesAction;
+import net.driftingsouls.ds2.server.modules.ks.KSMenuBattleConsignAction;
+import net.driftingsouls.ds2.server.modules.ks.KSMenuCheatsAction;
+import net.driftingsouls.ds2.server.modules.ks.KSMenuDefaultAction;
+import net.driftingsouls.ds2.server.modules.ks.KSMenuFluchtAction;
+import net.driftingsouls.ds2.server.modules.ks.KSMenuGroupAttackAction;
+import net.driftingsouls.ds2.server.modules.ks.KSMenuGroupAttackMuniSelectAction;
+import net.driftingsouls.ds2.server.modules.ks.KSMenuHistoryAction;
+import net.driftingsouls.ds2.server.modules.ks.KSMenuOtherAction;
+import net.driftingsouls.ds2.server.modules.ks.KSMenuShieldsAction;
+import net.driftingsouls.ds2.server.modules.ks.KSMenuUndockAction;
+import net.driftingsouls.ds2.server.modules.ks.KSNewCommanderAction;
+import net.driftingsouls.ds2.server.modules.ks.KSRegenerateShieldsAllAction;
+import net.driftingsouls.ds2.server.modules.ks.KSRegenerateShieldsClassAction;
+import net.driftingsouls.ds2.server.modules.ks.KSRegenerateShieldsSingleAction;
+import net.driftingsouls.ds2.server.modules.ks.KSSecondRowAction;
+import net.driftingsouls.ds2.server.modules.ks.KSSecondRowAttackAction;
+import net.driftingsouls.ds2.server.modules.ks.KSSecondRowEngageAction;
+import net.driftingsouls.ds2.server.modules.ks.KSStopTakeCommandAction;
+import net.driftingsouls.ds2.server.modules.ks.KSTakeCommandAction;
+import net.driftingsouls.ds2.server.modules.ks.KSUndockAction;
+import net.driftingsouls.ds2.server.modules.ks.KSUndockAllAction;
+import net.driftingsouls.ds2.server.modules.ks.KSUndockClassAction;
 import net.driftingsouls.ds2.server.services.SchlachtErstellenService;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipTypeData;
 import net.driftingsouls.ds2.server.units.UnitCargo;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Das UI fuer Schlachten.

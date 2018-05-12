@@ -1,5 +1,6 @@
 package net.driftingsouls.ds2.server.framework.pipeline.controllers;
 
+import net.driftingsouls.ds2.interfaces.annotations.controllers.KeineTicksperre;
 import net.driftingsouls.ds2.server.WellKnownConfigValue;
 import net.driftingsouls.ds2.server.framework.ConfigService;
 import net.driftingsouls.ds2.server.framework.authentication.TickInProgressException;

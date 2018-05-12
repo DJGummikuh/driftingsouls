@@ -1,12 +1,13 @@
 package net.driftingsouls.ds2.server.modules.admin;
 
+import javax.annotation.Nonnull;
+
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.config.ConfigFelsbrockenSystem;
 import net.driftingsouls.ds2.server.config.StarSystem;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EditorForm8;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EntityEditor;
-
-import javax.annotation.Nonnull;
 
 @AdminMenuEntry(category = "Systeme", name="Felsbrocken-System", permission = WellKnownAdminPermission.EDIT_CONFIG_FELSBROCKEN_SYSTEM)
 public class EditConfigFelsbrockenSystem implements EntityEditor<ConfigFelsbrockenSystem>

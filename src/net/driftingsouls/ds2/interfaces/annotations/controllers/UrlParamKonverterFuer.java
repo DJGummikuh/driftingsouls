@@ -1,4 +1,4 @@
-package net.driftingsouls.ds2.server.framework.pipeline.controllers;
+package net.driftingsouls.ds2.interfaces.annotations.controllers;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

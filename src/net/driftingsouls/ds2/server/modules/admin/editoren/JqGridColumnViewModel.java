@@ -1,9 +1,9 @@
 package net.driftingsouls.ds2.server.modules.admin.editoren;
 
-import net.driftingsouls.ds2.server.framework.ViewModel;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import net.driftingsouls.ds2.interfaces.annotations.ViewModel;
 
 @ViewModel
 public class JqGridColumnViewModel

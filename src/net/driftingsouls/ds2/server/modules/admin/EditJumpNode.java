@@ -1,12 +1,13 @@
 package net.driftingsouls.ds2.server.modules.admin;
 
+import javax.annotation.Nonnull;
+
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.entities.JumpNode;
 import net.driftingsouls.ds2.server.map.TileCache;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EditorForm8;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EntityEditor;
-
-import javax.annotation.Nonnull;
 
 @AdminMenuEntry(category = "Systeme", name="Sprungpunkt", permission = WellKnownAdminPermission.EDIT_JUMPNODE)
 public class EditJumpNode implements EntityEditor<JumpNode>

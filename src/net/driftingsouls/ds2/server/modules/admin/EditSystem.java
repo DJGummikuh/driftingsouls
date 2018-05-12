@@ -18,6 +18,13 @@
  */
 package net.driftingsouls.ds2.server.modules.admin;
 
+import java.io.Serializable;
+
+import javax.annotation.Nonnull;
+
+import org.hibernate.Session;
+
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.Location;
 import net.driftingsouls.ds2.server.MutableLocation;
 import net.driftingsouls.ds2.server.WellKnownAdminPermission;
@@ -33,10 +40,6 @@ import net.driftingsouls.ds2.server.framework.ContextMap;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EditorForm8;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EntityEditor;
 import net.driftingsouls.ds2.server.ships.Ship;
-import org.hibernate.Session;
-
-import javax.annotation.Nonnull;
-import java.io.Serializable;
 
 /**
  * Aktualisierungstool fuer die Systeme.

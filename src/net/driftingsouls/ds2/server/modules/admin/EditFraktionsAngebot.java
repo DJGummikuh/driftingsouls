@@ -1,5 +1,14 @@
 package net.driftingsouls.ds2.server.modules.admin;
 
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import javax.annotation.Nonnull;
+
+import org.hibernate.Session;
+
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.entities.User;
 import net.driftingsouls.ds2.server.entities.fraktionsgui.FraktionsAngebot;
@@ -9,12 +18,6 @@ import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.server.framework.ContextMap;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EditorForm8;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EntityEditor;
-import org.hibernate.Session;
-
-import javax.annotation.Nonnull;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @AdminMenuEntry(category = "Spieler", name = "Fraktionsangebot", permission = WellKnownAdminPermission.EDIT_FRAKTIONS_ANGEBOT)
 public class EditFraktionsAngebot implements EntityEditor<FraktionsAngebot>

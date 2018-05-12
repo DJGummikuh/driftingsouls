@@ -1,7 +1,7 @@
 package net.driftingsouls.ds2.server.framework.pipeline.controllers.jsstubs;
 
-import net.driftingsouls.ds2.server.framework.pipeline.Module;
-import net.driftingsouls.ds2.server.framework.pipeline.controllers.Action;
+import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
+import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ActionType;
 
 import java.lang.reflect.Method;

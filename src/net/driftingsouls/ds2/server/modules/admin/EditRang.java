@@ -1,11 +1,12 @@
 package net.driftingsouls.ds2.server.modules.admin;
 
+import javax.annotation.Nonnull;
+
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.config.Rang;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EditorForm8;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EntityEditor;
-
-import javax.annotation.Nonnull;
 
 @AdminMenuEntry(category = "Spieler", name = "Rang", permission = WellKnownAdminPermission.EDIT_RANG)
 public class EditRang implements EntityEditor<Rang>

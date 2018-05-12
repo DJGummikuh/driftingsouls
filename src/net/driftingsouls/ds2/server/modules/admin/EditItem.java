@@ -18,6 +18,15 @@
  */
 package net.driftingsouls.ds2.server.modules.admin;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.annotation.Nonnull;
+
+import org.hibernate.Session;
+
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.cargo.Cargo;
 import net.driftingsouls.ds2.server.cargo.ItemID;
@@ -29,8 +38,8 @@ import net.driftingsouls.ds2.server.config.items.Munitionsbauplan;
 import net.driftingsouls.ds2.server.config.items.Quality;
 import net.driftingsouls.ds2.server.config.items.Schiffsbauplan;
 import net.driftingsouls.ds2.server.config.items.Schiffsmodul;
-import net.driftingsouls.ds2.server.config.items.Schiffsmodul_;
 import net.driftingsouls.ds2.server.config.items.SchiffsmodulSet;
+import net.driftingsouls.ds2.server.config.items.Schiffsmodul_;
 import net.driftingsouls.ds2.server.config.items.Schiffsverbot;
 import net.driftingsouls.ds2.server.config.items.Ware;
 import net.driftingsouls.ds2.server.entities.FactoryEntry;
@@ -47,12 +56,6 @@ import net.driftingsouls.ds2.server.ships.SchiffstypModifikation;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipType;
 import net.driftingsouls.ds2.server.ships.ShipTypeData;
-import org.hibernate.Session;
-
-import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Aktualisierungstool fuer die Werte eines Schiffes.

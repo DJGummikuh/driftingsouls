@@ -18,11 +18,11 @@
  */
 package net.driftingsouls.ds2.server.framework;
 
+import javax.persistence.EntityManager;
+
 import net.driftingsouls.ds2.server.framework.pipeline.Error;
 import net.driftingsouls.ds2.server.framework.pipeline.Request;
 import net.driftingsouls.ds2.server.framework.pipeline.Response;
-
-import javax.persistence.EntityManager;
 
 /**
  * Repraesentiert einen Kontext. Bei einem Kontext handelt es sich um einen

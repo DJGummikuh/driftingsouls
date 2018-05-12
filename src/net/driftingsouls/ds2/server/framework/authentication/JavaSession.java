@@ -20,8 +20,8 @@ package net.driftingsouls.ds2.server.framework.authentication;
 
 import java.io.Serializable;
 
+import net.driftingsouls.ds2.interfaces.annotations.ContextInstance;
 import net.driftingsouls.ds2.server.framework.BasicUser;
-import net.driftingsouls.ds2.server.framework.ContextInstance;
 import net.driftingsouls.ds2.server.framework.ContextMap;
 
 /**

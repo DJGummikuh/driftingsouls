@@ -18,16 +18,17 @@
  */
 package net.driftingsouls.ds2.server;
 
-import net.driftingsouls.ds2.server.framework.ConfigService;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextInstance;
-import net.driftingsouls.ds2.server.framework.ContextMap;
-import net.driftingsouls.ds2.server.scripting.ScriptParserContext;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
-import java.util.HashMap;
-import java.util.Map;
+
+import net.driftingsouls.ds2.interfaces.annotations.ContextInstance;
+import net.driftingsouls.ds2.server.framework.ConfigService;
+import net.driftingsouls.ds2.server.framework.Context;
+import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.server.scripting.ScriptParserContext;
 
 /**
  * Kontextlokale Operationen.

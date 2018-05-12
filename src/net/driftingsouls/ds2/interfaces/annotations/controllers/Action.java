@@ -16,11 +16,7 @@
  *	License along with this library; if not, write to the Free Software
  *	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-package net.driftingsouls.ds2.server.framework.pipeline;
-
-import net.driftingsouls.ds2.server.framework.pipeline.controllers.OutputHandler;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+package net.driftingsouls.ds2.interfaces.annotations.controllers;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -28,35 +24,32 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import net.driftingsouls.ds2.server.framework.pipeline.controllers.ActionType;
+import net.driftingsouls.ds2.server.framework.pipeline.controllers.OutputHandler;
+
 /**
- * Marker fuer Pipeline-Module. Eine hiermit annotierte Klasse muss
- * von {@link net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller} abgeleitet sein.
+ * Kennzeichnet eine Action.
  * @author Christopher Jung
  *
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-@Component
-@Scope("prototype")
 @Documented
-public @interface Module
-{
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface Action {
 	/**
-	 * Der Name des Moduls unter dem es in URLs/in der Pipeline angesprochen werden kann.
+	 * Der Typ der Action.
 	 */
-	String name();
+	ActionType value();
 	/**
-	 * <code>true</code>, falls es das Default-Module ist, welches beim Fehlen einer Modulangabe
-	 * verwendet werden soll. Es darf zu jedem Zeitpunkt nur ein Default-Module geben.
+	 * Marktiert die Aktion als nur lesend. Dies erlaubt
+	 * dem Datenbanksystem einige Optimierungen (z.B. keine flushes usw).
 	 */
-	boolean defaultModule() default false;
+	boolean readOnly() default false;
 
 	/**
 	 * Die fuer die Ausgabe von Header, Footer und Fehlern zustaendige Implementierung.
 	 * Standardmaessig waehlt das Framework selbst die passende Implementierung in
-	 * Abhaengigkeit von gewaehlten {@link net.driftingsouls.ds2.server.framework.pipeline.controllers.ActionType}.
-	 * Der hier angegebene Handler kann noch durch eine explizite Angabe von {@link net.driftingsouls.ds2.server.framework.pipeline.controllers.Action#outputHandler}
-	 * ueberschrieben werden.
+	 * Abhaengigkeit von gewaehlten {@link ActionType}.
 	 */
 	Class<? extends OutputHandler> outputHandler() default OutputHandler.class;
 }

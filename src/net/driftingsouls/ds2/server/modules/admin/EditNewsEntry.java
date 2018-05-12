@@ -1,11 +1,12 @@
 package net.driftingsouls.ds2.server.modules.admin;
 
+import javax.annotation.Nonnull;
+
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.entities.NewsEntry;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EditorForm8;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EntityEditor;
-
-import javax.annotation.Nonnull;
 
 @AdminMenuEntry(category = "Portal", name="News", permission = WellKnownAdminPermission.EDIT_NEWS_ENTRY)
 public class EditNewsEntry implements EntityEditor<NewsEntry>

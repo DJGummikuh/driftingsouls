@@ -1,16 +1,5 @@
 package net.driftingsouls.ds2.server.framework.pipeline.controllers;
 
-import net.driftingsouls.ds2.server.framework.AnnotationUtils;
-import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.ContextMap;
-import net.driftingsouls.ds2.server.framework.pipeline.Request;
-import net.driftingsouls.ds2.server.framework.utils.StringToTypeConverter;
-import org.apache.commons.lang.math.NumberUtils;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-import org.hibernate.Session;
-
-import javax.persistence.Entity;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -18,6 +7,20 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedSet;
+
+import javax.persistence.Entity;
+
+import org.apache.commons.lang.math.NumberUtils;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.hibernate.Session;
+
+import net.driftingsouls.ds2.interfaces.annotations.controllers.UrlParamKonverterFuer;
+import net.driftingsouls.ds2.server.framework.AnnotationUtils;
+import net.driftingsouls.ds2.server.framework.Common;
+import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.server.framework.pipeline.Request;
+import net.driftingsouls.ds2.server.framework.utils.StringToTypeConverter;
 
 /**
  * Klasse zum Parsen und Konvertieren von Requestparametern.

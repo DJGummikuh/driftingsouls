@@ -1,6 +1,6 @@
 package net.driftingsouls.ds2.server.modules.admin.editoren;
 
-import net.driftingsouls.ds2.server.framework.ViewModel;
+import net.driftingsouls.ds2.interfaces.annotations.ViewModel;
 
 @ViewModel
 public class EntitySelectionViewModel

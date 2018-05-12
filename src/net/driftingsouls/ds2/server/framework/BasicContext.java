@@ -18,21 +18,24 @@
  */
 package net.driftingsouls.ds2.server.framework;
 
-import net.driftingsouls.ds2.server.framework.db.HibernateUtil;
-import net.driftingsouls.ds2.server.framework.pipeline.Error;
-import net.driftingsouls.ds2.server.framework.pipeline.Request;
-import net.driftingsouls.ds2.server.framework.pipeline.Response;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.persistence.EntityManager;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-import javax.persistence.EntityManager;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import net.driftingsouls.ds2.interfaces.annotations.ContextInstance;
+import net.driftingsouls.ds2.server.framework.db.HibernateUtil;
+import net.driftingsouls.ds2.server.framework.pipeline.Error;
+import net.driftingsouls.ds2.server.framework.pipeline.Request;
+import net.driftingsouls.ds2.server.framework.pipeline.Response;
 
 /**
  * Eine einfache Klasse, welche das <code>Context</code>-Interface implementiert. Die Klasse

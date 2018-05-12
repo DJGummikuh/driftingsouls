@@ -18,6 +18,15 @@
  */
 package net.driftingsouls.ds2.server.modules.admin;
 
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import javax.annotation.Nonnull;
+
+import org.apache.commons.lang.StringUtils;
+
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.config.Medal;
 import net.driftingsouls.ds2.server.config.Medals;
@@ -28,12 +37,6 @@ import net.driftingsouls.ds2.server.entities.UserFlag;
 import net.driftingsouls.ds2.server.framework.ContextMap;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EditorForm8;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EntityEditor;
-import org.apache.commons.lang.StringUtils;
-
-import javax.annotation.Nonnull;
-import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 /**
  * Aktualisierungstool fuer die Werte eines Spielers.

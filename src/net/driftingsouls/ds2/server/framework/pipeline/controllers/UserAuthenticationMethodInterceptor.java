@@ -1,9 +1,11 @@
 package net.driftingsouls.ds2.server.framework.pipeline.controllers;
 
-import net.driftingsouls.ds2.server.framework.ContextMap;
-import net.driftingsouls.ds2.server.framework.NotLoggedInException;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.stereotype.Component;
+
+import net.driftingsouls.ds2.interfaces.annotations.controllers.KeinLoginNotwendig;
+import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.server.framework.NotLoggedInException;
 
 /**
  * Realisiert die notwendige Authentifizierung fuer Controller.

@@ -18,26 +18,6 @@
  */
 package net.driftingsouls.ds2.server.modules;
 
-import net.driftingsouls.ds2.server.WellKnownAdminPermission;
-import net.driftingsouls.ds2.server.framework.AnnotationUtils;
-import net.driftingsouls.ds2.server.framework.ViewModel;
-import net.driftingsouls.ds2.server.framework.pipeline.Module;
-import net.driftingsouls.ds2.server.framework.pipeline.controllers.Action;
-import net.driftingsouls.ds2.server.framework.pipeline.controllers.ActionType;
-import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
-import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.modules.admin.AdminMenuEntry;
-import net.driftingsouls.ds2.server.modules.admin.AdminPlugin;
-import net.driftingsouls.ds2.server.modules.admin.editoren.EditPlugin8;
-import net.driftingsouls.ds2.server.modules.admin.editoren.EntityEditor;
-import net.driftingsouls.ds2.server.modules.admin.editoren.EntitySelectionViewModel;
-import net.driftingsouls.ds2.server.modules.admin.editoren.JqGridSortOrder;
-import net.driftingsouls.ds2.server.modules.admin.editoren.JqGridTableDataViewModel;
-import net.driftingsouls.ds2.server.modules.admin.editoren.JqGridViewModel;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-
-import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -49,6 +29,28 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
+
+import javax.annotation.Nonnull;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+import net.driftingsouls.ds2.interfaces.annotations.ViewModel;
+import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
+import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
+import net.driftingsouls.ds2.server.WellKnownAdminPermission;
+import net.driftingsouls.ds2.server.framework.AnnotationUtils;
+import net.driftingsouls.ds2.server.framework.pipeline.controllers.ActionType;
+import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
+import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
+import net.driftingsouls.ds2.server.modules.admin.AdminPlugin;
+import net.driftingsouls.ds2.server.modules.admin.editoren.EditPlugin8;
+import net.driftingsouls.ds2.server.modules.admin.editoren.EntityEditor;
+import net.driftingsouls.ds2.server.modules.admin.editoren.EntitySelectionViewModel;
+import net.driftingsouls.ds2.server.modules.admin.editoren.JqGridSortOrder;
+import net.driftingsouls.ds2.server.modules.admin.editoren.JqGridTableDataViewModel;
+import net.driftingsouls.ds2.server.modules.admin.editoren.JqGridViewModel;
 
 /**
  * Der Admin.

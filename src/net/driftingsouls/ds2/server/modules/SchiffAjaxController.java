@@ -18,12 +18,16 @@
  */
 package net.driftingsouls.ds2.server.modules;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import net.driftingsouls.ds2.interfaces.annotations.ViewModel;
+import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
 import net.driftingsouls.ds2.server.Location;
 import net.driftingsouls.ds2.server.entities.JumpNode;
 import net.driftingsouls.ds2.server.entities.User;
 import net.driftingsouls.ds2.server.framework.ViewMessage;
-import net.driftingsouls.ds2.server.framework.ViewModel;
-import net.driftingsouls.ds2.server.framework.pipeline.controllers.Action;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
@@ -35,16 +39,13 @@ import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipClasses;
 import net.driftingsouls.ds2.server.ships.ShipTypeData;
 import net.driftingsouls.ds2.server.ships.Waypoint;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 /**
  * Die Schiffsfunktionen mit JSON/AJAX-Unterstuetzung.
  *
  * @author Christopher Jung
  */
-@net.driftingsouls.ds2.server.framework.pipeline.Module(name = "schiffAjax")
+@net.driftingsouls.ds2.interfaces.annotations.pipeline.Module(name = "schiffAjax")
 public class SchiffAjaxController extends Controller
 {
 	@ViewModel

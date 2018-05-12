@@ -1,5 +1,8 @@
 package net.driftingsouls.ds2.server.modules.admin;
 
+import org.jetbrains.annotations.NotNull;
+
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.bases.AcademyBuilding;
 import net.driftingsouls.ds2.server.bases.Building;
@@ -14,7 +17,6 @@ import net.driftingsouls.ds2.server.entities.Forschung;
 import net.driftingsouls.ds2.server.entities.Rasse;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EditorForm8;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EntityEditor;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Editiert die Werte von Gebaeudetypen.

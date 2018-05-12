@@ -1,5 +1,7 @@
 package net.driftingsouls.ds2.server.framework;
 
+import net.driftingsouls.ds2.interfaces.annotations.ViewModel;
+
 /**
  * Nachrichtenklasse fuer Nachrichten an die GUI.
  */

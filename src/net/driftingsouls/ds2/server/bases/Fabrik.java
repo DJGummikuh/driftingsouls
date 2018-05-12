@@ -18,24 +18,6 @@
  */
 package net.driftingsouls.ds2.server.bases;
 
-import net.driftingsouls.ds2.server.cargo.Cargo;
-import net.driftingsouls.ds2.server.cargo.ItemCargoEntry;
-import net.driftingsouls.ds2.server.cargo.ResourceEntry;
-import net.driftingsouls.ds2.server.cargo.ResourceList;
-import net.driftingsouls.ds2.server.config.items.Munitionsbauplan;
-import net.driftingsouls.ds2.server.entities.Factory;
-import net.driftingsouls.ds2.server.entities.FactoryEntry;
-import net.driftingsouls.ds2.server.entities.User;
-import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextInstance;
-import net.driftingsouls.ds2.server.framework.ContextMap;
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
@@ -46,6 +28,26 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import net.driftingsouls.ds2.interfaces.annotations.ContextInstance;
+import net.driftingsouls.ds2.server.cargo.Cargo;
+import net.driftingsouls.ds2.server.cargo.ItemCargoEntry;
+import net.driftingsouls.ds2.server.cargo.ResourceEntry;
+import net.driftingsouls.ds2.server.cargo.ResourceList;
+import net.driftingsouls.ds2.server.config.items.Munitionsbauplan;
+import net.driftingsouls.ds2.server.entities.Factory;
+import net.driftingsouls.ds2.server.entities.FactoryEntry;
+import net.driftingsouls.ds2.server.entities.User;
+import net.driftingsouls.ds2.server.framework.Common;
+import net.driftingsouls.ds2.server.framework.Context;
+import net.driftingsouls.ds2.server.framework.ContextMap;
 
 /**
  * Die Fabrik.

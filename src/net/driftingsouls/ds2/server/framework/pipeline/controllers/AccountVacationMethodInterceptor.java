@@ -1,10 +1,12 @@
 package net.driftingsouls.ds2.server.framework.pipeline.controllers;
 
+import org.aopalliance.intercept.MethodInvocation;
+import org.springframework.stereotype.Component;
+
+import net.driftingsouls.ds2.interfaces.annotations.controllers.KeinLoginNotwendig;
 import net.driftingsouls.ds2.server.entities.User;
 import net.driftingsouls.ds2.server.framework.ContextMap;
 import net.driftingsouls.ds2.server.user.authentication.AccountInVacationModeException;
-import org.aopalliance.intercept.MethodInvocation;
-import org.springframework.stereotype.Component;
 
 /**
  * Realisiert die Sperre von Acccounts im Vacation-Modus.

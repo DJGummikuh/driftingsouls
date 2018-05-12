@@ -18,15 +18,17 @@
  */
 package net.driftingsouls.ds2.server.modules.admin;
 
+import java.math.BigDecimal;
+
+import javax.annotation.Nonnull;
+
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.cargo.Cargo;
 import net.driftingsouls.ds2.server.entities.FactoryEntry;
 import net.driftingsouls.ds2.server.entities.Forschung;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EditorForm8;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EntityEditor;
-
-import javax.annotation.Nonnull;
-import java.math.BigDecimal;
 
 /**
  * Aktualisierungstool fuer die Werte eines Schiffes.

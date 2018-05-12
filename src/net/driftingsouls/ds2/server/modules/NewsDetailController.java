@@ -1,18 +1,19 @@
 package net.driftingsouls.ds2.server.modules;
 
+import java.io.IOException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
+import net.driftingsouls.ds2.interfaces.annotations.controllers.KeinLoginNotwendig;
+import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
 import net.driftingsouls.ds2.server.entities.NewsEntry;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.pipeline.Module;
-import net.driftingsouls.ds2.server.framework.pipeline.controllers.Action;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.EmptyHeaderOutputHandler;
-import net.driftingsouls.ds2.server.framework.pipeline.controllers.KeinLoginNotwendig;
 import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.io.IOException;
 
 /**
  * Ein einzelner Newseintrag.

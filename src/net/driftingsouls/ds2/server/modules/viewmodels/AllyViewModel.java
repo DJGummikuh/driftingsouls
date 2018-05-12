@@ -1,8 +1,8 @@
 package net.driftingsouls.ds2.server.modules.viewmodels;
 
+import net.driftingsouls.ds2.interfaces.annotations.ViewModel;
 import net.driftingsouls.ds2.server.entities.ally.Ally;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.ViewModel;
 
 /**
  * Standard-ViewModel von Allianzen ({@link net.driftingsouls.ds2.server.entities.ally.Ally}).

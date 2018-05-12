@@ -18,6 +18,12 @@
  */
 package net.driftingsouls.ds2.server.scripting.roles.roleimpl;
 
+import java.util.List;
+
+import javax.script.ScriptContext;
+import javax.script.ScriptException;
+
+import net.driftingsouls.ds2.interfaces.annotations.roles.Attribute;
 import net.driftingsouls.ds2.server.Location;
 import net.driftingsouls.ds2.server.bases.Base;
 import net.driftingsouls.ds2.server.cargo.Cargo;
@@ -25,12 +31,7 @@ import net.driftingsouls.ds2.server.cargo.Resources;
 import net.driftingsouls.ds2.server.framework.ContextMap;
 import net.driftingsouls.ds2.server.scripting.ShipUtils;
 import net.driftingsouls.ds2.server.scripting.roles.Role;
-import net.driftingsouls.ds2.server.scripting.roles.interpreter.Attribute;
 import net.driftingsouls.ds2.server.ships.Ship;
-
-import javax.script.ScriptContext;
-import javax.script.ScriptException;
-import java.util.List;
 
 /**
  * <h1>Die Rolle DeutTransporter.</h1>

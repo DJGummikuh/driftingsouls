@@ -16,7 +16,7 @@
  *	License along with this library; if not, write to the Free Software
  *	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-package net.driftingsouls.ds2.server.framework;
+package net.driftingsouls.ds2.interfaces.annotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -25,14 +25,34 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Markiert eine Klasse als Bestandteil des Viewmodels. Viewmodel-Klassen
- * werden automatisch nach JSON konvertiert.
+ * Definiert die Art und Weise wie eine kontextgebundene Klasse sich verhaelt.
  * @author Christopher Jung
  *
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface ViewModel
-{
+public @interface ContextInstance {
+	/**
+	 * Der Scope der kontextgebundenen Klasse.
+	 * @author Christopher Jung
+	 *
+	 */
+	enum Scope {
+		/**
+		 * Die Klasse darf lediglich pro Request einmal vorkommen.
+		 * Verschiedene Requests muessen unterschiedliche Instanzen haben.
+		 */
+		REQUEST,
+		/**
+		 * Die Klasse darf lediglich einmal pro Session vorkommen.
+		 * Verschiedene Sessions muessen unterschiedliche Instanzen haben.
+		 */
+		SESSION
+	}
+
+	/**
+	 * Der Scope der kontextgebundenen Klasse.
+	 */
+	Scope value();
 }

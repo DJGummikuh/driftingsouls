@@ -1,5 +1,12 @@
 package net.driftingsouls.ds2.server.modules.admin;
 
+import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
+
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.entities.Weapon;
 import net.driftingsouls.ds2.server.framework.Common;
@@ -12,11 +19,6 @@ import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipType;
 import net.driftingsouls.ds2.server.ships.ShipTypeData;
 import net.driftingsouls.ds2.server.ships.ShipTypeFlag;
-
-import javax.annotation.Nonnull;
-import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.Map;
 
 @AdminMenuEntry(category = "Items", name = "Schiffstypmodifikation", permission = WellKnownAdminPermission.EDIT_ITEM)
 public class EditSchiffstypModifikation implements EntityEditor<SchiffstypModifikation>

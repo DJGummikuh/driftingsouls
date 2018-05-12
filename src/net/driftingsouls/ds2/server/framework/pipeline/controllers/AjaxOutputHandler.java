@@ -1,12 +1,13 @@
 package net.driftingsouls.ds2.server.framework.pipeline.controllers;
 
-import com.google.gson.Gson;
-import net.driftingsouls.ds2.server.framework.ContextMap;
-import net.driftingsouls.ds2.server.framework.ViewModel;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.gson.Gson;
+
+import net.driftingsouls.ds2.interfaces.annotations.ViewModel;
+import net.driftingsouls.ds2.server.framework.ContextMap;
 
 /**
  * Ausgabeklasse fuer AJAX-Antworten.

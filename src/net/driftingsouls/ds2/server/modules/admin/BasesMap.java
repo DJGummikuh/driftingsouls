@@ -18,6 +18,7 @@
  */
 package net.driftingsouls.ds2.server.modules.admin;
 
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.Location;
 import net.driftingsouls.ds2.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.config.StarSystem;

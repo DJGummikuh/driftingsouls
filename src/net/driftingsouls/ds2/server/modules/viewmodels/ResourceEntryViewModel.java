@@ -1,7 +1,7 @@
 package net.driftingsouls.ds2.server.modules.viewmodels;
 
+import net.driftingsouls.ds2.interfaces.annotations.ViewModel;
 import net.driftingsouls.ds2.server.cargo.ResourceEntry;
-import net.driftingsouls.ds2.server.framework.ViewModel;
 
 /**
  * Standard-ViewModel von Ressourceneintraegen ({@link net.driftingsouls.ds2.server.cargo.ResourceEntry}).

@@ -1,14 +1,15 @@
 package net.driftingsouls.ds2.server.framework.pipeline.controllers;
 
-import net.driftingsouls.ds2.server.framework.Configuration;
-import net.driftingsouls.ds2.server.framework.pipeline.Module;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Writer;
+
+import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
+import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
+import net.driftingsouls.ds2.server.framework.Configuration;
 
 /**
  * Standardmodul fuer den Angular-Client. Dient

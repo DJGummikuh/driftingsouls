@@ -1,10 +1,5 @@
 package net.driftingsouls.ds2.server.framework.pipeline.controllers.jsstubs;
 
-import net.driftingsouls.ds2.server.framework.AnnotationUtils;
-import net.driftingsouls.ds2.server.framework.ViewModel;
-import net.driftingsouls.ds2.server.framework.pipeline.Module;
-import net.driftingsouls.ds2.server.framework.pipeline.controllers.UrlParam;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -20,6 +15,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.stream.Collectors;
+
+import net.driftingsouls.ds2.interfaces.annotations.ViewModel;
+import net.driftingsouls.ds2.interfaces.annotations.controllers.UrlParam;
+import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
+import net.driftingsouls.ds2.server.framework.AnnotationUtils;
 
 public class JsServiceGenerator
 {

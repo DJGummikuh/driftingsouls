@@ -23,6 +23,7 @@ import java.lang.reflect.Field;
 import javax.script.ScriptContext;
 import javax.script.ScriptException;
 
+import net.driftingsouls.ds2.interfaces.annotations.roles.Attribute;
 import net.driftingsouls.ds2.server.scripting.roles.Role;
 import net.driftingsouls.ds2.server.scripting.roles.parser.RoleDefinition;
 

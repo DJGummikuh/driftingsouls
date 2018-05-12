@@ -1,5 +1,8 @@
 package net.driftingsouls.ds2.server.modules.admin;
 
+import javax.annotation.Nonnull;
+
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.cargo.Cargo;
 import net.driftingsouls.ds2.server.config.ConfigFelsbrocken;
@@ -7,8 +10,6 @@ import net.driftingsouls.ds2.server.config.ConfigFelsbrockenSystem;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EditorForm8;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EntityEditor;
 import net.driftingsouls.ds2.server.ships.ShipType;
-
-import javax.annotation.Nonnull;
 
 @AdminMenuEntry(category = "Systeme", name="Felsbrocken-Layout", permission = WellKnownAdminPermission.EDIT_CONFIG_FELSBROCKEN)
 public class EditConfigFelsbrocken implements EntityEditor<ConfigFelsbrocken>

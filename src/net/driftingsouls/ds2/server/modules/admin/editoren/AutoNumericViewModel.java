@@ -1,8 +1,8 @@
 package net.driftingsouls.ds2.server.modules.admin.editoren;
 
-import net.driftingsouls.ds2.server.framework.ViewModel;
-
 import java.math.BigDecimal;
+
+import net.driftingsouls.ds2.interfaces.annotations.ViewModel;
 
 @ViewModel
 public class AutoNumericViewModel

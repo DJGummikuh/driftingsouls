@@ -1,6 +1,6 @@
 package net.driftingsouls.ds2.server.modules.viewmodels;
 
-import net.driftingsouls.ds2.server.framework.ViewModel;
+import net.driftingsouls.ds2.interfaces.annotations.ViewModel;
 import net.driftingsouls.ds2.server.ships.ShipFleet;
 
 /**

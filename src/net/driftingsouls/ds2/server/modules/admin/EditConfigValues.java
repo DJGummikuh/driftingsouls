@@ -1,5 +1,8 @@
 package net.driftingsouls.ds2.server.modules.admin;
 
+import java.io.IOException;
+
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.WellKnownConfigValue;
 import net.driftingsouls.ds2.server.framework.ConfigService;
@@ -7,8 +10,6 @@ import net.driftingsouls.ds2.server.framework.ConfigValue;
 import net.driftingsouls.ds2.server.framework.Context;
 import net.driftingsouls.ds2.server.framework.ContextMap;
 import net.driftingsouls.ds2.server.modules.admin.editoren.HtmlUtils;
-
-import java.io.IOException;
 
 /**
  * Ein Tool, um die diversen globalen Konfigurationswerte zu aendern.

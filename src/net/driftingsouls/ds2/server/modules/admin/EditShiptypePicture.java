@@ -18,6 +18,11 @@
  */
 package net.driftingsouls.ds2.server.modules.admin;
 
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.server.framework.ContextMap;
@@ -25,9 +30,6 @@ import net.driftingsouls.ds2.server.modules.admin.editoren.EditorForm8;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EntityEditor;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipType;
-
-import javax.annotation.Nonnull;
-import java.util.List;
 
 /**
  * Aktualisierungstool fuer Schiffstypen-Grafiken.

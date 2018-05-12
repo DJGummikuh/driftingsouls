@@ -1,10 +1,10 @@
 package net.driftingsouls.ds2.server.modules.stats;
 
-import net.driftingsouls.ds2.server.framework.ViewModel;
-import net.driftingsouls.ds2.server.modules.StatsController;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import net.driftingsouls.ds2.interfaces.annotations.ViewModel;
+import net.driftingsouls.ds2.server.modules.StatsController;
 
 /**
  * Ajax-Support fuer Statistikmodule.

@@ -1,15 +1,18 @@
 package net.driftingsouls.ds2.server.modules.admin;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
+import javax.annotation.Nonnull;
+
+import org.apache.commons.lang.StringUtils;
+
+import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.entities.BeamWeapon;
 import net.driftingsouls.ds2.server.entities.Weapon;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EditorForm8;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EntityEditor;
-import org.apache.commons.lang.StringUtils;
-
-import javax.annotation.Nonnull;
-import java.util.Arrays;
-import java.util.HashSet;
 
 @AdminMenuEntry(category = "Schiffe", name = "Waffe", permission = WellKnownAdminPermission.EDIT_WEAPON)
 public class EditWeapon implements EntityEditor<Weapon>

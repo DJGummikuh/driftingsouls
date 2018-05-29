@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Drifting Souls 2
+ 	Copyright (c) 2006 Christopher Jung
+
+ 	This library is free software; you can redistribute it and/or
+ 	modify it under the terms of the GNU Lesser General Public
+ 	License as published by the Free Software Foundation; either
+ 	version 2.1 of the License, or (at your option) any later version.
+
+ 	This library is distributed in the hope that it will be useful,
+ 	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ 	Lesser General Public License for more details.
+
+ 	You should have received a copy of the GNU Lesser General Public
+ 	License along with this library; if not, write to the Free Software
+ 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+-->
+<config>
+	<!-- DATABASE -->
+	<setting type="string" name="db_url" value="jdbc:mysql://localhost/ds2" />
+	<setting type="string" name="db_user" value="root" />
+	<setting type="string" name="db_password" value="" />
+
+	<!-- Sonstiges -->
+	<setting type="string" name="SMTP-SERVER" value="localhost" />
+	<!-- [Optional; default false] <setting type="string" name="PRODUCTION" value="true" />-->
+	<setting type="string" name="ABSOLUTE_PATH" value="/home/bktheg/Projects/dsj/web/" />
+	<setting type="string" name="LOXPATH" value="/home/bktheg/public_html/ds2/lox/" />
+	<setting type="string" name="EXCEPTION_MAIL" value="bktheg@web.de" />
+	<setting type="string" name="EXCEPTION_MAIL_PREFIX" value="[DS2J]" />
+</config>

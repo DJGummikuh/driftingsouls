@@ -1,0 +1,112 @@
+<div id="npc">
+	<ng-include src="'data/cltemplates/npc/_header.html'"></ng-include>
+	<div id="npclp" class="content">
+		<div class="gfxbox meldungen">
+			<div>
+				<input type="checkbox" id="alleMeldungenAnzeigen" ng-model="alleMeldungenAnzeigen" ng-change="alleMeldungenChanged()"/>
+				<label for="alleMeldungenAnzeigen">Alle Meldungen anzeigen</label>
+			</div>
+			<table width='100%' class="datatable">
+				<thead>
+					<tr>
+						<th>Fraktion</th>
+						<th>Datum</th>
+						<th>Spieler</th>
+						<th>Bearbeitet am</th>
+						<th>Meldungstext</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="meldung in meldungen">
+						<td>
+							<a href="./ds?module=userprofile&action=default;&user={{meldung.fraktion.id}}">
+								<span ng-bind-html-unsafe="meldung.fraktion.name"></span>
+							</a>
+						</td>
+						<td>{{meldung.am | date:'medium'}}</td>
+						<td>
+							<a href="./ds?module=userprofile&action=default;&user={{meldung.von.id}}">
+								<span ng-bind-html-unsafe="meldung.von.name"></span>
+							</a>
+						</td>
+						<td>
+							<div ng-show="meldung.bearbeitetAm">{{meldung.bearbeitetAm | date:'medium'}}</div>
+							<div ng-hide="meldung.bearbeitetAm">
+								<button ng-click="meldungBearbeitet(meldung)">als bearbeitet markieren</button>
+							</div>
+						</td>
+						<td class="meldungstext"><textarea readonly="readonly">{{meldung.meldungstext}}</textarea></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="gfxbox userInput">
+			<form ng-submit="changeUser()">
+				LP von Spieler bearbeiten:
+				<input type="text" name="edituser" ng-model="editUserId" ds-autocomplete="users"/>
+				<input type="submit" value="bearbeiten" />
+			</form>
+		</div>
+		<div ng-show="edituser">
+			<div class="gfxbox lpbox">
+				<div class="user">
+					<a class="profile" href="./ds?module=userprofile&action=default&user={{edituser.id}}">
+						<span ng-bind-html-unsafe="edituser.name"></span>
+					</a>
+				</div>
+				<div>
+					Rang bei Ihnen: {{rang}}
+				</div>
+				<div class="lpcount">
+					Loyalitätspunkte bei Ihnen: {{lpBeiNpc}}
+				</div>
+				<form ng-submit="lpAendern()">
+					<table width="100%" class="datatable">
+						<thead>
+							<tr>
+								<th>Zeitpunkt</th>
+								<th>durch</th>
+								<th>für</th>
+								<th>Anmerkungen</th>
+								<th>Punkte</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="lp in lpListe">
+								<td>{{lp.zeitpunkt | date:'medium'}}</td>
+								<td>
+									<a href="./ds?module=userprofile&action=default;&user={{lp.verliehenDurch.id}}">
+										<span ng-bind-html-unsafe="lp.verliehenDurch.name"></span>
+									</a>
+								</td>
+								<td>{{lp.grund}}</td>
+								<td><textarea readonly="readonly" ng-model="lp.anmerkungen"></textarea></td>
+								<td>{{lp.anzahlPunkte}}</td>
+								<td>
+									<a style="color:red" ng-click="lpLoeschen(lp)">
+										x
+									</a>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td></td>
+								<td><input type="checkbox" id="sendPm" ng-model="lpNeu.pm" /><label for="sendPm">PM senden</label></td>
+								<td><input ng-model="lpNeu.grund" type="text" maxlength="255" size="30" /></td>
+								<td><textarea ng-model="lpNeu.anmerkungen" name="anmerkungen"></textarea></td>
+								<td>
+									<input ng-model="lpNeu.punkte" type="text" size="4" name="punkte" value="0" />
+								</td>
+								<td>
+									<input type="submit" name="add" value="+" />
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

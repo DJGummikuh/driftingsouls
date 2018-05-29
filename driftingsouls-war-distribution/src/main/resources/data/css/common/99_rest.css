@@ -1,0 +1,354 @@
+/*
+	PMs
+*/
+.inboxOrdnerHover td {
+	background-color:#557755;
+	background-image:none;
+}
+
+/*
+	Fraktionen
+*/
+
+.kursbox {
+	width:95%;
+}
+
+.kursbox dd > div {
+	display:inline-block;
+}
+.kursbox dt {
+	padding-top:20px;
+	border-top:1px solid #C7C7C7;
+	margin-top:20px;
+}
+.kursbox dt:first-child {
+	border-top:0px;
+	margin-top:0px;
+	padding-top:0px;
+}
+
+.kursbox .inaktiv a {
+	color:red
+}
+
+/*
+	Schiff
+*/
+
+#scriptBox {
+	width:400px;
+}
+#scriptBox .content {
+	height:270px;
+}
+
+/*
+	Handelsposten
+*/
+
+#tradepost-info {
+	width:1000px;
+}
+
+#tradepost-info .shiptype {
+	float:left;
+}
+#tradepost-info .info {
+	float:left;
+}
+#tradepost-info .help {
+	clear:both;
+}
+#tradepost-waren {
+	width:1000px;
+	text-align:center;
+}
+#tradepost-waren table {
+	width:95%;
+	border:0px;
+}
+#tradepost-waren th {
+	text-align:center;
+}
+#tradepost-waren input[type=text] {
+	width:80px;
+}
+
+/*
+	NPC-Menue
+*/
+
+#npcmenu {
+	margin-bottom:20px;
+}
+
+#npcmenu .menuLabel {
+	width:100px;
+	padding-left:10px;
+	display:inline-block;
+	vertical-align:middle;
+}
+#npcmenu .menuBox {
+	width:400px;
+	text-align:center;
+	display:inline-block;
+}
+
+#npcorder .suche {
+	width:90%;
+	display:block;
+	margin: 0px auto 10px auto;
+}
+
+#npcorder .message,
+#npcorder .npcpunkte {
+	margin-bottom:10px;
+	font-size:12px;
+}
+
+#npcorder .npcorderbox {
+	width:500px;
+	text-align:left;
+	margin-right:20px;
+	float:left;
+}
+
+#npcorder .npcorderbox .liste {
+	max-height:400px;
+	overflow-y:auto;
+}
+
+#npcorder .offiziere td:first-child {
+	width:30px;
+	text-align:right;
+}
+#npcorder .npcorderbox table {
+	width:100%;
+}
+#npcorder .npcorderbox table thead {
+	text-align:center;
+	font-weight:bold;
+}
+#npcorder .npcorderbox ul {
+	list-style:none;
+	padding:0px;
+	width:400px;
+	margin: 0px auto;
+	text-align:center;
+}
+#npcorder .npcorderbox ul li {
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+#npcorder .npcorderposition {
+	float:left;
+	width:500px;
+	margin-right:20px;
+}
+
+#npc .content {
+	width:100%;
+	text-align:center;
+}
+
+#npc .userInput {
+	width:400px;
+	margin:5px auto 20px auto;
+}
+
+#npc .userInput input[type=text] {
+	width:50px;
+}
+
+#npcraenge .raengeBox {
+	width:700px;
+	text-align:left;
+}
+
+#npcraenge .raengeBox .user {
+	text-align:center;
+	margin-bottom:5px;
+}
+
+#npcraenge .medal {
+	display:inline-block;
+	width:120px;
+	min-height:160px;
+	margin:5px;
+	text-align:center; 
+}
+
+#npcraenge .medalAward {
+	text-align:center;
+	padding-top:10px;
+	clear:both;
+}
+
+#npclp .lpbox {
+	width:90%;
+	margin:0px auto;
+	text-align:left;
+}
+
+#npclp .user,
+#npclp .lpcount {
+	margin-bottom:10px;
+}
+
+#npclp .user {
+	text-align:center;
+}
+
+#npclp textarea {
+	width:200px;
+	height:30px
+}
+
+#npclp .meldungen {
+	width:90%;
+	margin:5px auto;
+	max-height:300px;
+	overflow-y:auto;
+}
+
+#npclp .meldungen td {
+	vertical-align: top;
+}
+
+#npclp .meldungen td.meldungstext {
+	width:50%;
+}
+
+#npclp .meldungen textarea {
+	width:100%;
+	height:75px;
+}
+
+/*
+	Statistik
+*/
+.statistic {
+	min-width:850px;
+	display: inline-block;
+}
+.statistic h1 {
+	margin-bottom:10px;
+	text-align:center;
+}
+
+.stats {
+	width:100%;
+}
+
+.stats td:first-child {
+	width:40px;
+}
+.stats td:nth-child(3) {
+	padding-left:5px;
+}
+.statistic .datasets {
+	height:130px;
+	overflow-y:auto;
+	margin-top:10px;
+}
+.statistic .datasets .set {
+	float:left;
+	width:143px;
+	padding:2px 5px 4px 15px;
+	position:relative;
+	font-size:10px;
+	word-wrap: break-word;
+}
+.statistic .datasets input[type=checkbox] {
+	left:1px;
+	top:3px;
+	position:absolute;
+}
+
+/*
+	choff
+*/
+#choffBox {
+	width:800px;
+	text-align:center;
+}
+#choffBox table {
+	width:100%;
+}
+#choffBox table tbody td {
+	text-align:center;
+}
+
+
+/*
+	scan (lrs)
+*/
+.lrsmap img {
+	vertical-align:bottom;
+	width:25px;
+	height:25px;
+}
+.lrsmap td {
+	text-align:center;
+	vertical-align:middle;
+	font-size:9px
+}
+.lrsmap .sector {
+	font-size:inherit;
+	width:25px;
+	height:25px;
+	cursor:pointer;
+}
+
+/*
+	basen
+*/
+#basenBox {
+	width:95%;
+}
+#basenBox img {
+	vertical-align:middle;
+}
+
+#basenBox table {
+	width:100%;
+}
+#basenBox .lagerCol {
+	width:40%;
+}
+#basenBox .baseIcon {
+	border:0px;
+}
+#basenBox tbody td.gebaeudeCol {
+	text-align:right;
+}
+#basenBox tbody td.mangelCol {
+	color:red;
+}
+#basenBox tbody td.energieCol {
+	white-space:nowrap;
+}
+#basenBox tbody td.unitCol {
+	white-space:nowrap;
+	vertical-align:middle;
+}
+#basenBox tbody td {
+	padding-bottom:10px;
+	vertical-align:top;
+}
+
+/*
+	Werft
+*/
+.werft .werkstatt ul {
+	margin-left:0px;
+	padding-left:20px;
+}
+.werft .werkstatt li {
+	margin-bottom:6px;
+}
+.werft .werkstatt select {
+	width:200px;
+}

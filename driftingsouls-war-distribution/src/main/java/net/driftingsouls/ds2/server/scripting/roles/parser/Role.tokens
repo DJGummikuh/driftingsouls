@@ -1,0 +1,13 @@
+Digit=11
+EOL=7
+IS=5
+Text=9
+ROLENAME=4
+Letter=12
+SPACE=15
+Numeric=13
+Identifier=6
+Number=8
+Location=10
+EscapeChar=14
+'role'=4

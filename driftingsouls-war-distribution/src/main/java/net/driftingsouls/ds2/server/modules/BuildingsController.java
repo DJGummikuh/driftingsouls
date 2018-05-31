@@ -20,6 +20,7 @@ package net.driftingsouls.ds2.server.modules;
 
 import java.util.Iterator;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,7 +37,6 @@ import net.driftingsouls.ds2.server.entities.User;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 
 /**
@@ -63,10 +63,10 @@ public class BuildingsController extends Controller
 	 * @param field Die ID des Feldes, dessen Gebaeude der zurueck-Link ansteuern soll
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(@UrlParam(name = "col") int col, int field)
+	public ITemplateEngine defaultAction(@UrlParam(name = "col") int col, int field)
 	{
 		User user = (User) getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 		int userrasse = user.getRace();
 
@@ -85,7 +85,7 @@ public class BuildingsController extends Controller
 		return t;
 	}
 
-	private void gebaeudeListeAnzeigen(User user, TemplateEngine t, Session db, int userrasse)
+	private void gebaeudeListeAnzeigen(User user, ITemplateEngine t, Session db, int userrasse)
 	{
 		t.setBlock("_BUILDINGS", "buildings.listitem", "buildings.list");
 		t.setBlock("buildings.listitem", "building.buildcosts.listitem", "building.buildcosts.list");
@@ -180,7 +180,7 @@ public class BuildingsController extends Controller
 		}
 	}
 
-	private void coreListeAnzeigen(User user, TemplateEngine t, Session db)
+	private void coreListeAnzeigen(User user, ITemplateEngine t, Session db)
 	{
 		t.setBlock("_BUILDINGS", "cores.listitem", "cores.list");
 		t.setBlock("cores.listitem", "core.buildcosts.listitem", "core.buildcosts.list");

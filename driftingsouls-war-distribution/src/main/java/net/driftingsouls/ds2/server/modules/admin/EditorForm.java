@@ -2,7 +2,7 @@ package net.driftingsouls.ds2.server.modules.admin;
 
 import net.driftingsouls.ds2.server.cargo.Cargo;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.framework.DynamicContent;
 import net.driftingsouls.ds2.server.framework.DynamicContentManager;
 import net.driftingsouls.ds2.server.modules.admin.editoren.HtmlUtils;

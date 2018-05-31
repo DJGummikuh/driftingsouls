@@ -24,8 +24,8 @@ import net.driftingsouls.ds2.server.entities.User;
 import net.driftingsouls.ds2.server.entities.ally.Ally;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.server.framework.Configuration;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import org.springframework.stereotype.Service;
 
 /**

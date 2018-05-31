@@ -4,7 +4,7 @@ import com.github.jaiimageio.impl.common.PaletteBuilder;
 import net.driftingsouls.ds2.server.Location;
 import net.driftingsouls.ds2.server.config.StarSystem;
 import net.driftingsouls.ds2.server.framework.Configuration;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 

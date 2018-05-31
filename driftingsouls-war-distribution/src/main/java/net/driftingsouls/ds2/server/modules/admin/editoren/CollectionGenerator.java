@@ -2,7 +2,7 @@ package net.driftingsouls.ds2.server.modules.admin.editoren;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.Request;
 import net.driftingsouls.ds2.server.framework.utils.StringToTypeConverter;
 import org.hibernate.Session;

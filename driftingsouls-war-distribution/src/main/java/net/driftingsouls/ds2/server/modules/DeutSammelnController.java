@@ -19,6 +19,7 @@
 package net.driftingsouls.ds2.server.modules;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.MutableLocation;
 import net.driftingsouls.ds2.server.cargo.Cargo;
 import net.driftingsouls.ds2.server.cargo.Resources;
@@ -30,7 +31,6 @@ import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionTyp
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipFleet;
@@ -183,13 +183,13 @@ public class DeutSammelnController extends Controller
 	 * @param fleet Die Tankerflotte
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(Ship ship, ShipFleet fleet, RedirectViewResult redirect)
+	public ITemplateEngine defaultAction(Ship ship, ShipFleet fleet, RedirectViewResult redirect)
 	{
 		List<Ship> shipList = erzeugeSchiffsliste(ship, fleet);
 		Nebel nebel = ermittleNebelFuerSchiffsliste(shipList);
 		filtereSchiffsliste(shipList, nebel);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		t.setVar("deutsammeln.message", redirect != null ? redirect.getMessage() : null);
 
 		int deutfactorSum = 0;

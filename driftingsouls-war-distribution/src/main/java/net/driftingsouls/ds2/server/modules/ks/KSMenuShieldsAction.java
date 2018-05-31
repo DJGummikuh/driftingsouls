@@ -18,10 +18,10 @@
  */
 package net.driftingsouls.ds2.server.modules.ks;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.battles.Battle;
 import net.driftingsouls.ds2.server.battles.BattleShip;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.ships.ShipClasses;
 import net.driftingsouls.ds2.server.ships.ShipTypeData;
 
@@ -59,7 +59,7 @@ public class KSMenuShieldsAction extends BasicKSMenuAction {
 	}
 
 	@Override
-	public Result execute(TemplateEngine t, Battle battle) throws IOException {
+	public Result execute(ITemplateEngine t, Battle battle) throws IOException {
 		Result result = super.execute(t, battle);
 		if( result != Result.OK ) {
 			return result;

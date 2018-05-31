@@ -2,7 +2,7 @@ package net.driftingsouls.ds2.server.entities;
 
 import net.driftingsouls.ds2.server.cargo.ItemID;
 import net.driftingsouls.ds2.server.cargo.ResourceID;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.ships.Ship;
 import org.hibernate.annotations.ForeignKey;
 

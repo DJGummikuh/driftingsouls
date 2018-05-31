@@ -1,7 +1,7 @@
 package net.driftingsouls.ds2.server.install;
 
 import net.driftingsouls.ds2.server.config.ModuleSlot;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 
 public class SchiffContentGenerator
 {

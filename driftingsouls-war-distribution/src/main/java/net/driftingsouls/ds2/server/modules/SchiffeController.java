@@ -20,6 +20,7 @@ package net.driftingsouls.ds2.server.modules;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
 import net.driftingsouls.ds2.interfaces.annotations.controllers.UrlParam;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.cargo.Cargo;
 import net.driftingsouls.ds2.server.cargo.ResourceEntry;
 import net.driftingsouls.ds2.server.cargo.ResourceID;
@@ -34,7 +35,6 @@ import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipClasses;
@@ -146,9 +146,9 @@ public class SchiffeController extends Controller
 	 * @param kampfOnly Falls != 0 werden nur Kriegsschiffe der Schiffsklasse mit der angegebenen ID angezeigt
 	 */
 	@Action(value = ActionType.DEFAULT, readOnly = true)
-	public TemplateEngine defaultAction(String only, int low, int crewless, int listoffset, @UrlParam(name = "kampf_only") int kampfOnly)
+	public ITemplateEngine defaultAction(String only, int low, int crewless, int listoffset, @UrlParam(name = "kampf_only") int kampfOnly)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 		User user = (User) getUser();
 
@@ -305,7 +305,7 @@ public class SchiffeController extends Controller
 		return t;
 	}
 
-	private void gibSchiffAus(String only, int low, TemplateEngine t, Session db, Ship ship)
+	private void gibSchiffAus(String only, int low, ITemplateEngine t, Session db, Ship ship)
 	{
 		ShipTypeData shiptype = ship.getTypeData();
 

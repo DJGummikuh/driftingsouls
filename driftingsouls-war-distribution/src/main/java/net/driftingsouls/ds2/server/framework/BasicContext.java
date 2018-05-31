@@ -25,6 +25,7 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 
+import net.driftingsouls.ds2.interfaces.framework.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
@@ -50,7 +51,7 @@ public class BasicContext implements Context
 
 	private Request request;
 	private Response response;
-	private BasicUser activeUser = null;
+	private IBasicUser activeUser = null;
 	private List<Error> errorList = new ArrayList<>();
 	private Map<Class<?>, Object> contextSingletons = new HashMap<>();
 	private final Map<Class<?>, Map<String, Object>> variables = new HashMap<>();
@@ -121,13 +122,13 @@ public class BasicContext implements Context
 	}
 
 	@Override
-	public BasicUser getActiveUser()
+	public IBasicUser getActiveUser()
 	{
 		return activeUser;
 	}
 
 	@Override
-	public void setActiveUser(BasicUser user)
+	public void setActiveUser(IBasicUser user)
 	{
 		activeUser = user;
 	}

@@ -18,6 +18,7 @@
  */
 package net.driftingsouls.ds2.server.bases;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.ContextCommon;
 import net.driftingsouls.ds2.server.Location;
 import net.driftingsouls.ds2.interfaces.server.WellKnownConfigValue;
@@ -43,8 +44,7 @@ import net.driftingsouls.ds2.server.entities.ally.Ally;
 import net.driftingsouls.ds2.server.entities.statistik.StatVerkaeufe;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.server.framework.ConfigService;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
+import net.driftingsouls.ds2.interfaces.framework.Context;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.werften.BaseWerft;
@@ -194,7 +194,7 @@ public class Kommandozentrale extends DefaultBuilding {
 		}
 
 		TemplateViewResultFactory templateViewResultFactory = context.getBean(TemplateViewResultFactory.class, null);
-		TemplateEngine t = templateViewResultFactory.createEmpty();
+		ITemplateEngine t = templateViewResultFactory.createEmpty();
 		if( !t.setFile( "_BUILDING", "buildings.kommandozentrale.html" ) )
 		{
 			context.addError("Konnte das Template-Engine nicht initialisieren");

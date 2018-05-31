@@ -20,16 +20,16 @@ package net.driftingsouls.ds2.server.modules;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
 import net.driftingsouls.ds2.interfaces.annotations.controllers.UrlParam;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.interfaces.server.WellKnownPermission;
 import net.driftingsouls.ds2.server.cargo.ResourceEntry;
 import net.driftingsouls.ds2.server.entities.Forschung;
 import net.driftingsouls.ds2.server.entities.User;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.units.UnitType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,9 +56,9 @@ public class UnitInfoController extends Controller
 	 * Zeigt die Einheitenliste an.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine listAction()
+	public ITemplateEngine listAction()
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 		User user = (User) ContextMap.getContext().getActiveUser();
 		List<UnitType> unitlist = Common.cast(db.createCriteria(UnitType.class).list());
@@ -87,9 +87,9 @@ public class UnitInfoController extends Controller
 	 * Zeigt Details zu einer Einheit an.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(@UrlParam(name = "unit") UnitType unittype)
+	public ITemplateEngine defaultAction(@UrlParam(name = "unit") UnitType unittype)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) ContextMap.getContext().getActiveUser();
 
 		if (unittype == null)

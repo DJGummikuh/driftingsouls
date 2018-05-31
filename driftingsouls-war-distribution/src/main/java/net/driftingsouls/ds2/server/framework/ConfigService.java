@@ -1,6 +1,7 @@
 package net.driftingsouls.ds2.server.framework;
 
 import net.driftingsouls.ds2.interfaces.framework.ConfigValueDescriptor;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.framework.utils.StringToTypeConverter;
 import org.hibernate.Session;
 import org.springframework.stereotype.Service;

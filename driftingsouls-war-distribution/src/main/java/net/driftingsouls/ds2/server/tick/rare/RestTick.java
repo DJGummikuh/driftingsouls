@@ -33,7 +33,7 @@ import net.driftingsouls.ds2.server.entities.statistik.StatCargo;
 import net.driftingsouls.ds2.server.entities.statistik.StatItemLocations;
 import net.driftingsouls.ds2.server.entities.statistik.StatUserCargo;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipModules;
 import net.driftingsouls.ds2.server.tick.TickController;

@@ -20,6 +20,7 @@ package net.driftingsouls.ds2.server.modules;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
 import net.driftingsouls.ds2.interfaces.annotations.controllers.UrlParam;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.Location;
 import net.driftingsouls.ds2.server.bases.Base;
 import net.driftingsouls.ds2.server.cargo.Cargo;
@@ -29,13 +30,12 @@ import net.driftingsouls.ds2.server.comm.PM;
 import net.driftingsouls.ds2.server.config.items.Item;
 import net.driftingsouls.ds2.server.entities.User;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipFleet;
@@ -920,7 +920,7 @@ public class TransportController extends Controller
 	}
 
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(@UrlParam(name = "way") String rawWay, @UrlParam(name = "from") String fromString, @UrlParam(name = "to") String toString, RedirectViewResult redirect)
+	public ITemplateEngine defaultAction(@UrlParam(name = "way") String rawWay, @UrlParam(name = "from") String fromString, @UrlParam(name = "to") String toString, RedirectViewResult redirect)
 	{
 		String[] way = StringUtils.split(rawWay, "to");
 
@@ -928,7 +928,7 @@ public class TransportController extends Controller
 		List<TransportTarget> to = parseListeDerTransportZiele(way[1], toString);
 		validiereWarenKoennenZwischenQuelleUndZielTransferiertWerden(from, to, way[0], way[1]);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		if( redirect != null )
 		{
@@ -955,7 +955,7 @@ public class TransportController extends Controller
 		return t;
 	}
 
-	private void gegenstandsListeAnzeigen(TemplateEngine t, List<TransportTarget> from, List<TransportTarget> to)
+	private void gegenstandsListeAnzeigen(ITemplateEngine t, List<TransportTarget> from, List<TransportTarget> to)
 	{
 		t.setBlock("_TRANSPORT", "res.listitem", "res.list");
 
@@ -1018,7 +1018,7 @@ public class TransportController extends Controller
 		}
 	}
 
-	private void transportModusAnzeigen(String rawFrom, String rawTo, TemplateEngine t, List<TransportTarget> from, List<TransportTarget> to)
+	private void transportModusAnzeigen(String rawFrom, String rawTo, ITemplateEngine t, List<TransportTarget> from, List<TransportTarget> to)
 	{
 		t.setBlock("_TRANSPORT", "transfermode.listitem", "transfermode.list");
 		if ((to.size() > 1) || (from.size() > 1) || (to.get(0).getMultiTarget() != null) ||
@@ -1100,7 +1100,7 @@ public class TransportController extends Controller
 		}
 	}
 
-	private void transportZielAnzeigen(String rawTo, TemplateEngine t, List<TransportTarget> to)
+	private void transportZielAnzeigen(String rawTo, ITemplateEngine t, List<TransportTarget> to)
 	{
 		t.setBlock("_TRANSPORT", "target.targets.listitem", "target.targets.list");
 
@@ -1146,7 +1146,7 @@ public class TransportController extends Controller
 		}
 	}
 
-	private void transportQuelleAnzeigen(String rawFrom, TemplateEngine t, List<TransportTarget> from)
+	private void transportQuelleAnzeigen(String rawFrom, ITemplateEngine t, List<TransportTarget> from)
 	{
 		t.setBlock("_TRANSPORT", "source.sources.listitem", "source.sources.list");
 

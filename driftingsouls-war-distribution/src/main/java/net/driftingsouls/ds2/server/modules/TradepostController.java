@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,7 +25,6 @@ import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.ships.SchiffEinstellungen;
 import net.driftingsouls.ds2.server.ships.Ship;
@@ -67,9 +67,9 @@ public class TradepostController extends Controller
 	 * @param ship the ship-id
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(Ship ship)
+	public ITemplateEngine defaultAction(Ship ship)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 		org.hibernate.Session db = getDB();
 
@@ -125,7 +125,7 @@ public class TradepostController extends Controller
 		return t;
 	}
 
-	private void itemAnzeigen(TemplateEngine t, User user, Map<ResourceID, SellLimit> selllistmap, Map<ResourceID, ResourceLimit> buylistmap, Cargo buylistgtu, Item aitem)
+	private void itemAnzeigen(ITemplateEngine t, User user, Map<ResourceID, SellLimit> selllistmap, Map<ResourceID, ResourceLimit> buylistmap, Cargo buylistgtu, Item aitem)
 	{
 		ItemID itemId = new ItemID(aitem.getID());
 
@@ -255,19 +255,19 @@ public class TradepostController extends Controller
 	 * @param tradepostvisibility Die Sichtbarkeit des Handelspostens
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine updateAction(Ship ship,
-			TradepostVisibility tradepostvisibility,
-			@UrlParam(name="i#salesprice") Map<Integer,Long> salesprice,
-			@UrlParam(name="i#buyprice") Map<Integer,Double> buyprice,
-			@UrlParam(name="i#saleslimit") Map<Integer,Long> saleslimit,
-			@UrlParam(name="i#buylimit") Map<Integer,Long> buylimit,
-			@UrlParam(name="i#sellrank") Map<Integer,Integer> sellrank,
-			@UrlParam(name="i#buyrank") Map<Integer,Integer> buyrank,
-			@UrlParam(name="i#salebool") Map<Integer,Boolean> salebool,
-			@UrlParam(name="i#buybool") Map<Integer,Boolean> buybool,
-			@UrlParam(name="i#fill") Map<Integer,Boolean> fill)
+	public ITemplateEngine updateAction(Ship ship,
+                                        TradepostVisibility tradepostvisibility,
+                                        @UrlParam(name="i#salesprice") Map<Integer,Long> salesprice,
+                                        @UrlParam(name="i#buyprice") Map<Integer,Double> buyprice,
+                                        @UrlParam(name="i#saleslimit") Map<Integer,Long> saleslimit,
+                                        @UrlParam(name="i#buylimit") Map<Integer,Long> buylimit,
+                                        @UrlParam(name="i#sellrank") Map<Integer,Integer> sellrank,
+                                        @UrlParam(name="i#buyrank") Map<Integer,Integer> buyrank,
+                                        @UrlParam(name="i#salebool") Map<Integer,Boolean> salebool,
+                                        @UrlParam(name="i#buybool") Map<Integer,Boolean> buybool,
+                                        @UrlParam(name="i#fill") Map<Integer,Boolean> fill)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 		org.hibernate.Session db = getDB();
 
@@ -319,7 +319,7 @@ public class TradepostController extends Controller
 		return t;
 	}
 
-	private void processItem(TemplateEngine t,
+	private void processItem(ITemplateEngine t,
 							 Ship ship,
 							 GtuWarenKurse kurse,
 							 Map<ResourceID, SellLimit> selllistmap,

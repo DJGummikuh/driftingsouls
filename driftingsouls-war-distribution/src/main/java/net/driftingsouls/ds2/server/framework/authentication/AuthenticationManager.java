@@ -18,7 +18,7 @@
  */
 package net.driftingsouls.ds2.server.framework.authentication;
 
-import net.driftingsouls.ds2.server.framework.BasicUser;
+import net.driftingsouls.ds2.interfaces.framework.IBasicUser;
 
 /**
  * Interface fuer Authentifizierungsdienste.
@@ -35,7 +35,7 @@ public interface AuthenticationManager {
 	 * @return Der Account des eingeloggten Benutzers
 	 * @throws AuthenticationException Falls der Loginvorgang nicht erfolgreich ist
 	 */
-	public BasicUser login(String username, String password, boolean rememberMe)
+	public IBasicUser login(String username, String password, boolean rememberMe)
 			throws AuthenticationException;
 
 	/**
@@ -51,7 +51,7 @@ public interface AuthenticationManager {
 	 * @return Der Account des eingeloggten Benutzers
 	 * @throws AuthenticationException Falls der Loginvorgang nicht moeglich ist
 	 */
-	public BasicUser adminLogin(BasicUser user, boolean attach) throws AuthenticationException;
+	public IBasicUser adminLogin(IBasicUser user, boolean attach) throws AuthenticationException;
 
 	/**
 	 * Authentifiziert die genutzte Session. Falls die Session ungueltig ist,

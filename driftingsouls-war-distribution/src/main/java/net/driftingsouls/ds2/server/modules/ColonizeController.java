@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -41,7 +42,6 @@ import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipTypeData;
@@ -96,13 +96,13 @@ public class ColonizeController extends Controller
 	 * @param base Die Basis-ID des zu kolonisierenden Asteroiden
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(Ship ship, @UrlParam(name = "col") Base base)
+	public ITemplateEngine defaultAction(Ship ship, @UrlParam(name = "col") Base base)
 	{
 		validiereSchiffUndBasis(ship, base);
 
 		org.hibernate.Session db = getDB();
 		User user = (User) getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		t.setVar("ship.id", ship.getId());
 

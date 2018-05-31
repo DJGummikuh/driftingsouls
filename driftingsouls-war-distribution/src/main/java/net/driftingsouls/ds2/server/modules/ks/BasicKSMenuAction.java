@@ -18,8 +18,8 @@
  */
 package net.driftingsouls.ds2.server.modules.ks;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.battles.Battle;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 
 import org.apache.commons.lang.StringEscapeUtils;
 
@@ -47,7 +47,7 @@ public abstract class BasicKSMenuAction extends BasicKSAction {
 	 * @param params URL-Parameter
 	 * @param ask Der Text der Sicherheitsabfrage
 	 */
-	public static void menuEntryAsk(TemplateEngine t, String title, String params, String ask ) {
+	public static void menuEntryAsk(ITemplateEngine t, String title, String params, String ask ) {
 		t.setVar(	"menu.entry.params",	params,
 					"menu.entry.title",		title,
 					"ask.text",				StringEscapeUtils.escapeJavaScript(ask) );
@@ -61,13 +61,13 @@ public abstract class BasicKSMenuAction extends BasicKSAction {
 	 * @param title Der Titel des Eintrags
 	 * @param params URL-Parameter
 	 */
-	public static void menuEntry(TemplateEngine t, String title, String params ) {
+	public static void menuEntry(ITemplateEngine t, String title, String params ) {
 		t.setVar(	"menu.entry.params",	params,
 					"menu.entry.title",		title );
 		t.parse("menu","menu.entry",true);
 	}
 	
-	protected void menuEntryAsk(TemplateEngine t, String title, Object[] params, String ask ) {
+	protected void menuEntryAsk(ITemplateEngine t, String title, Object[] params, String ask ) {
 		String paramStr = "";
 		if( params != null && params.length > 1 ) {
 			StringBuilder paramBuilder = new StringBuilder(params.length*5);
@@ -81,7 +81,7 @@ public abstract class BasicKSMenuAction extends BasicKSAction {
 		menuEntryAsk(t, title, paramStr, ask);
 	}
 	
-	protected void menuEntry(TemplateEngine t, String title, Object ... params ) {
+	protected void menuEntry(ITemplateEngine t, String title, Object ... params ) {
 		String paramStr = "";
 		if( params != null && params.length > 1 ) {
 			StringBuilder paramBuilder = new StringBuilder(params.length*5);

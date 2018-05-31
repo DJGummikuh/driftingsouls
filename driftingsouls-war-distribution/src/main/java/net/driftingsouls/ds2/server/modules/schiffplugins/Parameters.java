@@ -18,8 +18,8 @@
  */
 package net.driftingsouls.ds2.server.modules.schiffplugins;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.entities.Offizier;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.modules.SchiffController;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipTypeData;
@@ -45,7 +45,7 @@ public class Parameters {
 	/**
 	 * Das Template in dem die Ausgabe erfolgen soll.
 	 */
-	public TemplateEngine t;
+	public ITemplateEngine t;
 	/**
 	 * Das Schiff.
 	 */

@@ -29,8 +29,8 @@ import net.driftingsouls.ds2.server.entities.fraktionsgui.baseupgrade.UpgradeInf
 import net.driftingsouls.ds2.server.entities.fraktionsgui.baseupgrade.UpgradeJob;
 import net.driftingsouls.ds2.server.entities.fraktionsgui.baseupgrade.UpgradeType;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.werften.ShipWerft;
 import org.springframework.stereotype.Service;

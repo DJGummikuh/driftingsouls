@@ -31,7 +31,7 @@ import javax.persistence.Version;
 
 import net.driftingsouls.ds2.server.ContextCommon;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import org.hibernate.annotations.ForeignKey;
 
 /**

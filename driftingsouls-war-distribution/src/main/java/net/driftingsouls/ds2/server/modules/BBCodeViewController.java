@@ -21,6 +21,7 @@ package net.driftingsouls.ds2.server.modules;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
@@ -28,7 +29,6 @@ import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 
 /**
@@ -86,8 +86,8 @@ public class BBCodeViewController extends Controller
 	 * Anzeigen der BBCode-Liste.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(){
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+	public ITemplateEngine defaultAction(){
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		t.setVar("bbcode.text", Common.implode("<br />", codes));
 

@@ -19,11 +19,11 @@
 package net.driftingsouls.ds2.server.modules;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.framework.authentication.AuthenticationManager;
 import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -49,9 +49,9 @@ public class LogoutController extends Controller
 	 * Loggt den Spieler aus.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction()
+	public ITemplateEngine defaultAction()
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		this.authManager.logout();
 		return t;
 	}

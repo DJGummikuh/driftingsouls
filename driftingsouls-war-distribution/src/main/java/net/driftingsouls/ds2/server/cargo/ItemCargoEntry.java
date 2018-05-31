@@ -19,8 +19,8 @@
 package net.driftingsouls.ds2.server.cargo;
 
 import net.driftingsouls.ds2.server.config.items.Item;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 
 // TODO: Readonly-Version anfertigen
 /**

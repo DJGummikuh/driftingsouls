@@ -18,7 +18,7 @@
  */
 package net.driftingsouls.ds2.server.framework.pipeline;
 
-import net.driftingsouls.ds2.server.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.Context;
 import net.driftingsouls.ds2.server.framework.authentication.AuthenticationManager;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ActionMethodInvoker;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;

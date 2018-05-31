@@ -20,6 +20,7 @@ package net.driftingsouls.ds2.server.modules;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
 import net.driftingsouls.ds2.interfaces.annotations.controllers.UrlParam;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.interfaces.server.WellKnownConfigValue;
 import net.driftingsouls.ds2.interfaces.server.WellKnownPermission;
 import net.driftingsouls.ds2.server.cargo.Cargo;
@@ -35,7 +36,6 @@ import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -149,9 +149,9 @@ public class HandelController extends Controller
 	 * Zeigt die Seite zur Eingabe eines Handelsangebots an.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine addAction()
+	public ITemplateEngine addAction()
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 
 		t.setVar("handel.add", 1);
@@ -208,10 +208,10 @@ public class HandelController extends Controller
 	 * Zeigt die vorhandenen Handelsangebote an.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(RedirectViewResult redirect)
+	public ITemplateEngine defaultAction(RedirectViewResult redirect)
 	{
 		org.hibernate.Session db = getDB();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 
 		t.setVar("handel.view", 1);

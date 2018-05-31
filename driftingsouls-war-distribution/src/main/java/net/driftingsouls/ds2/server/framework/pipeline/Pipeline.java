@@ -18,7 +18,7 @@
  */
 package net.driftingsouls.ds2.server.framework.pipeline;
 
-import net.driftingsouls.ds2.server.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.Context;
 
 /**
  * Standardinterface fuer Pipelines.

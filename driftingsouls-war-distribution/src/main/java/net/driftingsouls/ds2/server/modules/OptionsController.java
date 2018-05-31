@@ -22,6 +22,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -45,7 +46,6 @@ import net.driftingsouls.ds2.server.framework.bbcode.BBCodeParser;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.namegenerator.PersonenNamenGenerator;
 import net.driftingsouls.ds2.server.namegenerator.SchiffsKlassenNamenGenerator;
@@ -79,9 +79,9 @@ public class OptionsController extends Controller
 	 * @param pw2 Die Wiederholung des neuen Passworts
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine changeNamePassAction(String name, String pw, String pw2)
+	public ITemplateEngine changeNamePassAction(String name, String pw, String pw2)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 
 		String changemsg = "";
@@ -155,9 +155,9 @@ public class OptionsController extends Controller
 	 * @param reason Die schluessige Begruendung. Muss mindestens die Laenge 5 haben
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine delAccountAction(int del, String reason)
+	public ITemplateEngine delAccountAction(int del, String reason)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 
 		if (del == 0)
@@ -378,10 +378,10 @@ public class OptionsController extends Controller
 	 * Zeigt die erweiterten Einstellungen des Spielers.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine xtraAction(RedirectViewResult redirect)
+	public ITemplateEngine xtraAction(RedirectViewResult redirect)
 	{
 		User user = (User) getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		t.setVar("options.message", redirect != null ? redirect.getMessage() : null);
 
@@ -535,9 +535,9 @@ public class OptionsController extends Controller
 	 * Uebersicht ueber die Einstellungen.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(RedirectViewResult redirect)
+	public ITemplateEngine defaultAction(RedirectViewResult redirect)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 
 		t.setVar("options.message", redirect != null ? redirect.getMessage() : null);

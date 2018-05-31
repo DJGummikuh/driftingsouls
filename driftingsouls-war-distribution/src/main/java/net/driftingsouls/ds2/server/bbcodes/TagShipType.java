@@ -20,7 +20,7 @@ package net.driftingsouls.ds2.server.bbcodes;
 
 import net.driftingsouls.ds2.interfaces.server.WellKnownPermission;
 import net.driftingsouls.ds2.server.entities.User;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.framework.bbcode.BBCodeFunction;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipTypeData;

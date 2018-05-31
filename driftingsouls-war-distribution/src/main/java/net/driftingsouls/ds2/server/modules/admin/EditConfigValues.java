@@ -7,8 +7,8 @@ import net.driftingsouls.ds2.interfaces.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.interfaces.server.WellKnownConfigValue;
 import net.driftingsouls.ds2.server.framework.ConfigService;
 import net.driftingsouls.ds2.server.framework.ConfigValue;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.modules.admin.editoren.HtmlUtils;
 
 /**

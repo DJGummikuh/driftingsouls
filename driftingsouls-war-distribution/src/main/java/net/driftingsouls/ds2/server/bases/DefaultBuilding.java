@@ -21,7 +21,7 @@ package net.driftingsouls.ds2.server.bases;
 import net.driftingsouls.ds2.server.cargo.Cargo;
 import net.driftingsouls.ds2.server.cargo.ResourceEntry;
 import net.driftingsouls.ds2.server.cargo.ResourceList;
-import net.driftingsouls.ds2.server.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.Context;
 import net.driftingsouls.ds2.server.modules.viewmodels.ResourceEntryViewModel;
 
 import javax.persistence.DiscriminatorValue;

@@ -18,12 +18,12 @@
  */
 package net.driftingsouls.ds2.server.modules.ks;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.battles.Battle;
 import net.driftingsouls.ds2.server.battles.BattleShip;
 import net.driftingsouls.ds2.server.battles.BattleShipFlag;
 import net.driftingsouls.ds2.server.entities.User;
-import net.driftingsouls.ds2.server.framework.ContextMap;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.modules.AngriffController;
 
 import java.io.IOException;
@@ -132,7 +132,7 @@ public abstract class BasicKSAction {
 	 * @return Das Ergebnis
 	 * @throws IOException 
 	 */
-	public Result execute(TemplateEngine t, Battle battle) throws IOException
+	public Result execute(ITemplateEngine t, Battle battle) throws IOException
 	{
         User user = this.commander;
         if(user == null)

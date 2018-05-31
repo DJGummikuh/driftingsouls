@@ -34,7 +34,7 @@ import net.driftingsouls.ds2.server.entities.Forschung;
 import net.driftingsouls.ds2.server.entities.Rasse;
 import net.driftingsouls.ds2.server.entities.User;
 import net.driftingsouls.ds2.server.entities.UserFlag;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EditorForm8;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EntityEditor;
 

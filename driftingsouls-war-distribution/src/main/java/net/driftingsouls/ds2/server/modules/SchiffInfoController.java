@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,6 @@ import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.ships.ShipBaubar;
 import net.driftingsouls.ds2.server.ships.ShipType;
@@ -92,7 +92,7 @@ public class SchiffInfoController extends Controller
 				.uniqueResult();
 	}
 
-	private void outPrerequisites(TemplateEngine t, ShipBaubar shipBuildData)
+	private void outPrerequisites(ITemplateEngine t, ShipBaubar shipBuildData)
 	{
 		if (getUser() != null)
 		{
@@ -141,7 +141,7 @@ public class SchiffInfoController extends Controller
 		t.setVar("shiptype.race", race);
 	}
 
-	private void outShipCost(TemplateEngine t, ShipBaubar shipBuildData)
+	private void outShipCost(ITemplateEngine t, ShipBaubar shipBuildData)
 	{
 		t.setVar("shiptype.cost.energie", shipBuildData.getEKosten(),
 				"shiptype.cost.crew", shipBuildData.getCrew(),
@@ -162,13 +162,13 @@ public class SchiffInfoController extends Controller
 	}
 
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(ShipType ship)
+	public ITemplateEngine defaultAction(ShipType ship)
 	{
 		validiereSchiffstype(ship);
 
 		org.hibernate.Session db = getDB();
 		User user = (User) getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		t.setVar("global.login", (getUser() != null));
 
@@ -302,7 +302,7 @@ public class SchiffInfoController extends Controller
 		return t;
 	}
 
-	private void zeigeFlagListeAn(TemplateEngine t, ShipType ship)
+	private void zeigeFlagListeAn(ITemplateEngine t, ShipType ship)
 	{
 		t.setBlock("_SCHIFFINFO", "shiptypeflags.listitem", "shiptypeflags.list");
 		t.setVar("shiptypeflags.list", "");
@@ -317,7 +317,7 @@ public class SchiffInfoController extends Controller
 		}
 	}
 
-	private void zeigeWaffenlisteAn(TemplateEngine t, ShipType ship)
+	private void zeigeWaffenlisteAn(ITemplateEngine t, ShipType ship)
 	{
 		Map<String, Integer> weapons = ship.getWeapons();
 		Map<String, Integer> maxheat = ship.getMaxHeat();

@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -52,7 +53,6 @@ import net.driftingsouls.ds2.server.framework.bbcode.BBCodeParser;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.modules.ks.BasicKSAction;
 import net.driftingsouls.ds2.server.modules.ks.BasicKSMenuAction;
@@ -184,7 +184,7 @@ public class AngriffController extends Controller
 		return true;
 	}
 	
-	private void showInfo(TemplateEngine t, String tag, BattleShip ship, boolean enemy, String jscriptid, boolean show) {
+	private void showInfo(ITemplateEngine t, String tag, BattleShip ship, boolean enemy, String jscriptid, boolean show) {
 		if( ship == null ) {
 			addError("FATAL ERROR: Kein gueltiges Schiff vorhanden");
 			return;	
@@ -396,7 +396,7 @@ public class AngriffController extends Controller
 		t.clear_record();
 	}
 	
-	private boolean showMenu(TemplateEngine t, Battle battle, StringBuilder action ) throws IOException {
+	private boolean showMenu(ITemplateEngine t, Battle battle, StringBuilder action ) throws IOException {
 		User user = (User)this.getUser();
 		
 		BattleShip ownShip = battle.getOwnShip();
@@ -534,18 +534,18 @@ public class AngriffController extends Controller
 	 * @param weapon Die ID der gerade ausgewaehlten Waffe
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(@UrlParam(name="ship") int ownShipID,
-			@UrlParam(name="addship") int addShipID,
-			@UrlParam(name="attack") int enemyShipID,
-			String ksaction,
-			@UrlParam(name="battle") int battleID,
-			int forcejoin,
-			String scan,
-			String ownshipgroup,
-			String enemyshipgroup,
-			String weapon) throws IOException {
+	public ITemplateEngine defaultAction(@UrlParam(name="ship") int ownShipID,
+                                         @UrlParam(name="addship") int addShipID,
+                                         @UrlParam(name="attack") int enemyShipID,
+                                         String ksaction,
+                                         @UrlParam(name="battle") int battleID,
+                                         int forcejoin,
+                                         String scan,
+                                         String ownshipgroup,
+                                         String enemyshipgroup,
+                                         String weapon) throws IOException {
 		User user = (User)getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 
 		if( ownShipID < 0 ) {

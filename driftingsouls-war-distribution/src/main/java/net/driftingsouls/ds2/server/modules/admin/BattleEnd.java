@@ -27,8 +27,8 @@ import net.driftingsouls.ds2.interfaces.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.battles.Battle;
 import net.driftingsouls.ds2.server.entities.ally.Ally;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 
 /**
  * Ermoeglicht das Beenden von Schlachten.

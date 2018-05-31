@@ -18,9 +18,9 @@
  */
 package net.driftingsouls.ds2.server.units;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.ContextMap;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -505,7 +505,7 @@ public abstract class UnitCargo implements Cloneable {
 	 * @param templateblock Der Name des betreffenden TemplateBlocks
 	 * @param templateitem Der Name eines Items des TemplateBlocks
 	 */
-	public void echoUnitList( TemplateEngine t, String templateblock, String templateitem ) {
+	public void echoUnitList(ITemplateEngine t, String templateblock, String templateitem ) {
 
 		if(isEmpty())
 		{

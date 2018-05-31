@@ -20,6 +20,7 @@ package net.driftingsouls.ds2.server.modules;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
 import net.driftingsouls.ds2.interfaces.annotations.controllers.UrlParam;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.interfaces.server.WellKnownPermission;
 import net.driftingsouls.ds2.server.bases.Building;
 import net.driftingsouls.ds2.server.bases.Core;
@@ -37,7 +38,6 @@ import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionTyp
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.ships.ShipBaubar;
 import net.driftingsouls.ds2.server.ships.ShipTypeData;
@@ -99,11 +99,11 @@ public class ForschinfoController extends Controller
 	}
 
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(@UrlParam(name = "res") Forschung research)
+	public ITemplateEngine defaultAction(@UrlParam(name = "res") Forschung research)
 	{
 		validiereForschung(research);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 		org.hibernate.Session db = getDB();
 
@@ -194,7 +194,7 @@ public class ForschinfoController extends Controller
 		return t;
 	}
 
-	private void benoetigteForschungenAnzeigen(TemplateEngine t, Forschung research)
+	private void benoetigteForschungenAnzeigen(ITemplateEngine t, Forschung research)
 	{
 		t.setBlock("_FORSCHINFO", "tech.needs.listitem", "tech.needs.list");
 		for (int i = 1; i <= 3; i++)
@@ -228,7 +228,7 @@ public class ForschinfoController extends Controller
 		}
 	}
 
-	private void ermoeglichteForschungenAnzeigen(Session db, TemplateEngine t, User user, Forschung research)
+	private void ermoeglichteForschungenAnzeigen(Session db, ITemplateEngine t, User user, Forschung research)
 	{
 		t.setBlock("_FORSCHINFO", "tech.allows.listitem", "tech.allows.list");
 
@@ -264,7 +264,7 @@ public class ForschinfoController extends Controller
 		}
 	}
 
-	private void gebaeudeZurForschungAnzeigen(Session db, TemplateEngine t, User user, Forschung research)
+	private void gebaeudeZurForschungAnzeigen(Session db, ITemplateEngine t, User user, Forschung research)
 	{
 		ResourceList reslist;
 		t.setBlock("_FORSCHINFO", "tech.buildings.listitem", "tech.buildings.list");
@@ -327,7 +327,7 @@ public class ForschinfoController extends Controller
 		}
 	}
 
-	private void coresZurForschungAnzeigen(Session db, TemplateEngine t, Forschung research)
+	private void coresZurForschungAnzeigen(Session db, ITemplateEngine t, Forschung research)
 	{
 		boolean firstentry;ResourceList reslist;
 		t.setBlock("_FORSCHINFO", "tech.cores.listitem", "tech.cores.list");
@@ -390,7 +390,7 @@ public class ForschinfoController extends Controller
 		}
 	}
 
-	private void schiffeZurForschungAnzeigen(Session db, TemplateEngine t, User user, Forschung research)
+	private void schiffeZurForschungAnzeigen(Session db, ITemplateEngine t, User user, Forschung research)
 	{
 		boolean firstentry;Cargo costs;ResourceList reslist;
 		t.setBlock("_FORSCHINFO", "tech.ships.listitem", "tech.ships.list");
@@ -478,7 +478,7 @@ public class ForschinfoController extends Controller
 		}
 	}
 
-	private void munitionZurForschungAnzeigen(Session db, TemplateEngine t, Forschung research)
+	private void munitionZurForschungAnzeigen(Session db, ITemplateEngine t, Forschung research)
 	{
 		boolean firstentry;ResourceList reslist;
 		t.setBlock("_FORSCHINFO", "tech.fac.listitem", "tech.fac.list");

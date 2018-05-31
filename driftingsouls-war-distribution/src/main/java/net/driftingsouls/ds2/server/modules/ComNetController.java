@@ -23,6 +23,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
@@ -40,7 +41,6 @@ import net.driftingsouls.ds2.server.framework.bbcode.Smilie;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.services.ComNetService;
 
@@ -79,11 +79,11 @@ public class ComNetController extends Controller
 	 * @param back Der Offset der anzuzeigenden Posts. Ein Offset
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine searchAction(ComNetChannel channel, String search, ComNetService.Suchmodus searchtype, int back)
+	public ITemplateEngine searchAction(ComNetChannel channel, String search, ComNetService.Suchmodus searchtype, int back)
 	{
 		validiereComNetChannel(channel);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 
 		t.setVar("channel.id", channel.getId(),
@@ -191,11 +191,11 @@ public class ComNetController extends Controller
 	 * von 0 bedeutet der neuste Post. Je groesser der Wert umso aelter der Post
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine readAction(ComNetChannel channel, int back)
+	public ITemplateEngine readAction(ComNetChannel channel, int back)
 	{
 		validiereComNetChannel(channel);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 		User user = (User) getUser();
 
@@ -295,12 +295,12 @@ public class ComNetController extends Controller
 	 *  @param text Der Text des Posts
 	 * @param head Der Titel des Posts*/
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine sendenAction(ComNetChannel channel, String text, String head)
+	public ITemplateEngine sendenAction(ComNetChannel channel, String text, String head)
 	{
 		validiereComNetChannel(channel);
 
 		User user = (User) getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 
 		t.setVar("channel.id", channel.getId(),
@@ -326,12 +326,12 @@ public class ComNetController extends Controller
 	 * ausgewaehlten ComNet-Kanal, an.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine writeAction(ComNetChannel channel)
+	public ITemplateEngine writeAction(ComNetChannel channel)
 	{
 		validiereComNetChannel(channel);
 
 		User user = (User) getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		t.setVar("channel.id", channel.getId(),
 				"channel.name", Common._title(channel.getName()));
@@ -355,12 +355,12 @@ public class ComNetController extends Controller
 	 * @param head Der Titel des Posts
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine vorschauAction(ComNetChannel channel, String text, String head)
+	public ITemplateEngine vorschauAction(ComNetChannel channel, String text, String head)
 	{
 		validiereComNetChannel(channel);
 
 		User user = (User) getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		t.setVar("channel.id", channel.getId(),
 				"channel.name", Common._title(channel.getName()));
@@ -401,9 +401,9 @@ public class ComNetController extends Controller
 	 * Zeigt die Liste aller lesbaren ComNet-Kanaele an.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(ComNetChannel channel)
+	public ITemplateEngine defaultAction(ComNetChannel channel)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 		User user = (User) getUser();
 

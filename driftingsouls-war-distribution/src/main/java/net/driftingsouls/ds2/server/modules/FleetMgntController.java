@@ -20,6 +20,7 @@ package net.driftingsouls.ds2.server.modules;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
 import net.driftingsouls.ds2.interfaces.annotations.controllers.UrlParam;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.Location;
 import net.driftingsouls.ds2.server.bases.Base;
 import net.driftingsouls.ds2.server.cargo.Cargo;
@@ -32,7 +33,6 @@ import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionTyp
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.ships.*;
 import net.driftingsouls.ds2.server.werften.SchiffBauinformationen;
@@ -126,9 +126,9 @@ public class FleetMgntController extends Controller
 	 * @param count Die Anzahl der auszuwaehlenden Schiffe
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine createFromSRSGroupAction(Ship sector, int type, int count)
+	public ITemplateEngine createFromSRSGroupAction(Ship sector, int type, int count)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 		org.hibernate.Session db = getDB();
 
@@ -159,9 +159,9 @@ public class FleetMgntController extends Controller
 	 * @param shiplistStr Eine mit | separierte Liste von Schiffs-IDs oder eine mit , separierte Liste mit Koordinaten, Schiffstyp und  Mengenangabe
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine createAction(@UrlParam(name = "shiplist") String shiplistStr, RedirectViewResult redirect)
+	public ITemplateEngine createAction(@UrlParam(name = "shiplist") String shiplistStr, RedirectViewResult redirect)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 		org.hibernate.Session db = getDB();
 
@@ -290,11 +290,11 @@ public class FleetMgntController extends Controller
 	 * Flotte hinzu.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine addFromSRSGroupAction(ShipFleet fleet, @UrlParam(name = "sector") Ship sectorShip, int type, int count)
+	public ITemplateEngine addFromSRSGroupAction(ShipFleet fleet, @UrlParam(name = "sector") Ship sectorShip, int type, int count)
 	{
 		validiereGueltigeFlotteVorhanden(fleet);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 		org.hibernate.Session db = getDB();
 
@@ -366,11 +366,11 @@ public class FleetMgntController extends Controller
 	 * Zeigt die Seite zum Umbenennen von Flotten an.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine renameAction(ShipFleet fleet, RedirectViewResult redirect)
+	public ITemplateEngine renameAction(ShipFleet fleet, RedirectViewResult redirect)
 	{
 		validiereGueltigeFlotteVorhanden(fleet);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		t.setVar("fleet.id", fleet.getId());
 		t.setVar("fleetmgnt.message", redirect != null ? redirect.getMessage() : null);
@@ -408,11 +408,11 @@ public class FleetMgntController extends Controller
 	 * Zeigt die Abfrage an, ob eine Flotte aufgeloest werden soll.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine killAction(ShipFleet fleet)
+	public ITemplateEngine killAction(ShipFleet fleet)
 	{
 		validiereGueltigeFlotteVorhanden(fleet);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		t.setVar("fleet.id", fleet.getId());
 		t.setVar("fleet.name", Common._plaintitle(fleet.getName()),
@@ -426,11 +426,11 @@ public class FleetMgntController extends Controller
 	 * Loest eine Flotte auf.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine kill2Action(ShipFleet fleet)
+	public ITemplateEngine kill2Action(ShipFleet fleet)
 	{
 		validiereGueltigeFlotteVorhanden(fleet);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 
 		int shipid = ermittleIdEinesGeeignetenSchiffsDerFlotte(fleet);
@@ -452,11 +452,11 @@ public class FleetMgntController extends Controller
 	 * Zeigt das Eingabefeld fuer die Uebergabe von Flotten an.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine newownerAction(ShipFleet fleet, RedirectViewResult redirect)
+	public ITemplateEngine newownerAction(ShipFleet fleet, RedirectViewResult redirect)
 	{
 		validiereGueltigeFlotteVorhanden(fleet);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		t.setVar("fleetmgnt.message", redirect != null ? redirect.getMessage() : null);
 		t.setVar("fleet.id", fleet.getId());
@@ -479,7 +479,7 @@ public class FleetMgntController extends Controller
 
 		if (newowner != null)
 		{
-			TemplateEngine t = templateViewResultFactory.createFor(this);
+			ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 			t.setVar("fleet.id", fleet.getId());
 
@@ -514,7 +514,7 @@ public class FleetMgntController extends Controller
 		{
 			if (fleet.consign(newowner))
 			{
-				TemplateEngine t = templateViewResultFactory.createFor(this);
+				ITemplateEngine t = templateViewResultFactory.createFor(this);
 				t.setVar("fleet.id", fleet.getId());
 
 				Ship coords = (Ship) db.createQuery("from Ship where owner=:owner and fleet=:fleet")
@@ -680,11 +680,11 @@ public class FleetMgntController extends Controller
 	 * Exportiert die Schiffsliste der Flotte.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine exportAction(ShipFleet fleet)
+	public ITemplateEngine exportAction(ShipFleet fleet)
 	{
 		validiereGueltigeFlotteVorhanden(fleet);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 
 		t.setVar("fleet.id", fleet.getId());
@@ -830,11 +830,11 @@ public class FleetMgntController extends Controller
 	 * Zeigt das Eingabefeld fuer das Umbenennen der Schiffe der Flotte.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine renameShipsAction(ShipFleet fleet)
+	public ITemplateEngine renameShipsAction(ShipFleet fleet)
 	{
 		validiereGueltigeFlotteVorhanden(fleet);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		t.setVar("fleet.id", fleet.getId());
 
@@ -1189,11 +1189,11 @@ public class FleetMgntController extends Controller
 	 * Bestaetigungsanfrage fuers Demontieren.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine askDismantleAction(ShipFleet fleet)
+	public ITemplateEngine askDismantleAction(ShipFleet fleet)
 	{
 		validiereGueltigeFlotteVorhanden(fleet);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		t.setVar("fleet.name", Common._plaintitle(fleet.getName()),
 				"fleet.id", fleet.getId(),
@@ -1243,7 +1243,7 @@ public class FleetMgntController extends Controller
 			{
 				if (fleet.dismantleFleet(shipyard))
 				{
-					TemplateEngine t = templateViewResultFactory.createFor(this);
+					ITemplateEngine t = templateViewResultFactory.createFor(this);
 					int shipid = ermittleIdEinesGeeignetenSchiffsDerFlotte(fleet);
 
 					t.setVar("jscript.reloadmain.ship", shipid);
@@ -1266,11 +1266,11 @@ public class FleetMgntController extends Controller
      * Bestaetigungsanfrage fuers reparieren.
      */
     @Action(ActionType.DEFAULT)
-    public TemplateEngine askRepairAction(ShipFleet fleet)
+    public ITemplateEngine askRepairAction(ShipFleet fleet)
     {
         validiereGueltigeFlotteVorhanden(fleet);
 
-        TemplateEngine t = templateViewResultFactory.createFor(this);
+        ITemplateEngine t = templateViewResultFactory.createFor(this);
 
         t.setVar("fleet.name", Common._plaintitle(fleet.getName()),
                 "fleet.id", fleet.getId(),
@@ -1330,7 +1330,7 @@ public class FleetMgntController extends Controller
 
         if (!shipyards.isEmpty())
         {
-            TemplateEngine t = templateViewResultFactory.createFor(this);
+            ITemplateEngine t = templateViewResultFactory.createFor(this);
             int repaired = 0;
 
             for (Ship aship : fleet.getShips())
@@ -1415,13 +1415,13 @@ public class FleetMgntController extends Controller
     }
 
 	@Action(value = ActionType.DEFAULT, readOnly = true)
-	public TemplateEngine defaultAction(ShipFleet fleet, RedirectViewResult redirect)
+	public ITemplateEngine defaultAction(ShipFleet fleet, RedirectViewResult redirect)
 	{
 		validiereGueltigeFlotteVorhanden(fleet);
 
 		org.hibernate.Session db = getDB();
 		User user = (User) getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		t.setVar("fleet.id", fleet.getId());
 

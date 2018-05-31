@@ -18,12 +18,12 @@
  */
 package net.driftingsouls.ds2.server.modules.ks;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.battles.Battle;
 import net.driftingsouls.ds2.server.battles.BattleFlag;
 import net.driftingsouls.ds2.server.battles.BattleShip;
 import net.driftingsouls.ds2.server.battles.BattleShipFlag;
 import net.driftingsouls.ds2.server.battles.SchlachtLogAktion;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 
 import java.io.IOException;
 import java.util.List;
@@ -51,7 +51,7 @@ public class KSSecondRowEngageAction extends BasicKSAction {
 	}
 
 	@Override
-	public Result execute(TemplateEngine t, Battle battle) throws IOException {
+	public Result execute(ITemplateEngine t, Battle battle) throws IOException {
 		Result result = super.execute(t, battle);
 		if( result != Result.OK ) {
 			return result;

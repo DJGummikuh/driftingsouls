@@ -26,7 +26,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import net.driftingsouls.ds2.server.bases.Base;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.units.UnitCargo;
 import net.driftingsouls.ds2.server.units.UnitType;
 

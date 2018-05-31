@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -40,7 +41,6 @@ import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionTyp
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 
 /**
@@ -91,7 +91,7 @@ public class BuildController extends Controller
 		validiereGebaeude(build);
 
 		User user = (User) getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		t.setVar("base.id", base.getId(),
 				"base.name", Common._plaintitle(base.getName()),
@@ -242,11 +242,11 @@ public class BuildController extends Controller
 	 * @param cat Die anzuzeigende Kategorie
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(@UrlParam(name = "col") Base base, int field, int cat)
+	public ITemplateEngine defaultAction(@UrlParam(name = "col") Base base, int field, int cat)
 	{
 		validiereBasis(base);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 		org.hibernate.Session db = getDB();
 

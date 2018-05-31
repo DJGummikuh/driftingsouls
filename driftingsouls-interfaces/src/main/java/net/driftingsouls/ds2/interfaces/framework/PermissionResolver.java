@@ -1,4 +1,4 @@
-package net.driftingsouls.ds2.server.framework;
+package net.driftingsouls.ds2.interfaces.framework;
 
 /**
  * Interface fuer Klassen zum Pruefen von Berechtigungen.

@@ -18,10 +18,10 @@
  */
 package net.driftingsouls.ds2.server.framework.templates;
 
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.Response;
-import net.driftingsouls.ds2.server.framework.pipeline.ViewResult;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -41,8 +41,7 @@ import java.util.Set;
  * @author Christopher Jung
  * 
  */
-public class TemplateEngine implements ViewResult
-{
+public class TemplateEngine implements ITemplateEngine {
 	private static final Log log = LogFactory.getLog(TemplateEngine.class);
 
 	private Map<String,Template> file = new HashMap<>();
@@ -84,7 +83,8 @@ public class TemplateEngine implements ViewResult
 	 * @return true, falls das Template korrekt registriert werden konnte
 	 *
 	 */
-	public boolean setFile( String handle, String filename) {
+	@Override
+	public boolean setFile(String handle, String filename) {
 		if( filename.equals("") ) {
 			error("set_file: Aufruf mit den Handle >"+handle+"< jedoch keinem Dateinamen");
 			return false;
@@ -115,7 +115,8 @@ public class TemplateEngine implements ViewResult
 	 * @param handle Der Name des Blocks
 	 * @param replace Der Name der Ersetzungsvariablen fuer den Block im Template.
 	 */
-	public void setBlock( String parent, String handle, String replace ) {	
+	@Override
+	public void setBlock(String parent, String handle, String replace) {
 		if( !registeredBlocks.containsKey(handle) ) {
 			error("set_block: '"+handle+"' entspricht keinem registrierten Block");	
 		}
@@ -159,7 +160,8 @@ public class TemplateEngine implements ViewResult
 	 * @param handle Der Name des Blocks
 	 * @see #setBlock(String, String, String)
 	 */
-	public void setBlock( String parent, String handle ) {
+	@Override
+	public void setBlock(String parent, String handle) {
 		setBlock( parent, handle, "" );
 	}
 
@@ -169,6 +171,7 @@ public class TemplateEngine implements ViewResult
 	 * @param value Der Wert der Template-Variablen
 	 *
 	 */
+	@Override
 	public void setVar(String varname, Object value) {
 		if( log.isTraceEnabled() ) {
 			log.trace("set_var [single]: setting >"+varname+"< to >"+value+"<\n");
@@ -184,7 +187,8 @@ public class TemplateEngine implements ViewResult
 	 * @param list Eine Liste von Werten, in der alle ungeraden Werte Variablennamen und alle Geraden Variablenwerte sind
 	 *
 	 */
-	public void setVar( Object ... list  ) {
+	@Override
+	public void setVar(Object... list) {
 		if( list.length % 2 != 0 ) {
 			throw new RuntimeException("Illegal var list");
 		}
@@ -203,6 +207,7 @@ public class TemplateEngine implements ViewResult
 	 * @param append Soll angehangen (<code>true</code>) oder ueberschrieben (<code>false</code>) werden
 	 * @return Der neue Inhalt der Template-Variablen 
 	 */
+	@Override
 	public String parse(String target, String handle, boolean append) {
 		if( (this.file.get(handle) == null) && (blocks.get(handle) == null) ) {
 			error("parse: '"+handle+"' ist kein gueltiges Datei- oder Blockhandle");
@@ -258,6 +263,7 @@ public class TemplateEngine implements ViewResult
 	 * @return Der neue Inhalt der Template-Variablen
 	 * @see #parse(String, String, boolean) 
 	 */
+	@Override
 	public String parse(String target, String handle) {
 		return parse(target, handle, false);
 	}
@@ -266,6 +272,7 @@ public class TemplateEngine implements ViewResult
 	 * Gibt alle im TemplateEngine bekannten Variablen mit samt Wert zurueck.
 	 * @return Alle Templatevariablen inklusive Wert
 	 */
+	@Override
 	public Map<String,Object> get_vars() {
 		return varvals;
 	}
@@ -275,7 +282,8 @@ public class TemplateEngine implements ViewResult
 	 * @param varname Der Name des Blocks
 	 * @return Der Inhalt der Variablen
 	 */
-	public String getBlockReplacementVar( String varname ) {
+	@Override
+	public String getBlockReplacementVar(String varname) {
 		if( varNameMap.get(varname) != null ) {
 			return getVar(varNameMap.get(varname));
 		}
@@ -288,7 +296,8 @@ public class TemplateEngine implements ViewResult
 	 * @param varname Der Name der Variable
 	 * @return <code>true</code>, falls der Inhalt wahr ist
 	 */
-	public boolean isVarTrue( String varname ) {
+	@Override
+	public boolean isVarTrue(String varname) {
 		Object val = getVarObject(varname);
 		if( val != null ) {
 			if( val instanceof Number ) {
@@ -374,7 +383,8 @@ public class TemplateEngine implements ViewResult
 	 * @param varname Name der Variablen
 	 * @return Der Wert der Variablen als String
 	 */
-	public String getVar( String varname ) {
+	@Override
+	public String getVar(String varname) {
 		if( varvals.get(varname) != null ) {						
       		return varvals.get(varname).toString();
 		}
@@ -396,7 +406,8 @@ public class TemplateEngine implements ViewResult
 	 * @param varname Name der Variablen
 	 * @return Der Wert der Variablen als String
 	 */
-	public Number getNumberVar( String varname ) {
+	@Override
+	public Number getNumberVar(String varname) {
 		Object value = this.getVarObject(varname);
 		if( value != null ) {						
       		if( value instanceof Number ) {
@@ -417,7 +428,8 @@ public class TemplateEngine implements ViewResult
 	 * @param varname Der Name der auszugebenden Variablen
 	 * @throws IOException 
  	 */
-	public void p( String varname ) throws IOException {
+	@Override
+	public void p(String varname) throws IOException {
 		log.debug("out: "+varname);
 
 		Object value = varvals.get(varname);
@@ -431,7 +443,8 @@ public class TemplateEngine implements ViewResult
 	 * @param filehandle Das Dateihandle
 	 * @param parent Der Elternblock
 	 */
-	public void registerBlockItrnl( String name, String filehandle, String parent ) {
+	@Override
+	public void registerBlockItrnl(String name, String filehandle, String parent) {
 		log.debug("registered block: >"+name+"< >"+filehandle+"< >"+parent+"<");
 		registeredBlocks.put(name, new String[] {filehandle, name, parent});
 	}
@@ -440,6 +453,7 @@ public class TemplateEngine implements ViewResult
 	 * Startet die Aufzeichnung aller Variablensetzungen.
 	 *
 	 */
+	@Override
 	public void start_record() {
 		record = true;
 		if( log.isTraceEnabled() ) {
@@ -451,6 +465,7 @@ public class TemplateEngine implements ViewResult
 	 * Beendet die Aufzeichnung aller Variablensetzungen.
 	 *
 	 */
+	@Override
 	public void stop_record() {
 		record = false;
 		if( log.isTraceEnabled() ) {
@@ -463,6 +478,7 @@ public class TemplateEngine implements ViewResult
 	 * gesetzt wurden. Der Aufzeichnungspuffer wird anschliessend geleert.
 	 *
 	 */
+	@Override
 	public void clear_record() {
 		for( String key : recordvars ) {
 			if( log.isTraceEnabled() ) {

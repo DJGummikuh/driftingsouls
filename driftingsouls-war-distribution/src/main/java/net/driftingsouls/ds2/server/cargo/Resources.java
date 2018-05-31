@@ -18,11 +18,11 @@
  */
 package net.driftingsouls.ds2.server.cargo;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.config.items.Item;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -184,7 +184,7 @@ public class Resources {
 	 * @param reslist Die ResourceList
 	 * @param templateblock Der Name des betreffenden TemplateBlocks
 	 */
-	public static void echoResList( TemplateEngine t, ResourceList reslist, String templateblock) {
+	public static void echoResList(ITemplateEngine t, ResourceList reslist, String templateblock) {
 		echoResList(t,reslist,templateblock,templateblock+"item");
 	}
 	
@@ -195,7 +195,7 @@ public class Resources {
 	 * @param templateblock Der Name des betreffenden TemplateBlocks
 	 * @param templateitem Der Name eines Items des TemplateBlocks
 	 */
-	public static void echoResList( TemplateEngine t, ResourceList reslist, String templateblock, String templateitem ) {
+	public static void echoResList(ITemplateEngine t, ResourceList reslist, String templateblock, String templateitem ) {
 		t.setVar(templateblock,"");
 		
 		for( ResourceEntry res : reslist ) {

@@ -16,39 +16,17 @@
  *	License along with this library; if not, write to the Free Software
  *	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-package net.driftingsouls.ds2.server.scripting;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
-import java.io.Writer;
+package net.driftingsouls.ds2.interfaces.framework;
 
 /**
- * Logger, welcher die Ausgabe in die Standardausgabe umleitet.
+ * Observer fuer Ereignisse eines Kontexts.
  * @author Christopher Jung
  *
  */
-public class TextLogger extends Writer {
-	private boolean first = true;
-	
-	@Override
-	public void close() throws IOException {
-		System.out.print("#########################ENDE#############################\n");
-		
-		first = true;
-	}
-
-	@Override
-	public void flush() {
-		// EMPTY
-	}
-
-	@Override
-	public void write(@NotNull char[] cbuf, int off, int len) throws IOException {
-		if( first ) {
-			System.out.print("###################Scriptengine [Debug]###################\n");
-			first = false;
-		}
-		System.out.print(new String(cbuf, off, len));
-	}
+public interface ContextListener {
+	/**
+	 * Signalisiert, dass der Kontext freigegeben wird.
+	 *
+	 */
+	public void onContextDestory();
 }

@@ -25,7 +25,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 import net.driftingsouls.ds2.server.ContextCommon;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 
 /**
  * Ein Statistikeintrag zur Schiffszahl und zur Crewmenge in DS

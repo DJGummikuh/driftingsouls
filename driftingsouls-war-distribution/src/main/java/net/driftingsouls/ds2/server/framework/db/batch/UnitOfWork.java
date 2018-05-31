@@ -19,7 +19,7 @@
 package net.driftingsouls.ds2.server.framework.db.batch;
 
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;

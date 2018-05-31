@@ -18,6 +18,8 @@
  */
 package net.driftingsouls.ds2.server.framework;
 
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.framework.bbcode.BBCodeParser;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.Request;
 import org.apache.commons.lang.StringUtils;

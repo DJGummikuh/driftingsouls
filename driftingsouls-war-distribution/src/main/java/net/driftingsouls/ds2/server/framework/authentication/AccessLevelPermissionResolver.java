@@ -1,7 +1,7 @@
 package net.driftingsouls.ds2.server.framework.authentication;
 
 import net.driftingsouls.ds2.server.framework.PermissionDescriptor;
-import net.driftingsouls.ds2.server.framework.PermissionResolver;
+import net.driftingsouls.ds2.interfaces.framework.PermissionResolver;
 
 import java.io.Serializable;
 import java.util.HashMap;

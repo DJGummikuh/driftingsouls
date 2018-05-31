@@ -18,6 +18,7 @@
  */
 package net.driftingsouls.ds2.server.framework;
 
+import net.driftingsouls.ds2.interfaces.framework.IBasicUser;
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.annotations.Index;
 
@@ -53,7 +54,7 @@ public class UserValue {
 	@ManyToOne(fetch=FetchType.EAGER, optional = false)
 	@JoinColumn(name="user_id", nullable = false)
 	@ForeignKey(name="user_values_fk_users")
-	private BasicUser user;
+	private IBasicUser user;
 
 	@Column(nullable = false)
 	private String name;
@@ -78,7 +79,7 @@ public class UserValue {
 	 * @param name Der Name des UserValues
 	 * @param value Der Wert
 	 */
-	public UserValue(BasicUser user, String name, String value) {
+	public UserValue(IBasicUser user, String name, String value) {
 		this.user = user;
 		this.name = name;
 		this.value = value;
@@ -104,7 +105,7 @@ public class UserValue {
 	 * Gibt den User zurueck, welchem der UserValue zugeordnet ist.
 	 * @return Der User
 	 */
-	public BasicUser getUser() {
+	public IBasicUser getUser() {
 		return user;
 	}
 
@@ -112,7 +113,7 @@ public class UserValue {
 	 * Setzt den User, dem der UserValue zugeordnet ist.
 	 * @param user Der User
 	 */
-	public void setUser(BasicUser user) {
+	public void setUser(IBasicUser user) {
 		this.user = user;
 	}
 

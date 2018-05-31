@@ -1,5 +1,7 @@
 package net.driftingsouls.ds2.server.framework;
 
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import org.hibernate.Session;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,7 +17,7 @@ public class AppConfig
 {
 	@Bean(destroyMethod = "")
 	@Scope("request")
-	Context currentContext()
+    Context currentContext()
 	{
 		return ContextMap.getContext();
 	}

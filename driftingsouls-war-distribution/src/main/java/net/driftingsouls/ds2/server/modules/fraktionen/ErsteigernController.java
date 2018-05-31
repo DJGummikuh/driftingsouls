@@ -30,6 +30,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
@@ -78,7 +79,6 @@ import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionTyp
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.services.FraktionsGuiEintragService;
 import net.driftingsouls.ds2.server.ships.JumpNodeRouter;
@@ -135,7 +135,7 @@ public class ErsteigernController extends Controller
 		return faction;
 	}
 
-	private void erstelleMenue(TemplateEngine t, FraktionsGuiEintrag faction)
+	private void erstelleMenue(ITemplateEngine t, FraktionsGuiEintrag faction)
 	{
 		User user = (User) getUser();
 		// Die Templatevariablen duerfen nur einmal gesetzt werden (redirects!)
@@ -260,7 +260,7 @@ public class ErsteigernController extends Controller
 			return new RedirectViewResult("default");
 		}
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		if (entry == null || (entry.getOwner().getId() == user.getId()))
 		{
@@ -463,7 +463,7 @@ public class ErsteigernController extends Controller
 		// Falls noch keine Bestaetigung vorliegt: Bestaetigung der Ueberweisung erfragen
 		if (!ack.equals("yes") || !token.getToken().equals(requestToken))
 		{
-			TemplateEngine t = templateViewResultFactory.createFor(this);
+			ITemplateEngine t = templateViewResultFactory.createFor(this);
 			erstelleMenue(t, factionObj);
 
 			token.generateNewToken();
@@ -534,7 +534,7 @@ public class ErsteigernController extends Controller
 			return new RedirectViewResult("default");
 		}
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 		User user = (User) this.getUser();
 
@@ -636,7 +636,7 @@ public class ErsteigernController extends Controller
 			return new RedirectViewResult("default");
 		}
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		erstelleMenue(t, factionObj);
 		t.setVar("show.message", redirect != null ? redirect.getMessage() : null);
 
@@ -680,7 +680,7 @@ public class ErsteigernController extends Controller
 		return t;
 	}
 
-	private void outputHandelspostenKurse(TemplateEngine t, org.hibernate.Session db, User user, Ship tradepost)
+	private void outputHandelspostenKurse(ITemplateEngine t, org.hibernate.Session db, User user, Ship tradepost)
 	{
 		GtuWarenKurse kurse = (GtuWarenKurse) db.get(GtuWarenKurse.class, "p" + tradepost.getId());
 		if (kurse == null && tradepost.getOwner().getRace() == Faction.GTU_RASSE)
@@ -762,7 +762,7 @@ public class ErsteigernController extends Controller
 		t.parse("kurse.list", "kurse.listitem", true);
 	}
 
-	private void outputAstiKurse(TemplateEngine t, org.hibernate.Session db)
+	private void outputAstiKurse(ITemplateEngine t, org.hibernate.Session db)
 	{
 		GtuWarenKurse asti = (GtuWarenKurse) db.get(GtuWarenKurse.class, "asti");
 		Cargo kurseCargo = new Cargo(asti.getKurse());
@@ -803,7 +803,7 @@ public class ErsteigernController extends Controller
 			return new RedirectViewResult("default");
 		}
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 		erstelleMenue(t, factionObj);
 
@@ -846,7 +846,7 @@ public class ErsteigernController extends Controller
 	@Action(ActionType.DEFAULT)
 	public Object versteigerungAction(User faction, RedirectViewResult redirect)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 		User user = (User) getUser();
 
@@ -943,7 +943,7 @@ public class ErsteigernController extends Controller
 		return t;
 	}
 
-	private void handelsvereinbarungenAnzeigen(TemplateEngine t, Session db, User user)
+	private void handelsvereinbarungenAnzeigen(ITemplateEngine t, Session db, User user)
 	{
 		t.setBlock("_ERSTEIGERN", "gtuzwischenlager.listitem", "gtuzwischenlager.list");
 
@@ -978,7 +978,7 @@ public class ErsteigernController extends Controller
 		}
 	}
 
-	private void dropZoneAuswahlAnzeigen(TemplateEngine t, Session db, User user)
+	private void dropZoneAuswahlAnzeigen(ITemplateEngine t, Session db, User user)
 	{
 		List<StarSystem> dropZones = ermittleMoeglicheDropZones();
 		StarSystem aktuelleDropZone = (StarSystem) db.get(StarSystem.class, user.getGtuDropZone());
@@ -1033,7 +1033,7 @@ public class ErsteigernController extends Controller
 			return new RedirectViewResult("default");
 		}
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		erstelleMenue(t, factionObj);
 
 		t.setVar("show.message", redirect != null ? redirect.getMessage() : null);
@@ -1146,7 +1146,7 @@ public class ErsteigernController extends Controller
 			jumpnodes.get(jn.getSystem()).add(jn);
 		}
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		erstelleMenue(t, factionObj);
 
 		long totalcost = 0;
@@ -1316,7 +1316,7 @@ public class ErsteigernController extends Controller
 			return new RedirectViewResult("shopOrderGanymedeSummary");
 		}
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		erstelleMenue(t, factionObj);
 
 		t.setBlock("_ERSTEIGERN", "ganytrans.sourcesystem.listitem", "ganytrans.sourcesystem.list");
@@ -1533,7 +1533,7 @@ public class ErsteigernController extends Controller
 
 		if (ordersys == 0 || orderx == 0 || ordery == 0)
 		{
-			TemplateEngine t = templateViewResultFactory.createFor(this);
+			ITemplateEngine t = templateViewResultFactory.createFor(this);
 			erstelleMenue(t, factionObj);
 
 			t.setVar("show.shopOrderLocation", 1,
@@ -1819,7 +1819,7 @@ public class ErsteigernController extends Controller
 			return new RedirectViewResult("default");
 		}
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		erstelleMenue(t, factionObj);
 
 		t.setVar("show.message", redirect != null ? redirect.getMessage() : null);
@@ -2034,7 +2034,7 @@ public class ErsteigernController extends Controller
 
 		User factionUser = factionObj.getUser();
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		erstelleMenue(t, factionObj);
 		t.setVar("show.message", redirect != null ? redirect.getMessage() : null);
 		t.setVar("show.shop", 1);
@@ -2125,7 +2125,7 @@ public class ErsteigernController extends Controller
 		return t;
 	}
 
-	private void alleBestellungenImShopAnzeigen(Session db, FraktionsGuiEintrag factionObj, TemplateEngine t)
+	private void alleBestellungenImShopAnzeigen(Session db, FraktionsGuiEintrag factionObj, ITemplateEngine t)
 	{
 		t.setVar("shop.owner", 1);
 
@@ -2184,7 +2184,7 @@ public class ErsteigernController extends Controller
 		}
 	}
 
-	private void eigeneBestellungenImShopAnzeigen(Session db, User user, FraktionsGuiEintrag factionObj, TemplateEngine t)
+	private void eigeneBestellungenImShopAnzeigen(Session db, User user, FraktionsGuiEintrag factionObj, ITemplateEngine t)
 	{
 		List<?> orderentryList = db
 				.createQuery(
@@ -2261,7 +2261,7 @@ public class ErsteigernController extends Controller
 			return new RedirectViewResult("default");
 		}
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		erstelleMenue(t, factionObj);
 		t.setVar("show.message", redirect != null ? redirect.getMessage() : null);
 		t.setVar("show.aktionmelden", 1);

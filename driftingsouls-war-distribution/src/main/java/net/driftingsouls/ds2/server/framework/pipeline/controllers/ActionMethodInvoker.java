@@ -25,9 +25,9 @@ import net.driftingsouls.ds2.interfaces.annotations.ViewModel;
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
 import net.driftingsouls.ds2.interfaces.annotations.controllers.UrlParam;
 import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
-import net.driftingsouls.ds2.server.framework.pipeline.ViewResult;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.pipeline.ViewResult;
 
 /**
  * Service zum Aufrufen von Actions von Controllern.

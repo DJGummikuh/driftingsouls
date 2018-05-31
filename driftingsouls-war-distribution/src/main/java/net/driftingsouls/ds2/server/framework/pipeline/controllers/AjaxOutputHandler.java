@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 
 import net.driftingsouls.ds2.interfaces.annotations.ViewModel;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.OutputHandler;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 
 /**
  * Ausgabeklasse fuer AJAX-Antworten.

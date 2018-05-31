@@ -18,6 +18,7 @@
  */
 package net.driftingsouls.ds2.server.modules.ks;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.interfaces.server.WellKnownConfigValue;
 import net.driftingsouls.ds2.server.battles.Battle;
 import net.driftingsouls.ds2.server.battles.BattleShip;
@@ -31,9 +32,8 @@ import net.driftingsouls.ds2.server.config.items.effects.IEAmmo;
 import net.driftingsouls.ds2.server.entities.*;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.server.framework.ConfigService;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.ships.ShipClasses;
 import net.driftingsouls.ds2.server.ships.ShipType;
 import net.driftingsouls.ds2.server.ships.ShipTypeData;
@@ -1132,7 +1132,7 @@ public class KSAttackAction extends BasicKSAction {
 	}
 
 	@Override
-	public Result execute(TemplateEngine t, Battle battle) throws IOException
+	public Result execute(ITemplateEngine t, Battle battle) throws IOException
 	{
         Context context = ContextMap.getContext();
         final String weaponName = context.getRequest().getParameterString("weapon");
@@ -1185,7 +1185,7 @@ public class KSAttackAction extends BasicKSAction {
         return true;
     }
 
-    public Result attack(TemplateEngine t, Battle battle) throws IOException
+    public Result attack(ITemplateEngine t, Battle battle) throws IOException
     {
         Result result = super.execute(t, battle);
         if( result != Result.OK )

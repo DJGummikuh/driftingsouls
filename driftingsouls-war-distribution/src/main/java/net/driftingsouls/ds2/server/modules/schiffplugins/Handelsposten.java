@@ -1,9 +1,9 @@
 package net.driftingsouls.ds2.server.modules.schiffplugins;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.services.HandelspostenService;
 import net.driftingsouls.ds2.server.ships.Ship;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +65,7 @@ public class Handelsposten implements SchiffPlugin
 		String pluginid = caller.pluginId;
 		Ship data = caller.ship;
 
-		TemplateEngine t = caller.t;
+		ITemplateEngine t = caller.t;
 		t.setFile("_PLUGIN_"+pluginid, "schiff.handelsposten.html");
 
 		String text = "Willkommen {schiffsname} bei unserem wunderschönen GTU-Handelsposten. Gestatten sie, dass ich mich vorstelle: Ich bin Colonel Trade.\n"+
@@ -103,7 +103,7 @@ public class Handelsposten implements SchiffPlugin
 		t.parse(caller.target,"_PLUGIN_"+pluginid);
 	}
 
-	private void addAnswer(TemplateEngine t, String option, String text, String url)
+	private void addAnswer(ITemplateEngine t, String option, String text, String url)
 	{
 		t.setVar("schiff.handelsposten.option.id", option,
 				"schiff.handelsposten.option.text", text,
@@ -112,7 +112,7 @@ public class Handelsposten implements SchiffPlugin
 		t.parse("schiff.handelsposten.option.list","schiff.handelsposten.option.listitem",true);
 	}
 
-	private void addAnswer(TemplateEngine t, String option, String text, boolean action)
+	private void addAnswer(ITemplateEngine t, String option, String text, boolean action)
 	{
 		t.setVar("schiff.handelsposten.option.id", option,
 				"schiff.handelsposten.option.text", text,

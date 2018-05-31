@@ -28,7 +28,7 @@ import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.interfaces.server.WellKnownAdminPermission;
 import net.driftingsouls.ds2.server.bases.BaseType;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.map.TileCache;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EditorForm8;
 import net.driftingsouls.ds2.server.modules.admin.editoren.EntityEditor;

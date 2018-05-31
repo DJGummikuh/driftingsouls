@@ -18,6 +18,7 @@
  */
 package net.driftingsouls.ds2.server.modules;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
@@ -31,7 +32,6 @@ import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 
 /**
@@ -66,11 +66,11 @@ public class ActivateAllController extends Controller
 	 * @param deaconly <code>true</code>, falls die Gebaeude/Cores nur deaktiviert, nicht aber aktiviert werden sollen
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(@UrlParam(name="col") Base base, boolean deaconly)
+	public ITemplateEngine defaultAction(@UrlParam(name="col") Base base, boolean deaconly)
 	{
 		validateBase(base);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		t.setVar("base.id", base.getId());
 

@@ -16,11 +16,9 @@
  *	License along with this library; if not, write to the Free Software
  *	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-package net.driftingsouls.ds2.server.framework;
+package net.driftingsouls.ds2.interfaces.framework;
 
-import javax.persistence.EntityManager;
 
-import net.driftingsouls.ds2.server.framework.pipeline.Error;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.Request;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.Response;
 
@@ -33,34 +31,36 @@ import net.driftingsouls.ds2.interfaces.framework.pipeline.Response;
  *
  * @author Christopher Jung
  *
+ * X = javax.persistence.EntityManager
+ * Y = org.hibernate.Session
  */
-public interface Context extends PermissionResolver {
+public interface Context<X,Y> extends PermissionResolver {
 	/**
 	 * Gibt die passende Instanz des EntityManagers zurueck.
 	 * @return Die EntityManager-Instanz
 	 * @see #getDB()
 	 */
-	public EntityManager getEM();
+	public X getEM();
 
 	/**
 	 * Liefert eine Instanz der berwendeten DB-Session zurueck.
 	 * @return Die DB-Session
 	 */
-	public org.hibernate.Session getDB();
+	public Y getDB();
 
 	/**
 	 * Liefert den gerade aktiven User.
 	 *
 	 * @return Das zum gerade aktiven User gehoerende User-Objekt
 	 */
-	public BasicUser getActiveUser();
+	public IBasicUser getActiveUser();
 
 	/**
 	 * Setzt den gerade aktiven User auf das angebene User-Objekt.
 	 *
 	 * @param user Der neue aktive User
 	 */
-	public void setActiveUser(BasicUser user);
+	public void setActiveUser(IBasicUser user);
 
 	/**
 	 * Fuegt einen Fehler zur Fehlerliste hinzu.

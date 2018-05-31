@@ -18,7 +18,7 @@ import org.hibernate.Session;
 import net.driftingsouls.ds2.interfaces.annotations.controllers.UrlParamKonverterFuer;
 import net.driftingsouls.ds2.server.framework.AnnotationUtils;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.Request;
 import net.driftingsouls.ds2.server.framework.utils.StringToTypeConverter;
 

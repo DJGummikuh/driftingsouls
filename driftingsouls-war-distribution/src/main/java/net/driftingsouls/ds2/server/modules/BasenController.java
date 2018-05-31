@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -42,7 +43,6 @@ import net.driftingsouls.ds2.server.entities.WellKnownUserValue;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 
 /**
@@ -78,9 +78,9 @@ public class BasenController extends Controller
 	 * @param order Falls == 1 wird absteigend sortiert
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(Integer l, String ord, Integer order) {
+	public ITemplateEngine defaultAction(Integer l, String ord, Integer order) {
 		User user = (User)getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 
 		String ordSetting = user.getUserValue(WellKnownUserValue.TBLORDER_BASEN_ORDER);

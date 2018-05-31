@@ -20,6 +20,7 @@ package net.driftingsouls.ds2.server.modules;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
 import net.driftingsouls.ds2.interfaces.annotations.controllers.UrlParam;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.interfaces.server.WellKnownPermission;
 import net.driftingsouls.ds2.server.config.Medal;
 import net.driftingsouls.ds2.server.config.Medals;
@@ -34,7 +35,6 @@ import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionTyp
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,11 +137,11 @@ public class UserProfileController extends Controller
 	 * @param ausgewaehlterBenutzer Die ID des anzuzeigenden Benutzers
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(@UrlParam(name = "user") User ausgewaehlterBenutzer, RedirectViewResult redirect)
+	public ITemplateEngine defaultAction(@UrlParam(name = "user") User ausgewaehlterBenutzer, RedirectViewResult redirect)
 	{
 		validiereBenutzer(ausgewaehlterBenutzer);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 
 		t.setVar("userprofile.message", redirect != null ? redirect.getMessage() : null);
@@ -234,7 +234,7 @@ public class UserProfileController extends Controller
 		return t;
 	}
 
-	private void beziehungZumBenutzerAnzeigen(User ausgewaehlterBenutzer, TemplateEngine t, User user)
+	private void beziehungZumBenutzerAnzeigen(User ausgewaehlterBenutzer, ITemplateEngine t, User user)
 	{
 		String relname = "neutral";
 		String relcolor = "#c7c7c7";
@@ -258,7 +258,7 @@ public class UserProfileController extends Controller
 				"user.relation.color", relcolor);
 	}
 
-	private void historieAnzeigen(User ausgewaehlterBenutzer, TemplateEngine t)
+	private void historieAnzeigen(User ausgewaehlterBenutzer, ITemplateEngine t)
 	{
 		t.setBlock("_USERPROFILE", "history.listitem", "history.list");
 		if (ausgewaehlterBenutzer.getHistory().length() != 0)
@@ -274,7 +274,7 @@ public class UserProfileController extends Controller
 		}
 	}
 
-	private void ordenAnzeigen(User ausgewaehlterBenutzer, TemplateEngine t)
+	private void ordenAnzeigen(User ausgewaehlterBenutzer, ITemplateEngine t)
 	{
 		t.setBlock("_USERPROFILE", "medals.listitem", "medals.list");
 
@@ -289,7 +289,7 @@ public class UserProfileController extends Controller
 		}
 	}
 
-	private void npcRangAnzeigen(User ausgewaehlterBenutzer, TemplateEngine t, User user)
+	private void npcRangAnzeigen(User ausgewaehlterBenutzer, ITemplateEngine t, User user)
 	{
 		t.setBlock("_USERPROFILE", "user.npcrang", "user.npcrang.list");
 		if (ausgewaehlterBenutzer.getId() == user.getId())

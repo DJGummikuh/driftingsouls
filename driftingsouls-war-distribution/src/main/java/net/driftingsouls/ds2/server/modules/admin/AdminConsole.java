@@ -29,8 +29,8 @@ import com.google.gson.JsonPrimitive;
 import net.driftingsouls.ds2.interfaces.annotations.modules.AdminMenuEntry;
 import net.driftingsouls.ds2.server.AdminCommands;
 import net.driftingsouls.ds2.interfaces.server.WellKnownAdminPermission;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 
 /**
  * Ermoeglicht das Absetzen von Admin-Kommandos.

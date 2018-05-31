@@ -19,6 +19,7 @@
 package net.driftingsouls.ds2.server.modules;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.entities.Offizier;
 import net.driftingsouls.ds2.server.entities.User;
 import net.driftingsouls.ds2.server.framework.Common;
@@ -27,7 +28,6 @@ import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionTyp
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -100,11 +100,11 @@ public class ChoffController extends Controller
 	}
 
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(Offizier off, RedirectViewResult redirect)
+	public ITemplateEngine defaultAction(Offizier off, RedirectViewResult redirect)
 	{
 		validiereOffizier(off);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		if( redirect != null )
 		{
 			t.setVar("choff.message", redirect.getMessage());

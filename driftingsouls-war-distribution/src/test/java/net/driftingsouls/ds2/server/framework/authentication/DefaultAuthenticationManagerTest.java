@@ -1,9 +1,9 @@
 package net.driftingsouls.ds2.server.framework.authentication;
 
+import net.driftingsouls.ds2.interfaces.framework.IBasicUser;
 import net.driftingsouls.ds2.server.DBSingleTransactionTest;
 import net.driftingsouls.ds2.server.cargo.Cargo;
 import net.driftingsouls.ds2.server.entities.User;
-import net.driftingsouls.ds2.server.framework.BasicUser;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.server.framework.ConfigService;
 import net.driftingsouls.ds2.server.user.authentication.AccountInVacationModeException;
@@ -23,7 +23,7 @@ public class DefaultAuthenticationManagerTest extends DBSingleTransactionTest
 		User user = persist(new User("foo", Common.md5("bar"), 0, "", new Cargo(), "foo@localhost"));
 
 		// run
-		BasicUser authenticated = authenticationManager.login("foo", "bar", false);
+		IBasicUser authenticated = authenticationManager.login("foo", "bar", false);
 
 		// assert
 		assertSame(user, authenticated);

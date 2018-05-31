@@ -19,6 +19,7 @@
 package net.driftingsouls.ds2.server.modules.schiffplugins;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.MutableLocation;
 import net.driftingsouls.ds2.server.bases.Base;
 import net.driftingsouls.ds2.server.bases.Building;
@@ -32,9 +33,8 @@ import net.driftingsouls.ds2.server.entities.UserFlag;
 import net.driftingsouls.ds2.server.entities.WellKnownUserValue;
 import net.driftingsouls.ds2.server.entities.ally.Ally;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.modules.SchiffController;
 import net.driftingsouls.ds2.server.services.HandelspostenService;
 import net.driftingsouls.ds2.server.ships.Ship;
@@ -102,7 +102,7 @@ public class SensorsDefault implements SchiffPlugin {
 		ShipTypeData shiptype = caller.shiptype;
 
 		User user = (User) ContextMap.getContext().getActiveUser();
-		TemplateEngine t = caller.t;
+		ITemplateEngine t = caller.t;
 
 		t.setFile("_PLUGIN_"+pluginid, "schiff.sensors.default.html");
 
@@ -186,7 +186,7 @@ public class SensorsDefault implements SchiffPlugin {
 	}
 
 	private void outputShips(Parameters caller,
-						User user, TemplateEngine t,
+						User user, ITemplateEngine t,
 						String order, int showOnly, int showId)
 	{
 		List<Integer> fleetlist = null;
@@ -791,7 +791,7 @@ public class SensorsDefault implements SchiffPlugin {
 	}
 
 	private void outputBases(Parameters caller, User user,
-			TemplateEngine t, String order)
+                             ITemplateEngine t, String order)
 	{
 		final long dataOffizierCount = (Long)db.createQuery("select count(*) from Offizier where stationiertAufSchiff=:dest")
 				.setEntity("dest", caller.ship)
@@ -906,7 +906,7 @@ public class SensorsDefault implements SchiffPlugin {
 		}
 	}
 
-	private void outputNebel(Parameters caller, TemplateEngine t)
+	private void outputNebel(Parameters caller, ITemplateEngine t)
 	{
 		ShipTypeData shiptype = caller.shiptype;
 		Ship ship = caller.ship;
@@ -919,7 +919,7 @@ public class SensorsDefault implements SchiffPlugin {
 		}
 	}
 
-	private void outputJumpnodes(Parameters caller, User user, TemplateEngine t)
+	private void outputJumpnodes(Parameters caller, User user, ITemplateEngine t)
 	{
 		t.setBlock("_SENSORS","nodes.listitem","nodes.list");
 
@@ -950,7 +950,7 @@ public class SensorsDefault implements SchiffPlugin {
 		}
 	}
 
-	private void outputBattles(Parameters caller, User user, TemplateEngine t)
+	private void outputBattles(Parameters caller, User user, ITemplateEngine t)
 	{
 		ShipTypeData shiptype = caller.shiptype;
 		Ship ship = caller.ship;
@@ -1010,7 +1010,7 @@ public class SensorsDefault implements SchiffPlugin {
 		}
 	}
 
-	private void outputSubraumspalten(Parameters caller, TemplateEngine t)
+	private void outputSubraumspalten(Parameters caller, ITemplateEngine t)
 	{
 		Ship ship = caller.ship;
 		final long jumps = (Long)db.createQuery("select count(*) from Jump where x=:x and y=:y and system=:sys")

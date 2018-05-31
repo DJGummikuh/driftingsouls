@@ -2,6 +2,7 @@ package net.driftingsouls.ds2.server.modules;
 
 import java.io.IOException;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
@@ -12,7 +13,6 @@ import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.EmptyHeaderOutputHandler;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 
 /**
@@ -36,9 +36,9 @@ public class NewsDetailController extends Controller
 	 * Zeigt den Newseintrag an.
 	 */
 	@Action(value = ActionType.DEFAULT, outputHandler = EmptyHeaderOutputHandler.class)
-	public TemplateEngine defaultAction(NewsEntry newsid) throws IOException
+	public ITemplateEngine defaultAction(NewsEntry newsid) throws IOException
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		if (newsid != null)
 		{

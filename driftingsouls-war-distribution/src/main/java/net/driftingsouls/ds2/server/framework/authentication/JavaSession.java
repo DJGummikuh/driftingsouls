@@ -21,8 +21,9 @@ package net.driftingsouls.ds2.server.framework.authentication;
 import java.io.Serializable;
 
 import net.driftingsouls.ds2.interfaces.annotations.ContextInstance;
+import net.driftingsouls.ds2.interfaces.framework.IBasicUser;
 import net.driftingsouls.ds2.server.framework.BasicUser;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 
 /**
  * Sessionobjekt fuer Java-Sessions.
@@ -48,7 +49,7 @@ class JavaSession implements Serializable {
 	 * Setzt den mit der Session verknuepften User.
 	 * @param user Der mit der Session verknuepfte User
 	 */
-	public void setUser(BasicUser user) {
+	public void setUser(IBasicUser user) {
 		if( user == null ) {
 			this.id = null;
 		}
@@ -74,20 +75,20 @@ class JavaSession implements Serializable {
 	 * Gibt den angefuegten User oder <code>null</code> zurueck.
 	 * @return Der User oder <code>null</code>
 	 */
-	public BasicUser getAttach() {
+	public IBasicUser getAttach() {
 		if( this.attachedUser == null ) {
 			return null;
 		}
 		org.hibernate.Session db = ContextMap.getContext().getDB();
 		
-		return (BasicUser)db.get(BasicUser.class, this.attachedUser);
+		return (IBasicUser)db.get(BasicUser.class, this.attachedUser);
 	}
 
 	/**
 	 * Setzt den angefuegten User.
 	 * @param attach Der User
 	 */
-	public void setAttach(BasicUser attach) {
+	public void setAttach(IBasicUser attach) {
 		if( attach != null ) {
 			this.attachedUser = attach.getId();
 		}

@@ -29,6 +29,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -50,13 +51,12 @@ import net.driftingsouls.ds2.server.entities.Offizier;
 import net.driftingsouls.ds2.server.entities.User;
 import net.driftingsouls.ds2.server.entities.UserFlag;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.modules.schiffplugins.ADocksDefault;
 import net.driftingsouls.ds2.server.modules.schiffplugins.CargoDefault;
@@ -252,7 +252,7 @@ public class SchiffController extends Controller
 		}
 		else
 		{
-			TemplateEngine t = templateViewResultFactory.createFor(this);
+			ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 			ShipTypeData shiptype = ship.getTypeData();
 			String msg = "Ich habe dir die [ship="+ship.getId()+"]" + ship.getName() + "[/ship], ein Schiff der " + shiptype.getNickname() + "-Klasse, &uuml;bergeben\nSie steht bei " + ship.getLocation().displayCoordinates(false);
@@ -305,7 +305,7 @@ public class SchiffController extends Controller
 
 		ship.destroy();
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		t.setVar("ship.message", "<span style=\"color:white\">Das Schiff hat sich selbstzerst&ouml;rt</span><br />");
 		return t;
 	}
@@ -410,7 +410,7 @@ public class SchiffController extends Controller
 
 		if( ship.isDestroyed() )
 		{
-			TemplateEngine t = templateViewResultFactory.createFor(this);
+			ITemplateEngine t = templateViewResultFactory.createFor(this);
 			t.setVar("ship.message", ergebnis);
 			return t;
 		}
@@ -759,12 +759,12 @@ public class SchiffController extends Controller
 	 *
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(Ship ship, Ship communicate, RedirectViewResult redirect) throws ReflectiveOperationException
+	public ITemplateEngine defaultAction(Ship ship, Ship communicate, RedirectViewResult redirect) throws ReflectiveOperationException
 	{
 		validiereSchiff(ship);
 
 		User user = (User) getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 
 		db.flush();

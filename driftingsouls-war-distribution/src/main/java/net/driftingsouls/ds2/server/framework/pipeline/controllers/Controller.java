@@ -18,12 +18,12 @@
  */
 package net.driftingsouls.ds2.server.framework.pipeline.controllers;
 
+import net.driftingsouls.ds2.interfaces.framework.IBasicUser;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.OutputHandler;
-import net.driftingsouls.ds2.server.framework.BasicUser;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.framework.PermissionDescriptor;
-import net.driftingsouls.ds2.server.framework.PermissionResolver;
+import net.driftingsouls.ds2.interfaces.framework.PermissionResolver;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.Request;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.Response;
 import org.hibernate.Session;
@@ -136,7 +136,7 @@ public abstract class Controller implements PermissionResolver
 	 * wird <code>null</code> zurueckgegeben.
 	 * @return Der User oder <code>null</code>
 	 */
-	public final BasicUser getUser() {
+	public final IBasicUser getUser() {
 		return getContext().getActiveUser();
 	}
 

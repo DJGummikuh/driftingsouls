@@ -19,7 +19,7 @@
 package net.driftingsouls.ds2.server.framework.pipeline.reader;
 
 import net.driftingsouls.ds2.server.framework.Configuration;
-import net.driftingsouls.ds2.server.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.Context;
 import net.driftingsouls.ds2.server.framework.pipeline.ReaderPipeline;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;

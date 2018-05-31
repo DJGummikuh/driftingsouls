@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.apache.commons.lang.math.RandomUtils;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,6 @@ import net.driftingsouls.ds2.server.framework.authentication.WrongPasswordExcept
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.EmptyHeaderOutputHandler;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.units.TransientUnitCargo;
 import net.driftingsouls.ds2.server.user.authentication.AccountInVacationModeException;
@@ -95,10 +95,10 @@ public class PortalController extends Controller
 	 * @param username der Benutzername des Accounts
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine passwordLostAction(String username)
+	public ITemplateEngine passwordLostAction(String username)
 	{
 		org.hibernate.Session db = getDB();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		if ("".equals(username))
 		{
@@ -159,9 +159,9 @@ public class PortalController extends Controller
 	 * Zeigt die Banner Seite an an.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine bannerAction()
+	public ITemplateEngine bannerAction()
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		t.setVar("show.banner", 1);
 		return t;
 	}
@@ -170,9 +170,9 @@ public class PortalController extends Controller
 	 * Zeigt die AGB an.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine infosAgbAction()
+	public ITemplateEngine infosAgbAction()
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		t.setVar("show.agb", 1);
 		return t;
 	}
@@ -181,9 +181,9 @@ public class PortalController extends Controller
 	 * Zeigt das Impressum an.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine impressumAction()
+	public ITemplateEngine impressumAction()
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		t.setVar("show.impressum", 1);
 		return t;
 	}
@@ -268,7 +268,7 @@ public class PortalController extends Controller
 		return new StartLocations(systemID, orderLocationID, minsysdistance);
 	}
 
-	private boolean register(TemplateEngine t, String username, String email, int race, StarSystem system, String key, ConfigValue keys)
+	private boolean register(ITemplateEngine t, String username, String email, int race, StarSystem system, String key, ConfigValue keys)
 	{
 		Session db = getDB();
 
@@ -562,9 +562,9 @@ public class PortalController extends Controller
 	 * @param system Das Startsystem
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine registerAction(String username, int race, String email, String key, StarSystem system)
+	public ITemplateEngine registerAction(String username, int race, String email, String key, StarSystem system)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		boolean showform;
 
@@ -635,9 +635,9 @@ public class PortalController extends Controller
 	 * @param password Das Passwort
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine loginAction(String username, String password, String rememberMe)
+	public ITemplateEngine loginAction(String username, String password, String rememberMe)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		if (!username.isEmpty() && !password.isEmpty())
 		{
@@ -692,7 +692,7 @@ public class PortalController extends Controller
 		return t;
 	}
 
-	private void doLogin(TemplateEngine t)
+	private void doLogin(ITemplateEngine t)
 	{
 		t.setVar("show.login.msg.ok", 1);
 
@@ -707,9 +707,9 @@ public class PortalController extends Controller
 	 * @param reason Der Grund fuer eine vorzeitige Deaktivierung
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine loginVacmodeDeakAction(String username, String pw, String reason)
+	public ITemplateEngine loginVacmodeDeakAction(String username, String pw, String reason)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 
 		User user = (User) db.createQuery("from User where un=:username")
@@ -747,9 +747,9 @@ public class PortalController extends Controller
 	 * @param archiv <code>true</code>, falls alte News angezeigt werden sollen
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(boolean archiv)
+	public ITemplateEngine defaultAction(boolean archiv)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		if (this.authManager.isRemembered())
 		{
@@ -761,7 +761,7 @@ public class PortalController extends Controller
 		return t;
 	}
 
-	private void zeigeNewsListeAn(TemplateEngine t, boolean archiv)
+	private void zeigeNewsListeAn(ITemplateEngine t, boolean archiv)
 	{
 		org.hibernate.Session db = getDB();
 		t.setVar(

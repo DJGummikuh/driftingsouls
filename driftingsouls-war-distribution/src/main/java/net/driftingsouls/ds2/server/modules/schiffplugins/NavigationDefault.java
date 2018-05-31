@@ -19,12 +19,12 @@
 package net.driftingsouls.ds2.server.modules.schiffplugins;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.Location;
 import net.driftingsouls.ds2.server.config.StarSystem;
 import net.driftingsouls.ds2.server.entities.User;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.map.PlayerStarmap;
 import net.driftingsouls.ds2.server.map.SectorImage;
 import net.driftingsouls.ds2.server.modules.SchiffController;
@@ -116,7 +116,7 @@ public class NavigationDefault implements SchiffPlugin {
 		User user = (User)controller.getUser();
 		org.hibernate.Session db = controller.getDB();
 
-		TemplateEngine t = caller.t;
+		ITemplateEngine t = caller.t;
 		t.setFile("_PLUGIN_"+pluginid, "schiff.navigation.default.html");
 
 		t.setVar(	"global.pluginid",					pluginid,

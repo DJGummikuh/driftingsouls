@@ -19,12 +19,12 @@
 package net.driftingsouls.ds2.server.modules.schiffplugins;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.Location;
 import net.driftingsouls.ds2.server.config.StarSystem;
 import net.driftingsouls.ds2.server.entities.Jump;
 import net.driftingsouls.ds2.server.entities.User;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.modules.SchiffController;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipTypeData;
@@ -225,7 +225,7 @@ public class JumpdriveShivan implements SchiffPlugin
 
 		org.hibernate.Session db = controller.getDB();
 
-		TemplateEngine t = caller.t;
+		ITemplateEngine t = caller.t;
 		t.setFile("_PLUGIN_"+pluginid, "schiff.jumpdrive.shivan.html");
 
 		Jump jump = (Jump)db.createQuery("from Jump where ship=:ship")

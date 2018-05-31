@@ -18,6 +18,7 @@
  */
 package net.driftingsouls.ds2.server.bases;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.cargo.Cargo;
 import net.driftingsouls.ds2.server.cargo.ResourceEntry;
 import net.driftingsouls.ds2.server.cargo.Resources;
@@ -25,9 +26,8 @@ import net.driftingsouls.ds2.server.entities.Kaserne;
 import net.driftingsouls.ds2.server.entities.KaserneEntry;
 import net.driftingsouls.ds2.server.entities.User;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.units.UnitType;
 
@@ -154,7 +154,7 @@ public class KasernenBuilding extends DefaultBuilding {
 		int newcount = context.getRequest().getParameterInt("count");
 
 		TemplateViewResultFactory templateViewResultFactory = context.getBean(TemplateViewResultFactory.class, null);
-		TemplateEngine t = templateViewResultFactory.createEmpty();
+		ITemplateEngine t = templateViewResultFactory.createEmpty();
 		if( !t.setFile( "_BUILDING", "buildings.kaserne.html" ) ) {
 			context.addError("Konnte das Template-Engine nicht initialisieren");
 			return "";

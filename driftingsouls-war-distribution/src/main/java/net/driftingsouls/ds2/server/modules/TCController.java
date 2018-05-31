@@ -21,6 +21,7 @@ package net.driftingsouls.ds2.server.modules;
 import java.util.Iterator;
 import java.util.List;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
@@ -34,7 +35,6 @@ import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipType;
@@ -78,7 +78,7 @@ public class TCController extends Controller
 	 * @param mode Transfermodus (shipToShip, baseToShip usw)
 	 * @param ziel Der Aufenthaltsort der Offiziere
 	 */
-	private void echoOffiList(TemplateEngine t, String mode, Object ziel)
+	private void echoOffiList(ITemplateEngine t, String mode, Object ziel)
 	{
 		t.setVar("tc.selectoffizier", 1,
 				"tc.mode", mode);
@@ -115,10 +115,10 @@ public class TCController extends Controller
 	 * @param tarShip Die ID des Ziels des Transfers
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine shipToShipAction(Ship ship, String conf, int off, @UrlParam(name = "target") Ship tarShip)
+	public ITemplateEngine shipToShipAction(Ship ship, String conf, int off, @UrlParam(name = "target") Ship tarShip)
 	{
 		org.hibernate.Session db = getDB();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 
 		validiereSchiff(ship);
@@ -255,10 +255,10 @@ public class TCController extends Controller
 	 * @param tarBase Die ID des Ziels des Transfers
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine shipToBaseAction(Ship ship, int off, String conf, @UrlParam(name = "target") Base tarBase)
+	public ITemplateEngine shipToBaseAction(Ship ship, int off, String conf, @UrlParam(name = "target") Base tarBase)
 	{
 		org.hibernate.Session db = getDB();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 
 		validiereSchiff(ship);
@@ -346,10 +346,10 @@ public class TCController extends Controller
 	 * @param upBase Die ID des Ziels des Transfers
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine baseToFleetAction(Ship ship, @UrlParam(name = "target") Base upBase)
+	public ITemplateEngine baseToFleetAction(Ship ship, @UrlParam(name = "target") Base upBase)
 	{
 		org.hibernate.Session db = getDB();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 
 		validiereSchiff(ship);
@@ -430,10 +430,10 @@ public class TCController extends Controller
 	 * @param upBase Die ID des Ziels des Transfers
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine baseToShipAction(Ship ship, int off, @UrlParam(name = "target") Base upBase)
+	public ITemplateEngine baseToShipAction(Ship ship, int off, @UrlParam(name = "target") Base upBase)
 	{
 		org.hibernate.Session db = getDB();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 
 		validiereSchiff(ship);

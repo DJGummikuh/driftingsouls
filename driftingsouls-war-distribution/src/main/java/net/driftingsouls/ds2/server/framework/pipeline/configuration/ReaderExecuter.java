@@ -20,7 +20,7 @@ package net.driftingsouls.ds2.server.framework.pipeline.configuration;
 
 import java.util.regex.Pattern;
 
-import net.driftingsouls.ds2.server.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.Context;
 import net.driftingsouls.ds2.server.framework.pipeline.Pipeline;
 import net.driftingsouls.ds2.server.framework.pipeline.ReaderPipeline;
 import net.driftingsouls.ds2.server.framework.pipeline.reader.Reader;

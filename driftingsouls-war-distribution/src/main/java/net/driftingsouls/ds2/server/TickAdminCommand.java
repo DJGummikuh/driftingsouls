@@ -18,7 +18,7 @@
  */
 package net.driftingsouls.ds2.server;
 
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.tick.TickController;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

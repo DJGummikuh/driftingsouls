@@ -20,6 +20,7 @@ package net.driftingsouls.ds2.server.modules;
 
 import java.util.List;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
@@ -35,7 +36,6 @@ import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 
 /**
@@ -152,9 +152,9 @@ public class AllyListController extends Controller
 	 * @param ally Die Allianz
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine detailsAction(@UrlParam(name="details") Ally ally, RedirectViewResult redirect) {
+	public ITemplateEngine detailsAction(@UrlParam(name="details") Ally ally, RedirectViewResult redirect) {
 		User user = (User)getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		if( ally == null ) {
 			t.setVar( "ally.message", "Die angegebene Allianz existiert nicht" );
@@ -249,8 +249,8 @@ public class AllyListController extends Controller
 	 * Zeigt die Liste der Allianzen in DS an.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction() {
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+	public ITemplateEngine defaultAction() {
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		
 		t.setVar("allylist.showlist", 1);
 

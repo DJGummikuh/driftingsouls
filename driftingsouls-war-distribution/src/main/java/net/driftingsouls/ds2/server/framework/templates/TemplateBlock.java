@@ -18,6 +18,8 @@
  */
 package net.driftingsouls.ds2.server.framework.templates;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
+
 /**
  * Interface fuer Template-Bloecke.
  * @author Christopher Jung
@@ -36,5 +38,5 @@ public interface TemplateBlock {
 	 * @param te Das TemplateEngine
 	 * @return Die Ausgabe
 	 */
-	public String output( TemplateEngine te );
+	public String output( ITemplateEngine te );
 }

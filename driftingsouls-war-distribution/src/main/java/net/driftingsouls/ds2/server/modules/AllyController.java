@@ -24,6 +24,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -49,7 +50,6 @@ import net.driftingsouls.ds2.server.framework.DynamicContentManager;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.services.AllianzService;
 import net.driftingsouls.ds2.server.services.AllyPostenService;
@@ -115,7 +115,7 @@ public class AllyController extends Controller
 		return true;
 	}
 
-	private void setDefaultTemplateVars(TemplateEngine t)
+	private void setDefaultTemplateVars(ITemplateEngine t)
 	{
 		User user = (User) getUser();
 		t.setVar("ally", user.getAlly() != null ? user.getAlly().getId() : 0);
@@ -270,7 +270,7 @@ public class AllyController extends Controller
 
 		if (!conf.equals("ok"))
 		{
-			TemplateEngine t = templateViewResultFactory.createFor(this);
+			ITemplateEngine t = templateViewResultFactory.createFor(this);
 			setDefaultTemplateVars(t);
 			t.setVar("show", show);
 			t.setVar("ally.statusmessage", "Wollen sie der Allianz &gt;" + Common._title(zielAllianz.getName()) + "&lt; wirklich beitreten?",
@@ -657,7 +657,7 @@ public class AllyController extends Controller
 
 		if (!conf.equals("ok"))
 		{
-			TemplateEngine t = templateViewResultFactory.createFor(this);
+			ITemplateEngine t = templateViewResultFactory.createFor(this);
 			setDefaultTemplateVars(t);
 			t.setVar("show", show);
 			t.setVar("ally.statusmessage", "Wollen sie die Frequenz \"" + Common._title(channel.getName()) + "\" wirklich l&ouml;schen?",
@@ -802,7 +802,7 @@ public class AllyController extends Controller
 
 		if (!conf.equals("ok"))
 		{
-			TemplateEngine t = templateViewResultFactory.createFor(this);
+			ITemplateEngine t = templateViewResultFactory.createFor(this);
 			setDefaultTemplateVars(t);
 			t.setVar("show", show);
 			t.setVar("ally.statusmessage", "Wollen sie wirklich aus der Allianz austreten?",
@@ -837,7 +837,7 @@ public class AllyController extends Controller
 
 		if (!conf.equals("ok"))
 		{
-			TemplateEngine t = templateViewResultFactory.createFor(this);
+			ITemplateEngine t = templateViewResultFactory.createFor(this);
 			setDefaultTemplateVars(t);
 			t.setVar("show", show);
 			t.setVar("ally.statusmessage", "Wollen sie die Allianz wirklich aufl&ouml;sen?",
@@ -922,9 +922,9 @@ public class AllyController extends Controller
 	 * @param show Die Aktion die nach der Durchfuehrung angezeigt werden soll
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultNoAllyAction(String show, RedirectViewResult redirect)
+	public ITemplateEngine defaultNoAllyAction(String show, RedirectViewResult redirect)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		setDefaultTemplateVars(t);
 		t.setVar("ally.message", redirect != null ? redirect.getMessage() : null);
 
@@ -951,9 +951,9 @@ public class AllyController extends Controller
 	 * @param show Die Aktion die nach der Durchfuehrung angezeigt werden soll
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine showCreateAllyAction(String show, RedirectViewResult redirect)
+	public ITemplateEngine showCreateAllyAction(String show, RedirectViewResult redirect)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		setDefaultTemplateVars(t);
 
 		t.setVar("ally.statusmessage", redirect != null ? redirect.getMessage() : null);
@@ -991,7 +991,7 @@ public class AllyController extends Controller
 			return new RedirectViewResult("default");
 		}
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		setDefaultTemplateVars(t);
 		t.setVar("show", show);
 		t.setVar("ally.message", redirect != null ? redirect.getMessage() : null);
@@ -1026,7 +1026,7 @@ public class AllyController extends Controller
 			return new RedirectViewResult("defaultNoAlly");
 		}
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		setDefaultTemplateVars(t);
 		t.setVar("show", show);
 		t.setVar("ally.message", redirect != null ? redirect.getMessage() : null);
@@ -1096,7 +1096,7 @@ public class AllyController extends Controller
 	@Action(ActionType.DEFAULT)
 	public Object showBattlesAction(long destpos, long lostpos, String show)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		setDefaultTemplateVars(t);
 		t.setVar("show", show);
 		if (this.ally == null)
@@ -1301,7 +1301,7 @@ public class AllyController extends Controller
 	@Action(ActionType.DEFAULT)
 	public Object showAllySettingsAction(String show, RedirectViewResult redirect)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		setDefaultTemplateVars(t);
 		t.setVar("show", show);
 		if (this.ally == null)
@@ -1388,7 +1388,7 @@ public class AllyController extends Controller
 	@Action(ActionType.DEFAULT)
 	public Object showMembersAction(String show, RedirectViewResult redirect)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		setDefaultTemplateVars(t);
 		t.setVar("show", show);
 		if (this.ally == null)
@@ -1461,7 +1461,7 @@ public class AllyController extends Controller
 	@Action(ActionType.DEFAULT)
 	public Object defaultAction(String show, RedirectViewResult redirect)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		setDefaultTemplateVars(t);
 		t.setVar("show", show);
 

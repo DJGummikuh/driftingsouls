@@ -18,8 +18,10 @@
  */
 package net.driftingsouls.ds2.server.framework;
 
+import net.driftingsouls.ds2.interfaces.framework.IBasicUser;
+import net.driftingsouls.ds2.interfaces.framework.IPermission;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.framework.bbcode.BBCodeParser;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.DiscriminatorFormula;
@@ -50,11 +52,11 @@ import java.util.Set;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorFormula("'default'")
 @Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public abstract class BasicUser {
+public abstract class BasicUser implements IBasicUser {
 /**
 	 * Sortiert die Benutzer entsprechend ihres Anzeigenamens.
 	 */
-	public static final Comparator<BasicUser> PLAINNAME_ORDER = (o1, o2) -> {
+	public static final Comparator<IBasicUser> PLAINNAME_ORDER = (o1, o2) -> {
 		int diff = o1.getPlainname().compareToIgnoreCase(o2.getPlainname());
 		if( diff != 0 )
 		{
@@ -86,13 +88,13 @@ public abstract class BasicUser {
 	private String plainname;
 	private byte disabled;
 	@OneToMany(mappedBy="user", cascade=CascadeType.ALL, orphanRemoval = true)
-	private Set<Permission> permissions;
+	private Set<IPermission> permissions;
 
 	@Version
 	private int version;
 
 	@Transient
-	protected BasicUser attachedUser;
+	protected IBasicUser attachedUser;
 
 	/**
 	 * Konstruktor.
@@ -108,6 +110,7 @@ public abstract class BasicUser {
 	 *
 	 * @return Die User-ID
 	 */
+	@Override
 	public int getId() {
 		return id;
 	}
@@ -116,7 +119,8 @@ public abstract class BasicUser {
 	 * Gibt alle expliziten Permissions dieses Nutzers zurueck.
 	 * @return Die Permissions
 	 */
-	public Set<Permission> getPermissions()
+	@Override
+	public Set<IPermission> getPermissions()
 	{
 		return this.permissions;
 	}
@@ -126,7 +130,8 @@ public abstract class BasicUser {
 	 * des angegebenen Benutzers verwendet.
 	 * @param user Der Benutzer, der temporaer an diesen gekoppelt werden soll
 	 */
-	public void attachToUser( BasicUser user ) {
+	@Override
+	public void attachToUser(IBasicUser user) {
 		this.attachedUser = user;
 	}
 
@@ -138,7 +143,8 @@ public abstract class BasicUser {
 	 *
 	 * @param templateEngine Das Template-Engine, in dem die Variablen gesetzt werden sollen
 	 */
-	public void setTemplateVars(TemplateEngine templateEngine) {
+	@Override
+	public void setTemplateVars(ITemplateEngine templateEngine) {
 		setTemplateVars(templateEngine, "user");
 	}
 
@@ -151,7 +157,8 @@ public abstract class BasicUser {
 	 * @param templateEngine Das Template-Engine, in dem die Variablen gesetzt werden sollen
 	 * @param prefix Der fuer die Template-Variablen zu verwendende Prefix
 	 */
-	public void setTemplateVars(TemplateEngine templateEngine, String prefix) {
+	@Override
+	public void setTemplateVars(ITemplateEngine templateEngine, String prefix) {
 		String pre = prefix+".";
 		templateEngine.setVar(
 				pre+"id", this.id,
@@ -170,6 +177,7 @@ public abstract class BasicUser {
 	 * Gibt das Zugriffslevel des Benutzers zurueck.
 	 * @return Das Zugriffslevel
 	 */
+	@Override
 	public int getAccessLevel() {
 		int acl = this.accesslevel;
 		if( (attachedUser != null) && (attachedUser.getAccessLevel() > acl)) {
@@ -182,6 +190,7 @@ public abstract class BasicUser {
 	 * Gibt zurueck, ob der User ein Admin ist.
 	 * @return <code>true</code>, wenn es ein Admin ist
 	 */
+	@Override
 	public boolean isAdmin() {
 		if( getAccessLevel() >= 30 )
 		{
@@ -195,6 +204,7 @@ public abstract class BasicUser {
 	 * wird lediglich zum einloggen verwendet und wird nicht angezeigt.
 	 * @return Der Benutzername
 	 */
+	@Override
 	public String getUN() {
 		return this.un;
 	}
@@ -205,6 +215,7 @@ public abstract class BasicUser {
 	 * und ist ggf auch mittels BBCode formatiert.
 	 * @return Der vollstaendige Ingame-Name
 	 */
+	@Override
 	public String getName() {
 		return this.name;
 	}
@@ -216,7 +227,8 @@ public abstract class BasicUser {
 	 *
 	 * @param name der neue vollstaendige Ingame-Name
 	 */
-	public void setName( String name ) {
+	@Override
+	public void setName(String name) {
 		if( !name.equals(this.name) ) {
 			this.name = name;
 			this.plainname = BBCodeParser.getInstance().parse(name,new String[] {"all"});
@@ -227,6 +239,7 @@ public abstract class BasicUser {
 	 * Gibt das verschluesselte Passwort des Spielers zurueck.
 	 * @return Das verschluesselte Passwort
 	 */
+	@Override
 	public String getPassword() {
 		return this.passwort;
 	}
@@ -235,7 +248,8 @@ public abstract class BasicUser {
 	 * Setzt das Passwort fuer den Spieler.
 	 * @param pw Das neue (mittels MD5 kodierte) Passwort
 	 */
-	public void setPassword( String pw ) {
+	@Override
+	public void setPassword(String pw) {
 		this.passwort = pw;
 	}
 
@@ -243,6 +257,7 @@ public abstract class BasicUser {
 	 * Gibt die Inaktivitaet des Spielers in Ticks zurueck.
 	 * @return Die Inaktivitaet des Spielers in Ticks
 	 */
+	@Override
 	public int getInactivity() {
 		return this.inakt;
 	}
@@ -251,6 +266,7 @@ public abstract class BasicUser {
 	 * Setzt die Inaktivitaet des Spielers in Ticks.
 	 * @param inakt Die neue Inaktivitaet des Spielers
 	 */
+	@Override
 	public void setInactivity(int inakt) {
 		this.inakt = inakt;
 	}
@@ -260,6 +276,7 @@ public abstract class BasicUser {
 	 * angemeldet hat.
 	 * @return Die Timestamp des Anmeldezeitpunkts
 	 */
+	@Override
 	public int getSignup() {
 		return this.signup;
 	}
@@ -268,6 +285,7 @@ public abstract class BasicUser {
 	 * Gibt die Email-Adresse des Spielers zurueck.
 	 * @return Die Email-Adresse
 	 */
+	@Override
 	public String getEmail() {
 		return this.email;
 	}
@@ -276,6 +294,7 @@ public abstract class BasicUser {
 	 * Gibt die Anzahl der fehlgeschlagenen Login-Versuche des Spielers zurueck.
 	 * @return die Anzahl der fehlgeschlagenene Logins
 	 */
+	@Override
 	public int getLoginFailedCount() {
 		return this.logFail;
 	}
@@ -284,6 +303,7 @@ public abstract class BasicUser {
 	 * Setzt die Anzahl der fehlgeschlagenen Logins des Spielers auf den angegebenen Wert.
 	 * @param count Die neue Anzahl der fehlgeschlagenene Logins
 	 */
+	@Override
 	public void setLoginFailedCount(int count) {
 		this.logFail = count;
 	}
@@ -293,6 +313,7 @@ public abstract class BasicUser {
 	 * Der Name ist ggf mittels BBCodes formatiert.
 	 * @return der Ingame-Name ohne Ally-Tag
 	 */
+	@Override
 	public String getNickname() {
 		return this.nickname;
 	}
@@ -301,7 +322,8 @@ public abstract class BasicUser {
 	 * Setzt den Ingame-Namen ohne Ally-Tag des Spielers auf den angegebenen BBCode-String .
 	 * @param nick der neue Ingame-Name ohne Ally-Tag
 	 */
-	public void setNickname( String nick ) {
+	@Override
+	public void setNickname(String nick) {
 		this.nickname = nick;
 	}
 
@@ -310,6 +332,7 @@ public abstract class BasicUser {
 	 * Der Name ist inklusive des Ally-Tags sofern vorhanden.
 	 * @return Der unformatierte Name inkl. Ally-Tag
 	 */
+	@Override
 	public String getPlainname() {
 		return this.plainname;
 	}
@@ -318,6 +341,7 @@ public abstract class BasicUser {
 	 * Gibt <code>true</code> zurueck, falls der Account deaktiviert ist.
 	 * @return <code>true</code>, falls der Account deaktiviert ist
 	 */
+	@Override
 	public boolean getDisabled() {
 		return this.disabled != 0;
 	}
@@ -337,6 +361,7 @@ public abstract class BasicUser {
 	 * (De)aktiviert den Account.
 	 * @param value <code>true</code>, wenn der Account deaktiviert sein soll. Andernfalls <code>false</code>
 	 */
+	@Override
 	public void setDisabled(boolean value) {
 		this.disabled = value ? (byte)1 : (byte)0;
 	}
@@ -345,6 +370,7 @@ public abstract class BasicUser {
 	 * Gibt die Versionsnummer zurueck.
 	 * @return Die Nummer
 	 */
+	@Override
 	public int getVersion() {
 		return this.version;
 	}
@@ -353,6 +379,7 @@ public abstract class BasicUser {
 	 * Setzt die Email-Adresse des Spielers.
 	 * @param email Die Email
 	 */
+	@Override
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -386,6 +413,7 @@ public abstract class BasicUser {
 	 * Setzt den Zugriffslevel den Users auf Adminfunktionen.
 	 * @param accesslevel Der Level
 	 */
+	@Override
 	public void setAccesslevel(int accesslevel) {
 		this.accesslevel = accesslevel;
 	}

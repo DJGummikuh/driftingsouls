@@ -21,8 +21,8 @@ package net.driftingsouls.ds2.server.modules.stats;
 import com.google.gson.Gson;
 import net.driftingsouls.ds2.server.ContextCommon;
 import net.driftingsouls.ds2.server.entities.statistik.StatAktiveSpieler;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.modules.StatsController;
 
 import java.io.IOException;

@@ -18,6 +18,8 @@
  */
 package net.driftingsouls.ds2.server.framework.authentication;
 
+import net.driftingsouls.ds2.interfaces.framework.IBasicUser;
+import net.driftingsouls.ds2.interfaces.framework.IPermission;
 import net.driftingsouls.ds2.server.ContextCommon;
 import net.driftingsouls.ds2.interfaces.server.WellKnownConfigValue;
 import net.driftingsouls.ds2.server.entities.User;
@@ -25,9 +27,8 @@ import net.driftingsouls.ds2.server.framework.BasicUser;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.server.framework.ConfigService;
 import net.driftingsouls.ds2.server.framework.Configuration;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
-import net.driftingsouls.ds2.server.framework.Permission;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.Request;
 import net.driftingsouls.ds2.server.user.authentication.AccountInVacationModeException;
 import org.apache.commons.logging.Log;
@@ -64,7 +65,7 @@ public class DefaultAuthenticationManager implements AuthenticationManager {
 	}
 
 	@Override
-	public BasicUser login(String username, String password, boolean rememberMe) throws AuthenticationException {
+	public IBasicUser login(String username, String password, boolean rememberMe) throws AuthenticationException {
 		Context context = ContextMap.getContext();
 		org.hibernate.Session db = context.getDB();
 		Request request = context.getRequest();
@@ -95,7 +96,7 @@ public class DefaultAuthenticationManager implements AuthenticationManager {
 		return finishLogin(user, rememberMe);
 	}
 
-	private void checkAccountNotInVacationMode(BasicUser basicuser)
+	private void checkAccountNotInVacationMode(IBasicUser basicuser)
 	{
 		User user = (User) basicuser;
 		if (user.isInVacation())
@@ -172,10 +173,10 @@ public class DefaultAuthenticationManager implements AuthenticationManager {
 	}
 
 	@Override
-	public BasicUser adminLogin(BasicUser user, boolean attach) throws AuthenticationException {
+	public IBasicUser adminLogin(IBasicUser user, boolean attach) throws AuthenticationException {
 		Context context = ContextMap.getContext();
 
-		BasicUser oldUser = context.getActiveUser();
+		IBasicUser oldUser = context.getActiveUser();
 
 		JavaSession jsession = context.get(JavaSession.class);
 		jsession.setUser(user);
@@ -272,7 +273,7 @@ public class DefaultAuthenticationManager implements AuthenticationManager {
 		context.setActiveUser(user);
 
 		int accessLevel = user.getAccessLevel();
-		Set<Permission> permissions = new HashSet<>(user.getPermissions());
+		Set<IPermission> permissions = new HashSet<>(user.getPermissions());
 		if( jsession.getAttach() != null && accessLevel < jsession.getAttach().getAccessLevel() )
 		{
 			accessLevel = jsession.getAttach().getAccessLevel();
@@ -294,7 +295,7 @@ public class DefaultAuthenticationManager implements AuthenticationManager {
 	 *
 	 * @param user The current user account.
 	 */
-	public void checkDisabled(BasicUser user) throws AccountDisabledException
+	public void checkDisabled(IBasicUser user) throws AccountDisabledException
 	{
 		Context context = ContextMap.getContext();
 		if( user.getDisabled() )

@@ -20,6 +20,7 @@ package net.driftingsouls.ds2.server.modules;
 
 import java.util.Iterator;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
@@ -36,7 +37,6 @@ import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionTyp
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 
 /**
@@ -73,12 +73,12 @@ public class CoreController extends Controller
 	 * @param core Die zu bauende Core
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine buildAction(@UrlParam(name = "col") Base base, @UrlParam(name = "build") Core core)
+	public ITemplateEngine buildAction(@UrlParam(name = "col") Base base, @UrlParam(name = "build") Core core)
 	{
 		validiereBasis(base);
 
 		User user = (User) getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		t.setVar("base.id", base.getId());
 
@@ -223,7 +223,7 @@ public class CoreController extends Controller
 		return new RedirectViewResult("default").withMessage(message);
 	}
 
-	private void showCore(TemplateEngine t, Base base)
+	private void showCore(ITemplateEngine t, Base base)
 	{
 		t.setVar("base.core", base.getCore().getId());
 
@@ -260,7 +260,7 @@ public class CoreController extends Controller
 		}
 	}
 
-	private void showCoreBuildList(TemplateEngine t, Base base)
+	private void showCoreBuildList(ITemplateEngine t, Base base)
 	{
 		t.setVar("base.core", 0);
 
@@ -349,11 +349,11 @@ public class CoreController extends Controller
 	 * @param base Die Basis
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(@UrlParam(name = "col") Base base, RedirectViewResult redirect)
+	public ITemplateEngine defaultAction(@UrlParam(name = "col") Base base, RedirectViewResult redirect)
 	{
 		validiereBasis(base);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		t.setVar("core.message", redirect != null ? redirect.getMessage() : null);
 		t.setVar("base.id", base.getId());
 

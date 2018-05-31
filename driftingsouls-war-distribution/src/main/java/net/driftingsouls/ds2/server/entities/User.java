@@ -18,6 +18,7 @@
  */
 package net.driftingsouls.ds2.server.entities;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.interfaces.server.WellKnownConfigValue;
 import net.driftingsouls.ds2.interfaces.server.WellKnownPermission;
 import net.driftingsouls.ds2.server.bases.Base;
@@ -33,10 +34,9 @@ import net.driftingsouls.ds2.server.entities.ally.AllyPosten;
 import net.driftingsouls.ds2.server.framework.BasicUser;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.server.framework.ConfigService;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.framework.UserValue;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.utils.StringToTypeConverter;
 import net.driftingsouls.ds2.server.namegenerator.PersonenNamenGenerator;
 import net.driftingsouls.ds2.server.namegenerator.SchiffsKlassenNamenGenerator;
@@ -346,7 +346,7 @@ public class User extends BasicUser {
 	 * @param prefix Der fuer die Template-Variablen zu verwendende Prefix
 	 */
 	@Override
-	public void setTemplateVars(TemplateEngine templateEngine, String prefix) {
+	public void setTemplateVars(ITemplateEngine templateEngine, String prefix) {
 		super.setTemplateVars(templateEngine, prefix);
 
 		String pre = prefix+".";

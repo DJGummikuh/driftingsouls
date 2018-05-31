@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import net.driftingsouls.ds2.interfaces.annotations.ViewModel;
@@ -43,7 +44,6 @@ import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionTyp
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.modules.viewmodels.GebaeudeAufBasisViewModel;
 import net.driftingsouls.ds2.server.modules.viewmodels.ResourceEntryViewModel;
@@ -365,10 +365,10 @@ public class BaseController extends Controller
 	 * Zeigt die Basis an.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(@UrlParam(name = "col") Base base, RedirectViewResult redirect) {
+	public ITemplateEngine defaultAction(@UrlParam(name = "col") Base base, RedirectViewResult redirect) {
 		validate(base);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		User user = (User)getUser();
 

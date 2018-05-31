@@ -18,6 +18,8 @@
  */
 package net.driftingsouls.ds2.server.framework;
 
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import org.apache.commons.fileupload.FileItem;
 
 import java.io.File;

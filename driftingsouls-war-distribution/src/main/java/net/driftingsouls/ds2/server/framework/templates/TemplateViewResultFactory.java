@@ -1,6 +1,7 @@
 package net.driftingsouls.ds2.server.framework.templates;
 
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.framework.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,7 +22,7 @@ public class TemplateViewResultFactory
 		this.templateLoader = templateLoader;
 	}
 
-	private void setzeTemplateViaControllerNamen(TemplateEngine engine, Object controller)
+	private void setzeTemplateViaControllerNamen(ITemplateEngine engine, Object controller)
 	{
 		String clsName = controller.getClass().getSimpleName();
 		if( clsName.endsWith("Controller") ) {
@@ -30,9 +31,9 @@ public class TemplateViewResultFactory
 		setTemplate(engine, clsName.toLowerCase() + ".html");
 	}
 
-	private TemplateEngine createTemplateEngine(String masterTemplateId)
+	private ITemplateEngine createTemplateEngine(String masterTemplateId)
 	{
-		TemplateEngine templateEngine = new TemplateEngine(masterTemplateId, templateLoader);
+		ITemplateEngine templateEngine = new TemplateEngine(masterTemplateId, templateLoader);
 
 		templateEngine.setVar("global.module", ContextMap.getContext().getRequest().getParameter("module"));
 		templateEngine.setVar("global.version", version.getVersion());
@@ -40,7 +41,7 @@ public class TemplateViewResultFactory
 		return templateEngine;
 	}
 
-	private void setTemplate(TemplateEngine templateEngine, String file)
+	private void setTemplate(ITemplateEngine templateEngine, String file)
 	{
 		if (!templateEngine.setFile(MASTERTEMPLATE, file))
 		{
@@ -57,7 +58,7 @@ public class TemplateViewResultFactory
 	 * Erzeugt eine leere Templateinstanz ohne geladenes Haupttemplate.
 	 * @return Die Templateinstanz
 	 */
-	public TemplateEngine createEmpty()
+	public ITemplateEngine createEmpty()
 	{
 		return createTemplateEngine(MASTERTEMPLATE);
 	}
@@ -68,9 +69,9 @@ public class TemplateViewResultFactory
 	 * @param controller Der Controller
 	 * @return Die Templateinstanz
 	 */
-	public TemplateEngine createFor(@Nonnull Object controller)
+	public ITemplateEngine createFor(@Nonnull Object controller)
 	{
-		TemplateEngine engine = createTemplateEngine(MASTERTEMPLATE);
+		ITemplateEngine engine = createTemplateEngine(MASTERTEMPLATE);
 		setzeTemplateViaControllerNamen(engine, controller);
 
 		return engine;
@@ -81,9 +82,9 @@ public class TemplateViewResultFactory
 	 * @param templateName Der Controller
 	 * @return Die Templateinstanz
 	 */
-	public TemplateEngine createForTemplate(@Nonnull String templateName)
+	public ITemplateEngine createForTemplate(@Nonnull String templateName)
 	{
-		TemplateEngine engine = createTemplateEngine(MASTERTEMPLATE);
+		ITemplateEngine engine = createTemplateEngine(MASTERTEMPLATE);
 		setTemplate(engine, templateName);
 
 		return engine;

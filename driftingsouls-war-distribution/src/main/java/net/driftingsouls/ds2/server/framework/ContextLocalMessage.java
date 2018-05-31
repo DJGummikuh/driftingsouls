@@ -18,6 +18,9 @@
  */
 package net.driftingsouls.ds2.server.framework;
 
+import net.driftingsouls.ds2.interfaces.framework.ContextListener;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
+
 /**
  * Lognachrichten auf Contextbasis.
  * @author Christopher Jung

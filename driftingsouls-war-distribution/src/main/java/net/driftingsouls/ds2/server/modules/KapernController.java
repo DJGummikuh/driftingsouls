@@ -20,6 +20,7 @@ package net.driftingsouls.ds2.server.modules;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
 import net.driftingsouls.ds2.interfaces.annotations.controllers.UrlParam;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.ContextCommon;
 import net.driftingsouls.ds2.interfaces.server.WellKnownConfigValue;
 import net.driftingsouls.ds2.server.battles.Battle;
@@ -34,12 +35,11 @@ import net.driftingsouls.ds2.server.entities.User;
 import net.driftingsouls.ds2.server.entities.UserFlag;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.server.framework.ConfigService;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.services.SchlachtErstellenService;
 import net.driftingsouls.ds2.server.ships.Ship;
@@ -182,10 +182,10 @@ public class KapernController extends Controller
 	 * @param zielSchiff Die ID des zu kapernden/pluendernden Schiffes
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine erobernAction(@UrlParam(name = "ship") Ship eigenesSchiff, @UrlParam(name = "tar") Ship zielSchiff)
+	public ITemplateEngine erobernAction(@UrlParam(name = "ship") Ship eigenesSchiff, @UrlParam(name = "tar") Ship zielSchiff)
 	{
 		org.hibernate.Session db = ContextMap.getContext().getDB();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) this.getUser();
 
 		validiereEigenesUndZielschiff(eigenesSchiff, zielSchiff);
@@ -482,7 +482,7 @@ public class KapernController extends Controller
 		return ok;
 	}
 
-	private boolean checkAlliedShipsReaction(org.hibernate.Session db, TemplateEngine t,
+	private boolean checkAlliedShipsReaction(org.hibernate.Session db, ITemplateEngine t,
 											 User targetUser, Ship ownShip, Ship targetShip)
 	{
 		List<User> ownerlist = new ArrayList<>();
@@ -550,9 +550,9 @@ public class KapernController extends Controller
 	 * @param zielSchiff Die ID des zu kapernden/pluendernden Schiffes
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(@UrlParam(name = "ship") Ship eigenesSchiff, @UrlParam(name = "tar") Ship zielSchiff)
+	public ITemplateEngine defaultAction(@UrlParam(name = "ship") Ship eigenesSchiff, @UrlParam(name = "tar") Ship zielSchiff)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		validiereEigenesUndZielschiff(eigenesSchiff, zielSchiff);
 

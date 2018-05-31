@@ -20,7 +20,7 @@ package net.driftingsouls.ds2.server.config;
 
 import net.driftingsouls.ds2.server.entities.Weapon;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Session;
 

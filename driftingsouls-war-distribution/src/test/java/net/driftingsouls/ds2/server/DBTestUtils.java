@@ -1,7 +1,7 @@
 package net.driftingsouls.ds2.server;
 
 import net.driftingsouls.ds2.server.framework.BasicContext;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.framework.EmptyPermissionResolver;
 import net.driftingsouls.ds2.server.framework.SimpleResponse;
 import net.driftingsouls.ds2.server.framework.TestRequest;

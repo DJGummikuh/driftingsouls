@@ -20,7 +20,7 @@ package net.driftingsouls.ds2.server.framework.pipeline.configuration;
 
 import net.driftingsouls.ds2.server.framework.AnnotationUtils;
 import net.driftingsouls.ds2.server.framework.Configuration;
-import net.driftingsouls.ds2.server.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.Context;
 import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
 import net.driftingsouls.ds2.server.framework.pipeline.Pipeline;
 import net.driftingsouls.ds2.server.framework.xml.XMLUtils;

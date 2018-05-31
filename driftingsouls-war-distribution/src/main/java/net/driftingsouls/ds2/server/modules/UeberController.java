@@ -19,6 +19,7 @@
 package net.driftingsouls.ds2.server.modules;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.ContextCommon;
 import net.driftingsouls.ds2.interfaces.server.WellKnownPermission;
 import net.driftingsouls.ds2.server.bases.Base;
@@ -41,7 +42,6 @@ import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipFleet;
@@ -138,11 +138,11 @@ public class UeberController extends Controller
 	 * Zeigt die Uebersicht an.
 	 */
 	@Action(value = ActionType.DEFAULT, readOnly = true)
-	public TemplateEngine defaultAction()
+	public ITemplateEngine defaultAction()
 	{
 		org.hibernate.Session db = getDB();
 		User user = (User) getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		String ticktime = getTickTime();
 
 		String race = "???";
@@ -306,7 +306,7 @@ public class UeberController extends Controller
 		return t;
 	}
 
-	private void mangelAufSchiffenAnzeigen(Session db, User user, TemplateEngine t)
+	private void mangelAufSchiffenAnzeigen(Session db, User user, ITemplateEngine t)
 	{
 		long sw;
 		long shipNoCrew;
@@ -326,7 +326,7 @@ public class UeberController extends Controller
 				"schiffe.nocrew", Common.ln(shipNoCrew));
 	}
 
-	private void laufendeSchlachtenAnzeigen(Session db, User user, TemplateEngine t)
+	private void laufendeSchlachtenAnzeigen(Session db, User user, ITemplateEngine t)
 	{
 		// Ab hier beginnt das erste Bier
 		Set<Battle> battles = erzeugeListeDerRelevantenSchlachten(db, user);
@@ -439,7 +439,7 @@ public class UeberController extends Controller
 		return battles;
 	}
 
-	private int mangelAufAsteroidenAnzeigen(Session db, User user, TemplateEngine t)
+	private int mangelAufAsteroidenAnzeigen(Session db, User user, ITemplateEngine t)
 	{
 		int bw = 0;
 		int bases = 0;
@@ -505,7 +505,7 @@ public class UeberController extends Controller
 		return ticktime;
 	}
 
-	private void showTutorialPages(TemplateEngine t, int bases, long shipcount, int inttutorial)
+	private void showTutorialPages(ITemplateEngine t, int bases, long shipcount, int inttutorial)
 	{
 		org.hibernate.Session db = getDB();
 		User user = (User) getUser();

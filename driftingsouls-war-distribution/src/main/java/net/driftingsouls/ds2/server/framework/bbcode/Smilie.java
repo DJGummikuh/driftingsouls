@@ -21,7 +21,7 @@ package net.driftingsouls.ds2.server.framework.bbcode;
 import net.driftingsouls.ds2.interfaces.server.WellKnownConfigValue;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.server.framework.ConfigService;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -21,8 +21,8 @@ package net.driftingsouls.ds2.server.entities;
 import net.driftingsouls.ds2.interfaces.server.WellKnownPermission;
 import net.driftingsouls.ds2.server.entities.ally.Ally;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.ContextMap;
-import net.driftingsouls.ds2.server.framework.PermissionResolver;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.PermissionResolver;
 import org.hibernate.Session;
 import org.hibernate.annotations.ForeignKey;
 

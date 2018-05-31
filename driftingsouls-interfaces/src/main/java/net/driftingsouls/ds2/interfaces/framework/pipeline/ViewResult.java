@@ -1,4 +1,4 @@
-package net.driftingsouls.ds2.server.framework.pipeline;
+package net.driftingsouls.ds2.interfaces.framework.pipeline;
 
 import net.driftingsouls.ds2.interfaces.framework.pipeline.Response;
 

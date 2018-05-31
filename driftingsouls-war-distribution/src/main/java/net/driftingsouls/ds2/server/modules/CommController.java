@@ -20,6 +20,7 @@ package net.driftingsouls.ds2.server.modules;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
 import net.driftingsouls.ds2.interfaces.annotations.controllers.UrlParam;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.ContextCommon;
 import net.driftingsouls.ds2.interfaces.server.WellKnownPermission;
 import net.driftingsouls.ds2.server.bbcodes.TagIntrnlConfTask;
@@ -35,7 +36,6 @@ import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -445,10 +445,10 @@ public class CommController extends Controller
 	 * @param special Falls es sich nicht um eine Antwort handelt, dann das Spezialflag der Nachricht
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine sendAction(String to, PM reply, String msg, String sendeziel, String title, String special)
+	public ITemplateEngine sendAction(String to, PM reply, String msg, String sendeziel, String title, String special)
 	{
 		User user = (User) getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		if (reply != null)
 		{
@@ -533,10 +533,10 @@ public class CommController extends Controller
 	 * @param ordner Die ID des Ordners, in dem sich die Nachricht befindet
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine showPmAction(@UrlParam(name = "pmid") PM pm, Ordner ordner)
+	public ITemplateEngine showPmAction(@UrlParam(name = "pmid") PM pm, Ordner ordner)
 	{
 		User user = (User) getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		BBCodeParser bbcodeparser = BBCodeParser.getNewInstance();
 
@@ -679,10 +679,10 @@ public class CommController extends Controller
 	 * @param ordner Der anzuzeigende Ordner (0 ist die oberste Ebene)
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine showInboxAction(Ordner ordner, RedirectViewResult redirect)
+	public ITemplateEngine showInboxAction(Ordner ordner, RedirectViewResult redirect)
 	{
 		org.hibernate.Session db = getDB();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 
 		t.setVar(
@@ -776,10 +776,10 @@ public class CommController extends Controller
 	 * Zeigt die Liste aller versendeten und noch nicht geloeschten PMs.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine showOutboxAction()
+	public ITemplateEngine showOutboxAction()
 	{
 		org.hibernate.Session db = getDB();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		User user = (User) getUser();
 
@@ -823,9 +823,9 @@ public class CommController extends Controller
 	 * @param sendeziel Der Empfaengertyp der Nachricht
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine previewAction(String msg, String to, String title, String special, String sendeziel)
+	public ITemplateEngine previewAction(String msg, String to, String title, String special, String sendeziel)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		User user = (User) getUser();
 
@@ -889,9 +889,9 @@ public class CommController extends Controller
 	 * @param ordner Der Ordner, in dem sich die Nachricht befindet
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine editCommentAction(PM pm, Ordner ordner)
+	public ITemplateEngine editCommentAction(PM pm, Ordner ordner)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		User user = (User) getUser();
 
@@ -942,9 +942,9 @@ public class CommController extends Controller
 	 * @param special Die Spezialmarkierung (admin, official)
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(@UrlParam(name = "to") String toStr, PM reply, String msg, String title, String special)
+	public ITemplateEngine defaultAction(@UrlParam(name = "to") String toStr, PM reply, String msg, String title, String special)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		User user = (User) getUser();
 

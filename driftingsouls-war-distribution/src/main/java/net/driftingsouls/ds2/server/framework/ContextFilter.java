@@ -1,5 +1,6 @@
 package net.driftingsouls.ds2.server.framework;
 
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.framework.pipeline.HttpRequest;
 import net.driftingsouls.ds2.server.framework.pipeline.HttpResponse;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.Request;

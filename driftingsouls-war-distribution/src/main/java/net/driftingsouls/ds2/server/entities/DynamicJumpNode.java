@@ -21,7 +21,7 @@ package net.driftingsouls.ds2.server.entities;
 
 import net.driftingsouls.ds2.server.Location;
 import net.driftingsouls.ds2.server.config.StarSystem;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import org.apache.commons.lang.math.RandomUtils;
 import org.hibernate.annotations.ForeignKey;
 

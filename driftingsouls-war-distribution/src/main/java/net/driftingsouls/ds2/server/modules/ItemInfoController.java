@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +64,6 @@ import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.modules.viewmodels.ItemViewModel;
 import net.driftingsouls.ds2.server.ships.SchiffstypModifikation;
@@ -318,9 +318,9 @@ public class ItemInfoController extends Controller
 	 * @param itemStr Die ID des anzuzeigenden Items
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine detailsAction(@UrlParam(name = "item") String itemStr, @UrlParam(name = "itemlist") String itemlistStr)
+	public ITemplateEngine detailsAction(@UrlParam(name = "item") String itemStr, @UrlParam(name = "itemlist") String itemlistStr)
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 		org.hibernate.Session db = getDB();
 
@@ -751,9 +751,9 @@ public class ItemInfoController extends Controller
 	 * Zeigt die Liste aller bekannten Items sowie ihren Aufenthaltsort, sofern man sie besitzt, an.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine knownAction()
+	public ITemplateEngine knownAction()
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) getUser();
 		org.hibernate.Session db = getDB();
 		List<Item> itemlist = Common.cast(db.createQuery("from Item").list());

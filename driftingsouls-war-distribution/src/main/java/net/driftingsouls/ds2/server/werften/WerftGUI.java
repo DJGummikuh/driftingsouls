@@ -18,6 +18,7 @@
  */
 package net.driftingsouls.ds2.server.werften;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.bases.Base;
 import net.driftingsouls.ds2.server.cargo.Cargo;
 import net.driftingsouls.ds2.server.cargo.ItemCargoEntry;
@@ -33,10 +34,9 @@ import net.driftingsouls.ds2.server.config.items.effects.IEModule;
 import net.driftingsouls.ds2.server.entities.Offizier;
 import net.driftingsouls.ds2.server.entities.User;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.Request;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipBaubar;
 import net.driftingsouls.ds2.server.ships.ShipTypeData;
@@ -54,14 +54,14 @@ import java.util.Map;
  */
 public class WerftGUI {
 	private Context context;
-	private TemplateEngine t;
+	private ITemplateEngine t;
 
 	/**
 	 * Erstellt eine neue Instanz einer Werftgui auf Basis des Kontexts.
 	 * @param context Der Kontext
 	 * @param t Das zu verwendende TemplateEngine
 	 */
-	public WerftGUI( Context context,TemplateEngine t ) {
+	public WerftGUI( Context context,ITemplateEngine t ) {
 		this.context = context;
 		this.t = t;
 	}

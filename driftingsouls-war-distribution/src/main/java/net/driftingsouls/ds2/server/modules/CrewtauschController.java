@@ -18,6 +18,7 @@
  */
 package net.driftingsouls.ds2.server.modules;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
@@ -29,7 +30,6 @@ import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionTyp
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.ships.Ship;
 
@@ -370,13 +370,13 @@ public class CrewtauschController extends Controller
 	 * @param mode Der Transfermodus. Entweder ss (Schiff zu Schiff) oder sb (Schiff zu Basis)
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(Ship ship, int tar, String mode, RedirectViewResult redirect)
+	public ITemplateEngine defaultAction(Ship ship, int tar, String mode, RedirectViewResult redirect)
 	{
 		validiereSchiff(ship);
 
 		Target datat = ladeCrewtauschZiel(mode, tar, ship);
 
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		t.setVar("ship.id", ship.getId(),
 				"ship.name", Common._plaintitle(ship.getName()),

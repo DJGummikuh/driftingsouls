@@ -1,5 +1,8 @@
 package net.driftingsouls.ds2.server.framework;
 
+import net.driftingsouls.ds2.interfaces.framework.IBasicUser;
+import net.driftingsouls.ds2.interfaces.framework.IPermission;
+import net.driftingsouls.ds2.interfaces.framework.PermissionDescriptor;
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.proxy.HibernateProxy;
 import org.jetbrains.annotations.NotNull;
@@ -21,8 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="permission")
-public class Permission implements Comparable<Permission>, PermissionDescriptor
-{
+public class Permission implements Comparable<IPermission>, PermissionDescriptor, IPermission {
 	@SuppressWarnings("unused")
 	@Id @GeneratedValue
 	private int id;
@@ -30,7 +32,7 @@ public class Permission implements Comparable<Permission>, PermissionDescriptor
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	@ForeignKey(name="permission_fk_users")
-	private BasicUser user;
+	private IBasicUser user;
 	@Column(nullable = false)
 	private String category;
 	@Column(nullable = false)
@@ -41,7 +43,7 @@ public class Permission implements Comparable<Permission>, PermissionDescriptor
 		// EMPTY
 	}
 
-	public Permission(BasicUser user, String category, String action)
+	public Permission(IBasicUser user, String category, String action)
 	{
 		this.user = user;
 		this.category = category;

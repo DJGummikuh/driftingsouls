@@ -18,7 +18,7 @@
  */
 package net.driftingsouls.ds2.server.tasks;
 
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.ships.Ship;
 import org.springframework.stereotype.Service;
 

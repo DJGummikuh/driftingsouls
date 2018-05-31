@@ -18,9 +18,9 @@
  */
 package net.driftingsouls.ds2.server.bases;
 
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.werften.BaseWerft;
 import net.driftingsouls.ds2.server.werften.WerftGUI;
@@ -161,7 +161,7 @@ public class Werft extends DefaultBuilding {
 		werft.setBaseField(field);
 
 		TemplateViewResultFactory templateViewResultFactory = context.getBean(TemplateViewResultFactory.class, null);
-		TemplateEngine t = templateViewResultFactory.createEmpty();
+		ITemplateEngine t = templateViewResultFactory.createEmpty();
 		WerftGUI werftgui = new WerftGUI( context, t );
 		response.append(werftgui.execute( werft ));
 

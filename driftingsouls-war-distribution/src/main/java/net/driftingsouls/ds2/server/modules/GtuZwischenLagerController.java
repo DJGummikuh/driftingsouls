@@ -20,6 +20,7 @@ package net.driftingsouls.ds2.server.modules;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
 import net.driftingsouls.ds2.interfaces.annotations.controllers.UrlParam;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.cargo.Cargo;
 import net.driftingsouls.ds2.server.cargo.ItemCargoEntry;
 import net.driftingsouls.ds2.server.cargo.ResourceList;
@@ -33,7 +34,6 @@ import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionTyp
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.RedirectViewResult;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.ValidierungException;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.services.HandelspostenService;
 import net.driftingsouls.ds2.server.ships.Ship;
@@ -156,7 +156,7 @@ public class GtuZwischenLagerController extends Controller
 		{
 			db.delete(tradeentry);
 
-			TemplateEngine t = templateViewResultFactory.createFor(this);
+			ITemplateEngine t = templateViewResultFactory.createFor(this);
 			t.setVar("global.shipid", ship.getId());
 			t.setVar("global.handelsposten", handelsposten.getId());
 			t.setBlock("_GTUZWISCHENLAGER", "transferlist.res.listitem", "transferlist.res.list");
@@ -206,10 +206,10 @@ public class GtuZwischenLagerController extends Controller
 	 * @param tradeentry Die ID des Zwischenlager-Eintrags
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine viewEntryAction(Ship ship, @UrlParam(name = "entry") GtuZwischenlager tradeentry, Ship handelsposten, RedirectViewResult redirect)
+	public ITemplateEngine viewEntryAction(Ship ship, @UrlParam(name = "entry") GtuZwischenlager tradeentry, Ship handelsposten, RedirectViewResult redirect)
 	{
 		User user = (User) this.getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		validiereSchiff(ship);
 
@@ -269,11 +269,11 @@ public class GtuZwischenLagerController extends Controller
 	 * @param ship Die ID des Schiffes, welches auf das GTU-Zwischenlager zugreifen will
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction(Ship ship, Ship handelsposten)
+	public ITemplateEngine defaultAction(Ship ship, Ship handelsposten)
 	{
 		org.hibernate.Session db = getDB();
 		User user = (User) this.getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 
 		validiereSchiff(ship);
 

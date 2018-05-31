@@ -18,10 +18,10 @@
  */
 package net.driftingsouls.ds2.server.modules.ks;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.battles.Battle;
 import net.driftingsouls.ds2.server.battles.BattleShip;
 import net.driftingsouls.ds2.server.entities.User;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -53,7 +53,7 @@ public class KSGroupAttackAction extends BasicKSAction {
     }
 
     @Override
-    public Result execute(TemplateEngine t, Battle battle) throws IOException
+    public Result execute(ITemplateEngine t, Battle battle) throws IOException
     {
         int typeid = battle.getOwnShip().getTypeData().getTypeId();
         int enemytypeid = battle.getEnemyShip().getTypeData().getTypeId();

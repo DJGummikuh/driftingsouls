@@ -20,7 +20,6 @@ package net.driftingsouls.ds2.interfaces.framework.pipeline;
 
 import org.apache.commons.fileupload.FileItem;
 
-import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -38,7 +37,7 @@ public interface Request {
 	 * @param parameter Der Name des Parameters
 	 * @return Die Wert
 	 */
-	public @Nonnull String[] getParameterValues(@Nonnull String parameter);
+	public String[] getParameterValues(String parameter);
 
 	/**
 	 * Gibt einen Parameter des Aufrufs zurueck.

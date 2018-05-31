@@ -18,7 +18,7 @@
  */
 package net.driftingsouls.ds2.server.ships;
 
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 
 /**
  * Diverse Funktionen rund um Schiffe in DS.

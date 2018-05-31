@@ -18,7 +18,7 @@
  */
 package net.driftingsouls.ds2.server.framework.authentication;
 
-import net.driftingsouls.ds2.server.framework.BasicUser;
+import net.driftingsouls.ds2.interfaces.framework.IBasicUser;
 
 /**
  * Listener fuer ein Login-Ereignis.
@@ -36,5 +36,5 @@ public interface LoginEventListener {
 	 * @param user Der Useraccount
 	 * @throws AuthenticationException Falls die Authentifizierung fehlschlagen soll
 	 */
-	public void onLogin(BasicUser user) throws AuthenticationException;
+	public void onLogin(IBasicUser user) throws AuthenticationException;
 }

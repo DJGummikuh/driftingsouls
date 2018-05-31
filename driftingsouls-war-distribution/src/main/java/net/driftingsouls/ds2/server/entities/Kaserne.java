@@ -19,7 +19,7 @@
 package net.driftingsouls.ds2.server.entities;
 
 import net.driftingsouls.ds2.server.bases.Base;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.units.UnitType;
 import org.hibernate.annotations.ForeignKey;
 

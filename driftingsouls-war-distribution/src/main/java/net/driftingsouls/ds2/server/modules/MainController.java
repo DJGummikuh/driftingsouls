@@ -26,6 +26,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -45,7 +46,6 @@ import net.driftingsouls.ds2.server.framework.Version;
 import net.driftingsouls.ds2.server.framework.ViewMessage;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.services.ComNetService;
 
@@ -134,10 +134,10 @@ public class MainController extends Controller
 	 * Generiert das Hauptframe.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction()
+	public ITemplateEngine defaultAction()
 	{
 		User user = (User) getUser();
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		org.hibernate.Session db = getDB();
 
 		t.setVar("SCRIPT_FORUM", SCRIPT_FORUM);

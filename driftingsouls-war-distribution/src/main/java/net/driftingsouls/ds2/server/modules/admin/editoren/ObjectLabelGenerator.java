@@ -11,8 +11,8 @@ import net.driftingsouls.ds2.server.entities.fraktionsgui.FraktionsGuiEintrag;
 import net.driftingsouls.ds2.server.entities.fraktionsgui.baseupgrade.UpgradeInfo;
 import net.driftingsouls.ds2.server.entities.fraktionsgui.baseupgrade.UpgradeMaxValues;
 import net.driftingsouls.ds2.server.entities.npcorders.OrderableShip;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.ships.SchiffstypModifikation;
 import net.driftingsouls.ds2.server.ships.ShipBaubar;
 

@@ -1,5 +1,6 @@
 package net.driftingsouls.ds2.server.framework;
 
+import net.driftingsouls.ds2.interfaces.framework.IBasicUser;
 import org.hibernate.annotations.ForeignKey;
 
 import javax.persistence.Entity;
@@ -56,7 +57,7 @@ public class DynamicContent implements Serializable
 	@ManyToOne
 	@JoinColumn
 	@ForeignKey(name="dynamic_content_fk_users")
-	private BasicUser hochgeladenDurch;
+	private IBasicUser hochgeladenDurch;
 	private String quelle;
 	private String autor;
 	@Enumerated(EnumType.STRING)
@@ -117,7 +118,7 @@ public class DynamicContent implements Serializable
 	 * Gibt zurueck, durch wen die Datei hochgeladen wurde.
 	 * @return Der User
 	 */
-	public BasicUser getHochgeladenDurch()
+	public IBasicUser getHochgeladenDurch()
 	{
 		return hochgeladenDurch;
 	}
@@ -126,7 +127,7 @@ public class DynamicContent implements Serializable
 	 * Setzt, durch wen die Datei hochgeladen wurde.
 	 * @param hochgeladenDurch Der User
 	 */
-	public void setHochgeladenDurch(BasicUser hochgeladenDurch)
+	public void setHochgeladenDurch(IBasicUser hochgeladenDurch)
 	{
 		this.hochgeladenDurch = hochgeladenDurch;
 	}

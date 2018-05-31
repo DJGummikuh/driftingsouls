@@ -19,9 +19,9 @@
 package net.driftingsouls.ds2.server.modules.schiffplugins;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipTypeData;
 import net.driftingsouls.ds2.server.units.UnitCargo;
@@ -44,7 +44,7 @@ public class UnitsDefault implements SchiffPlugin {
 		Ship ship = caller.ship;
 		ShipTypeData shiptype = caller.shiptype;
 
-		TemplateEngine t = caller.t;
+		ITemplateEngine t = caller.t;
 		t.setFile("_PLUGIN_"+pluginid, "schiff.unitcargo.default.html");
 
 		UnitCargo unitcargo = ship.getUnits();

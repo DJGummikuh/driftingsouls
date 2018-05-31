@@ -19,6 +19,7 @@
 package net.driftingsouls.ds2.server.modules;
 
 import net.driftingsouls.ds2.interfaces.annotations.controllers.Action;
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.server.Location;
 import net.driftingsouls.ds2.server.MutableLocation;
 import net.driftingsouls.ds2.server.cargo.Cargo;
@@ -29,7 +30,6 @@ import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.interfaces.annotations.pipeline.Module;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.ships.Ship;
 import net.driftingsouls.ds2.server.ships.ShipTypeData;
@@ -59,8 +59,8 @@ public class DeutAllController extends Controller
 	 * Sammelt das Deuterium auf den Tankern.
 	 */
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction() {
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+	public ITemplateEngine defaultAction() {
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User)getUser();
 		org.hibernate.Session db = getDB();
 

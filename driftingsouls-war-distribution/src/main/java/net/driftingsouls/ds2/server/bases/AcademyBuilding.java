@@ -18,6 +18,7 @@
  */
 package net.driftingsouls.ds2.server.bases;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import net.driftingsouls.ds2.interfaces.server.WellKnownConfigValue;
 import net.driftingsouls.ds2.server.cargo.Cargo;
 import net.driftingsouls.ds2.server.cargo.Resources;
@@ -26,9 +27,8 @@ import net.driftingsouls.ds2.server.entities.Academy;
 import net.driftingsouls.ds2.server.entities.Offizier;
 import net.driftingsouls.ds2.server.framework.Common;
 import net.driftingsouls.ds2.server.framework.ConfigService;
-import net.driftingsouls.ds2.server.framework.Context;
-import net.driftingsouls.ds2.server.framework.ContextMap;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
+import net.driftingsouls.ds2.interfaces.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -239,7 +239,7 @@ public class AcademyBuilding extends DefaultBuilding {
 	public String output(Context context, Base base, int field, int building) {
 		org.hibernate.Session db = context.getDB();
 		TemplateViewResultFactory templateViewResultFactory = context.getBean(TemplateViewResultFactory.class, null);
-		TemplateEngine t = templateViewResultFactory.createEmpty();
+		ITemplateEngine t = templateViewResultFactory.createEmpty();
 
 		int siliziumcosts = new ConfigService().getValue(WellKnownConfigValue.NEW_OFF_SILIZIUM_COSTS);
 		int nahrungcosts = new ConfigService().getValue(WellKnownConfigValue.NEW_OFF_NAHRUNG_COSTS);

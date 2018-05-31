@@ -18,7 +18,7 @@
  */
 package net.driftingsouls.ds2.server.framework.pipeline.configuration;
 
-import net.driftingsouls.ds2.server.framework.Context;
+import net.driftingsouls.ds2.interfaces.framework.Context;
 import net.driftingsouls.ds2.server.framework.pipeline.ControllerPipeline;
 import net.driftingsouls.ds2.server.framework.pipeline.Pipeline;
 

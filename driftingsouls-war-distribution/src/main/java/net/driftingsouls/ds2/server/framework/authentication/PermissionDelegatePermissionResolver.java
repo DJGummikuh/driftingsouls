@@ -1,8 +1,9 @@
 package net.driftingsouls.ds2.server.framework.authentication;
 
+import net.driftingsouls.ds2.interfaces.framework.IPermission;
 import net.driftingsouls.ds2.server.framework.Permission;
 import net.driftingsouls.ds2.server.framework.PermissionDescriptor;
-import net.driftingsouls.ds2.server.framework.PermissionResolver;
+import net.driftingsouls.ds2.interfaces.framework.PermissionResolver;
 
 import java.util.Set;
 
@@ -16,14 +17,14 @@ import java.util.Set;
 public class PermissionDelegatePermissionResolver implements PermissionResolver
 {
 	private PermissionResolver inner;
-	private Set<Permission> permissions;
+	private Set<IPermission> permissions;
 
 	/**
 	 * Konstruktor.
 	 * @param inner Der alternative PermissionResolver (Fallback)
 	 * @param permissions Die expliziten Permissions
 	 */
-	public PermissionDelegatePermissionResolver(PermissionResolver inner, Set<Permission> permissions)
+	public PermissionDelegatePermissionResolver(PermissionResolver inner, Set<IPermission> permissions)
 	{
 		super();
 		this.inner = inner;
@@ -38,7 +39,7 @@ public class PermissionDelegatePermissionResolver implements PermissionResolver
 			throw new IllegalArgumentException("permission darf nicht null sein");
 		}
 
-		for( Permission p : this.permissions )
+		for( IPermission p : this.permissions )
 		{
 			if( permission.getCategory().equals(p.getCategory()) )
 			{

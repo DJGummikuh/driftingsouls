@@ -19,7 +19,7 @@
 package net.driftingsouls.ds2.server.entities;
 
 import net.driftingsouls.ds2.server.cargo.Cargo;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.ForeignKey;

@@ -20,7 +20,7 @@ package net.driftingsouls.ds2.server.cargo;
 
 import net.driftingsouls.ds2.server.config.items.Item;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.server.framework.xml.XMLUtils;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;

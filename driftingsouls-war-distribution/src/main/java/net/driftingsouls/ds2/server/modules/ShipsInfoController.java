@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import net.driftingsouls.ds2.interfaces.framework.templates.ITemplateEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 
@@ -18,10 +19,9 @@ import net.driftingsouls.ds2.server.cargo.Resources;
 import net.driftingsouls.ds2.server.config.Rassen;
 import net.driftingsouls.ds2.server.entities.User;
 import net.driftingsouls.ds2.server.framework.Common;
-import net.driftingsouls.ds2.server.framework.ContextMap;
+import net.driftingsouls.ds2.interfaces.framework.ContextMap;
 import net.driftingsouls.ds2.interfaces.framework.pipeline.controllers.ActionType;
 import net.driftingsouls.ds2.server.framework.pipeline.controllers.Controller;
-import net.driftingsouls.ds2.server.framework.templates.TemplateEngine;
 import net.driftingsouls.ds2.server.framework.templates.TemplateViewResultFactory;
 import net.driftingsouls.ds2.server.ships.ShipBaubar;
 import net.driftingsouls.ds2.server.ships.ShipType;
@@ -43,9 +43,9 @@ public class ShipsInfoController extends Controller
 	}
 
 	@Action(ActionType.DEFAULT)
-	public TemplateEngine defaultAction()
+	public ITemplateEngine defaultAction()
 	{
-		TemplateEngine t = templateViewResultFactory.createFor(this);
+		ITemplateEngine t = templateViewResultFactory.createFor(this);
 		User user = (User) ContextMap.getContext().getActiveUser();
 		org.hibernate.Session db = getDB();
 
@@ -72,7 +72,7 @@ public class ShipsInfoController extends Controller
 		return t;
 	}
 
-	private void writeList(TemplateEngine t, Map<Integer, ShipBaubar> buildableShips, Set<ShipType> shipTypes, String blockName, String listName, String itemName, String reslistName)
+	private void writeList(ITemplateEngine t, Map<Integer, ShipBaubar> buildableShips, Set<ShipType> shipTypes, String blockName, String listName, String itemName, String reslistName)
 	{
 		t.setBlock(blockName, itemName, listName);
 		if (reslistName != null)
